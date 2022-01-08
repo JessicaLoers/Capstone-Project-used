@@ -16,7 +16,7 @@ export default function App() {
   const [tracks, setTracks] = useState(localStorageTracks ?? [])
 
   async function fetchTracks() {
-    const result = await fetch('/api/track')  //fetch('http://localhost:4000/api/track')
+    const result = await fetch('api/track')  //fetch('http://localhost:4000/api/track')
     const resultJson = await result.json()
     setTracks(resultJson)
   }
@@ -28,7 +28,7 @@ export default function App() {
   }, [tracks])
 
   async function addTracksToDatabase(track) {
-    const result = await fetch('/api/track', {
+    const result = await fetch('api/track', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export default function App() {
 
 
  const addedTracks = tracks.map((track) => ({
-      key: track.track_id,
+     // key: track.track_id,
       trackName: track.title,
       year: track.year,
     }))

@@ -9,9 +9,8 @@ import isTrackValid from '../lib/validation'
 export default function TrackForm({ onAddTrack, addedTracks }) {
  
   const initialTrack = {
-    track_id:'',
-    title: '',
-    album: '',
+    title:'',
+    name: '',
     year: 1900,
     sampled_in: [],
     sampled: [],
@@ -26,7 +25,7 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
   useEffect(() => {
     async function getArtists() {
       try {
-        const response = await fetch('http://localhost:4000/api/artist')
+        const response = await fetch('api/artist') // ('http://localhost:4000/api/artist')
         const artistsFromApi = await response.json()
         setArtists(artistsFromApi)
       } catch (error) {
@@ -48,7 +47,7 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
   const handleSubmit = (event) => {
     event.preventDefault()
     
-    //alert(`The name you entered was: god`)
+    alert(`The name you entered was: god`)
     if (isTrackValid(track)) {
       onAddTrack(track)
       // onAddTrack({ id: uuidv4(), ...track })
@@ -72,9 +71,9 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
       )}
 
       <FormSampled onSubmit={handleSubmit}>
-        <SelectArtist
+      <SelectArtist
           name='artist'
-          value={track.artist}
+          value={track.name}
           options={artists}
           onSelectChange={handleChange}
         >
@@ -123,7 +122,7 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
 
   <h2> added track:</h2>
  {addedTracks.map((tracks)=>
- <p key={tracks.key}>{tracks.trackName} </p>
+ <p >{tracks.trackName} </p>
  
  )}
     

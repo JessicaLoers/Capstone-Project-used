@@ -14,14 +14,13 @@ const getTrack = async (req, res) => {
 
 const postTrack = async (req, res) => {
   const track = new Track({
-   
-    track: req.body.track,
-    artist_name: req.body.artist_name,
+    title: req.body.title,
+    name: req.body.name,
     year: req.body.year,
     sampled_in: req.body.sampled_in,
     sampled: req.body.sampled,
     video_id: req.body.video_id,
-    cover_image: req.body.cover_image
+    cover_image: req.body.cover_image,
   })
 
   try {

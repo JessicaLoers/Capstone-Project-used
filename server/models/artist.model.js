@@ -1,9 +1,10 @@
 import mongoose from 'mongoose'
 
 const artistSchema = new mongoose.Schema({
-  artist_name: String,
-  infos: String,
-  artist_tracks: Array
+  //artist_id: String,
+  name: String,
+  //infos: String,
+ // tracks: Array
 })
 
 const Artist = mongoose.model('Artist', artistSchema, 'artist')

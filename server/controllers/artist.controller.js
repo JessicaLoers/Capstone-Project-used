@@ -15,9 +15,10 @@ const getArtist = async (req, res) => {
 const postArtist = async (req, res) => {
   const artist = new Artist({
    
-    artist_name: req.body.artist_name,
-    infos: req.body.infos,
-    artist_tracks: req.body_artist_tracks
+  // artist_id: req.body.artist_id,
+  name: req.body.name,
+  //infos: req.body.infos,
+ // tracks: req.body.tracks
   })
 
   try {
