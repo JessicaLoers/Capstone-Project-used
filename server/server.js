@@ -23,8 +23,8 @@ const __dirname = dirname(import.meta.url)
 const server = express() // Express-Server erstellen
 server.use(cors())
 
-//const connectionString = `mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbName}?retryWrites=true&w=majority`
 const connectionString = `mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbName}?retryWrites=true&w=majority`
+
 mongoose.connect(connectionString)
 
 server.use(express.json()) // JSON Body Parser

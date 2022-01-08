@@ -1,45 +1,77 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import styled from 'styled-components'
+import { useEffect, useState } from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { Link, Route, Routes } from 'react-router-dom'
+import { saveToLocal, loadFromLocal } from './lib/localStorage'
+import Header from './components/Header'
+import FooterNavigation from './components/FooterNav'
+import SearchBar from './components/SearchBar'
+import TrackForm from './components/TrackForm'
+import Profile from './components/MemberProfile'
+import TrackOverview from './pages/TrackOverview'
+
+
+export default function App() {
+  const localStorageTracks = loadFromLocal('_tracks')
+  const [tracks, setTracks] = useState(localStorageTracks ?? [])
+
+  async function fetchTracks() {
+    const result = await fetch('/api/track')  //fetch('http://localhost:4000/api/track')
+    const resultJson = await result.json()
+    setTracks(resultJson)
+  }
+
+  useEffect(() => fetchTracks(), [])
+
+  useEffect(() => {
+    saveToLocal('_tracks', tracks)
+  }, [tracks])
+
+  async function addTracksToDatabase(track) {
+    const result = await fetch('/api/track', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(track),
+    })
+    return await result.json()
+  
+  }
+
+  function addTrack(track) {
+    addTracksToDatabase(track)
+    console.log(track)
+    fetchTracks()
+  }
+
+
+ const addedTracks = tracks.map((track) => ({
+      key: track.track_id,
+      trackName: track.title,
+      year: track.year,
+    }))
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div>
+      <div>
+
+        <Header />
+      </div>
+      <Routes>
+        <Route path='/' element={<SearchBar />}></Route>
+        <Route path='/profile/:name' element={<Profile />}></Route>
+      </Routes>
+      <Routes>
+        <Route path='/track/:title' element={<TrackOverview />}></Route>
+      </Routes>
+      <Routes>
+        <Route
+          path='/trackform'
+          element={<TrackForm onAddTrack={addTrack} addedTracks={addedTracks}/>}
+        ></Route>
+      </Routes>
+      <FooterNavigation />
     </div>
   )
 }
-
-export default App
