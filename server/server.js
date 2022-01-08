@@ -2,9 +2,30 @@ import express from 'express';
 import { dirname } from './lib/pathHelpers.js';
 import path from 'path';
 
-let subscribers = [];
-const __dirname = dirname(import.meta.url);
+const dbUser = process.env.DB_USER
+const dbPassword = process.env.DB_PASSWORD
+const dbHost = process.env.DB_HOST
+const dbName = process.env.DB_NAME
+const dbPort = process.env.SERVER_PORT
 
-const server = express();
 
-server.use(express.json());
+dotenv.config()
+const serverPort = process.env.SERVER_PORT || 4000
+const __dirname = dirname(import.meta.url)
+const server = express() // Express-Server erstellen
+server.use(cors())
+
+const connectionString = `mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbName}?retryWrites=true&w=majority`
+mongoose.connect(connectionString)
+
+server.use(express.json()) // JSON Body Parser
+
+server.use(express.static(path.join(__dirname, '../client/dist')))
+server.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'))
+});
+
+
+server.use('/api', [ArtistRoutes, TrackRoutes, UserRoutes])
+
+server.listen(serverPort, () => console.log('Server "used" is up an running on PORT' + dbPort))
