@@ -10,10 +10,10 @@ import {
 
 const router = express.Router()
 
-router.get('/track', getAllUsers)
-router.get('/track/:trackId', getUser)
-router.post('/track', postUser)
-router.put('/track/:trackId', putUser)
-router.delete('/track/:trackId', deleteUser)
+router.get('/user', getAllUsers)
+router.get('/user/:userId', getUser)
+router.post('/user', postUser)
+router.put('/user/:userId', putUser)
+router.delete('/user/:userId', deleteUser)
 
-export default user
+export default router
