@@ -1,10 +1,10 @@
-const hasTrackNameMinLenght = (name, stringLength) =>
-    name.length > stringLength
+const hasTrackNameMinLenght = (track_name, stringLength) =>
+    track_name.length > stringLength
   //const hasValidArtist = (artist) => artist != ''
 
 
   const isTrackValid = (track) => 
-  hasTrackNameMinLenght(track.name, 3) //&&
+  hasTrackNameMinLenght(track.track_name, 3) //&&
  // hasValidArtist(track.artist)
 
 

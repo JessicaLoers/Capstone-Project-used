@@ -1,7 +1,7 @@
 
 // options sind die artist die wir oben reinstopfen
 
-function SelectArtist({ name, value, children, options, onSelectChange }) {
+function Select({ name, value, children, options, onSelectChange }) {
     return (
       <>
         <label htmlFor={name}>{children}</label>
@@ -17,4 +17,4 @@ function SelectArtist({ name, value, children, options, onSelectChange }) {
     );
   }
   
-  export default SelectArtist;
+  export default Select;

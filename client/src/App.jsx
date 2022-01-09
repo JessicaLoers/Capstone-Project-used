@@ -48,7 +48,7 @@ export default function App() {
 
  const addedTracks = tracks.map((track) => ({
      // key: track.track_id,
-      trackName: track.title,
+      track_name: track.track_name,
       year: track.year,
     }))
 

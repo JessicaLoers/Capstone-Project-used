@@ -3,20 +3,21 @@ import styled from 'styled-components'
 
 import Textinput from './Textinput'
 import NumberInput from './NumberInput'
-import SelectArtist from './SelectArtist'
+import Select from './Select'
 import isTrackValid from '../lib/validation'
 
 export default function TrackForm({ onAddTrack, addedTracks }) {
- 
   const initialTrack = {
-    title:'',
-    name: '',
+    track_name: '',
+    artist: '',
     year: 1900,
     sampled_in: [],
     sampled: [],
     video_id: '',
     cover_image: '',
   }
+
+  //const [selectTrack, setSelectTrack] = useState([])
 
   const [artists, setArtists] = useState([])
   const [track, setTrack] = useState(initialTrack)
@@ -35,6 +36,19 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
     getArtists()
   }, [])
 
+  useEffect(() => {
+    async function getTrack() {
+      try {
+        const response = await fetch('api/track') // ('http://localhost:4000/api/artist')
+        const trackFromApi = await response.json()
+        setTrack(trackFromApi)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    getTrack()
+  }, [])
+
   const handleChange = (event) => {
     let inputValue = event.target.value
 
@@ -44,18 +58,28 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
     })
   }
 
+  // const handleSelectChangeTracks = (event) => {
+  //   let inputValue = event.target.value
+
+  //   setSelectTrack({
+  //     ...selectTrack,
+  //     [event.target.name]: inputValue,
+  //   })
+  // }
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    
-    alert(`The name you entered was: god`)
-    if (isTrackValid(track)) {
-      onAddTrack(track)
-      // onAddTrack({ id: uuidv4(), ...track })
-      // setTrack(initialTrack);
-      setHasFormErrors(false)
-    } else {
-      setHasFormErrors(true)
-    }
+    onAddTrack(track)
+
+    // alert(`The name you entered was: god`)
+    // if (isTrackValid(track)) {
+    //   onAddTrack(track)
+    //   // onAddTrack({ id: uuidv4(), ...track })
+    //   // setTrack(initialTrack);
+    //   setHasFormErrors(false)
+    // } else {
+    //   setHasFormErrors(true)
+    // }
     console.log(track)
   }
 
@@ -71,26 +95,36 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
       )}
 
       <FormSampled onSubmit={handleSubmit}>
-      <SelectArtist
+        <Select
           name='artist'
-          value={track.name}
+          value={artists.name}
           options={artists}
           onSelectChange={handleChange}
         >
           Select Artist
-        </SelectArtist>
+        </Select>
+
+        {/* <Select
+          name='track'
+          value={selectTrack.name}
+          options={track}
+          onSelectChange={handleSelectChangeTracks}
+        >
+          Select Track
+        </Select> */}
 
         <Textinput
           onTextInputChange={handleChange}
-          name='name'
+          name='artist'
+          //value={track.track_name}
           value={track.name}
         >
           Select Track
         </Textinput>
         <Textinput
           onTextInputChange={handleChange}
-          name='title'
-          value={track.title}
+          name='sampled'
+          value={track.name}
         >
           contains Sample of
         </Textinput>
@@ -102,8 +136,6 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
         >
           year
         </NumberInput>
-
-
 
         <div>
           <button>Add Track</button>
@@ -118,16 +150,14 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
             Reset
           </button>
         </div>
+        <p>{track.name} {artists.name}</p>
       </FormSampled>
 
-  <h2> added track:</h2>
- {addedTracks.map((tracks)=>
- <p >{tracks.trackName} </p>
- 
- )}
-    
+      <h2> added track:</h2>
+      {addedTracks.map((tracks) => (
+        <p>{tracks.track_name} </p>
+      ))}
     </TrackFormWrapper>
-
   )
 }
 
@@ -143,7 +173,7 @@ const FormSampled = styled.form`
   background: var(--secondary-bg);
   padding: 0.7rem 0.5rem 1.2rem;
   border-radius: 3px;
- 
+
   label {
     display: block;
     font-weight: bold;
