@@ -29,7 +29,6 @@ server.use(cors())
 server.use(express.json()) // JSON Body Parser
 
 // const connectionString = `mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbName}?retryWrites=true&w=majority`
-const connectionString = `mongodb+srv://used_admin:8La4D6VcX1aoCKEX@cluster0.3peu2.mongodb.net/usedDatabase?retryWrites=true&w=majority`
 mongoose.connect(connectionString)
 
 
