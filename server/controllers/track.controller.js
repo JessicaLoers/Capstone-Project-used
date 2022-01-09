@@ -14,7 +14,7 @@ const getTrack = async (req, res) => {
 
 const postTrack = async (req, res) => {
   const track = new Track({
-    track_name: req.body.track_name,
+    trackName: req.body.trackName,
     artist: req.body.artist,
     year: req.body.year,
     sampled_in: req.body.sampled_in,

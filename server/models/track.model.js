@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const trackSchema = new mongoose.Schema({
   //name: {type:mongoose.Schema.Types.ObjectId, ref:'artist'},
   //title: {type:String, required:true},
-  track_name: String,
+  trackName: String,
   artist: String,
   year: Number,
   sampled_in: Array,
