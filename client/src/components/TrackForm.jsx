@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Textinput from './Textinput'
 import NumberInput from './NumberInput'
-import Select from './Select'
+//import Select from './Select'
 import isTrackValid from '../lib/validation'
 
 export default function TrackForm({ onAddTrack, addedTracks }) {
@@ -107,25 +107,21 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
       )}
 
       <FormSampled onSubmit={handleSubmit}>
-        <Select
-          name='artistName'
-          //key={artist._id}
-          value={artist.artistName}
-          options={artist}
-          onSelectChange={handleChange}
-        >
-          Select Artist
-        </Select>
+        <label>Choose</label>
 
-        {/* <Select
-          name='tracks'
-          key={artist._id}
-          value={artist.tracks}
-          options={artist}
-          onSelectChange={handleChange}
-        >
-          Select Track
-        </Select> */}
+        <select value={artist} onSelectChange={handleChange}>
+          {artist.map(item => {
+            return (<option key={item.value} value={item.value}>{item.artistName} </option>)
+          })}
+        </select>
+
+
+        <select value={artist} onSelectChange={handleChange}>
+          {artist.map(item => {
+            return (<option key={item.value} value={item.value}>{item.tracks} </option>)
+          })}
+        </select>
+
 
         {/* <Textinput
           name='sampled'
@@ -230,3 +226,28 @@ const ErrorMessage = styled.div`
     right: -38px;
   }
 `
+
+
+
+
+// ---> Select Component
+
+        {/* <Select
+          name='artistName'
+          //key={artist._id}
+          value={track.artist}
+          options={artist}
+          onSelectChange={handleChange}
+        >
+          Select Artist
+        </Select> */}
+
+        {/* <Select
+          name='tracks'
+          key={artist._id}
+          value={artist.tracks}
+          options={artist}
+          onSelectChange={handleChange}
+        >
+          Select Track
+        </Select> */}
