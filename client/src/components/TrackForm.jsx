@@ -17,9 +17,9 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
     cover_image: '',
   }
 
-  //const [selectTrack, setSelectTrack] = useState([])
-
+  const [selectTrack, setSelectTrack] = useState([])
   const [artists, setArtists] = useState([])
+  
   const [track, setTrack] = useState(initialTrack)
   const [hasFormErrors, setHasFormErrors] = useState(false)
 
@@ -34,6 +34,19 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
       }
     }
     getArtists()
+  }, [])
+
+  useEffect(() => {
+    async function getSelectTrack() {
+      try {
+        const response = await fetch('api/track') // ('http://localhost:4000/api/artist')
+        const trackFromApi = await response.json()
+        setSelectTrack(trackFromApi)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    getSelectTrack()
   }, [])
 
   useEffect(() => {
@@ -70,7 +83,7 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
   const handleSubmit = (event) => {
     event.preventDefault()
     onAddTrack(track)
-
+    console.log(track)
     // alert(`The name you entered was: god`)
     // if (isTrackValid(track)) {
     //   onAddTrack(track)
@@ -80,7 +93,7 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
     // } else {
     //   setHasFormErrors(true)
     // }
-    console.log(track)
+    
   }
 
   return (
@@ -104,23 +117,16 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
           Select Artist
         </Select>
 
-        {/* <Select
-          name='track'
+        <Select
+          name='track_name'
           value={selectTrack.name}
-          options={track}
-          onSelectChange={handleSelectChangeTracks}
+          options={selectTrack}
+          onSelectChange={handleChange}
         >
-          Select Track
-        </Select> */}
+          Select Artist
+        </Select>
 
-        <Textinput
-          onTextInputChange={handleChange}
-          name='artist'
-          //value={track.track_name}
-          value={track.name}
-        >
-          Select Track
-        </Textinput>
+
         <Textinput
           onTextInputChange={handleChange}
           name='sampled'
@@ -129,13 +135,13 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
           contains Sample of
         </Textinput>
 
-        <NumberInput
+        {/* <NumberInput
           name='year'
           value={track.year}
           onNumberInputChange={handleChange}
         >
           year
-        </NumberInput>
+        </NumberInput> */}
 
         <div>
           <button>Add Track</button>
@@ -150,7 +156,9 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
             Reset
           </button>
         </div>
-        <p>{track.name} {artists.name}</p>
+        <p>
+          {track.name} {artists.name}
+        </p>
       </FormSampled>
 
       <h2> added track:</h2>
