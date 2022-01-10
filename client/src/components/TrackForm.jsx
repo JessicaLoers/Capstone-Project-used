@@ -3,12 +3,12 @@ import styled from 'styled-components'
 
 import Textinput from './Textinput'
 import NumberInput from './NumberInput'
-import Select from './Select'
+//import Select from './Select'
 import isTrackValid from '../lib/validation'
 
 export default function TrackForm({ onAddTrack, addedTracks }) {
   const initialTrack = {
-    track_name: '',
+    trackName: '',
     artist: '',
     year: 1900,
     sampled_in: [],
@@ -17,23 +17,35 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
     cover_image: '',
   }
 
-  //const [selectTrack, setSelectTrack] = useState([])
-
-  const [artists, setArtists] = useState([])
+  const [selectTrack, setSelectTrack] = useState([])
+  const [artist, setArtist] = useState([])
   const [track, setTrack] = useState(initialTrack)
   const [hasFormErrors, setHasFormErrors] = useState(false)
 
   useEffect(() => {
-    async function getArtists() {
+    async function getArtist() {
       try {
         const response = await fetch('api/artist') // ('http://localhost:4000/api/artist')
-        const artistsFromApi = await response.json()
-        setArtists(artistsFromApi)
+        const artistFromApi = await response.json()
+        setArtist(artistFromApi)
       } catch (error) {
         console.log(error.message)
       }
     }
-    getArtists()
+    getArtist()
+  }, [])
+
+  useEffect(() => {
+    async function getSelectTrack() {
+      try {
+        const response = await fetch('api/track') // ('http://localhost:4000/api/artist')
+        const trackFromApi = await response.json()
+        setSelectTrack(trackFromApi)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    getSelectTrack()
   }, [])
 
   useEffect(() => {
@@ -41,6 +53,7 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
       try {
         const response = await fetch('api/track') // ('http://localhost:4000/api/artist')
         const trackFromApi = await response.json()
+
         setTrack(trackFromApi)
       } catch (error) {
         console.log(error.message)
@@ -70,7 +83,7 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
   const handleSubmit = (event) => {
     event.preventDefault()
     onAddTrack(track)
-
+    console.log(track)
     // alert(`The name you entered was: god`)
     // if (isTrackValid(track)) {
     //   onAddTrack(track)
@@ -80,7 +93,6 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
     // } else {
     //   setHasFormErrors(true)
     // }
-    console.log(track)
   }
 
   return (
@@ -95,47 +107,38 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
       )}
 
       <FormSampled onSubmit={handleSubmit}>
-        <Select
-          name='artist'
-          value={artists.name}
-          options={artists}
-          onSelectChange={handleChange}
-        >
-          Select Artist
-        </Select>
+        <label>Choose</label>
 
-        {/* <Select
-          name='track'
-          value={selectTrack.name}
-          options={track}
-          onSelectChange={handleSelectChangeTracks}
-        >
-          Select Track
-        </Select> */}
+        <select value={artist} onSelectChange={handleChange}>
+          {artist.map(item => {
+            return (<option key={item.value} value={item.value}>{item.artistName} </option>)
+          })}
+        </select>
 
-        <Textinput
-          onTextInputChange={handleChange}
-          name='artist'
-          //value={track.track_name}
-          value={track.name}
-        >
-          Select Track
-        </Textinput>
-        <Textinput
-          onTextInputChange={handleChange}
+
+        <select value={artist} onSelectChange={handleChange}>
+          {artist.map(item => {
+            return (<option key={item.value} value={item.value}>{item.tracks} </option>)
+          })}
+        </select>
+
+
+        {/* <Textinput
           name='sampled'
+          key={track._id}
           value={track.name}
+          onTextInputChange={handleChange}
         >
           contains Sample of
-        </Textinput>
+        </Textinput> */}
 
-        <NumberInput
+        {/* <NumberInput
           name='year'
           value={track.year}
           onNumberInputChange={handleChange}
         >
           year
-        </NumberInput>
+        </NumberInput> */}
 
         <div>
           <button>Add Track</button>
@@ -150,12 +153,21 @@ export default function TrackForm({ onAddTrack, addedTracks }) {
             Reset
           </button>
         </div>
-        <p>{track.name} {artists.name}</p>
+        <p>
+          {track.name} {artist.name}
+        </p>
       </FormSampled>
 
       <h2> added track:</h2>
       {addedTracks.map((tracks) => (
-        <p>{tracks.track_name} </p>
+        <p key={tracks._id}>{tracks.trackName} </p>
+      ))}
+
+      <h2> artist:</h2>
+      {artist.map((artist) => (
+        <p key={artist._id}>
+          {artist.artistName} {artist.tracks}
+        </p>
       ))}
     </TrackFormWrapper>
   )
@@ -214,3 +226,28 @@ const ErrorMessage = styled.div`
     right: -38px;
   }
 `
+
+
+
+
+// ---> Select Component
+
+        {/* <Select
+          name='artistName'
+          //key={artist._id}
+          value={track.artist}
+          options={artist}
+          onSelectChange={handleChange}
+        >
+          Select Artist
+        </Select> */}
+
+        {/* <Select
+          name='tracks'
+          key={artist._id}
+          value={artist.tracks}
+          options={artist}
+          onSelectChange={handleChange}
+        >
+          Select Track
+        </Select> */}
