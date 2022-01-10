@@ -4,7 +4,8 @@ const artistSchema = new mongoose.Schema({
   //artist_id: String,
   artistName: String,
   infos: String,
-  tracks: Array
+  tracks: Array,
+  artist_image: String
 })
 
 const Artist = mongoose.model('Artist', artistSchema, 'artist')

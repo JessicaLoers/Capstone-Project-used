@@ -1,11 +1,31 @@
 import TrackCard from './TrackCard'
+import ArtistCard from './ArtistCard'
 import tracksdata from '../lib/tracksdata'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-export default function SearchBar() {
-const [trackdata, setTrackdata] = useState('')
 
+
+export default function SearchBar() {
+  const [trackdata, setTrackdata] = useState('')
+  const [artists, setArtists] = useState([])
+
+  useEffect(() => {
+    async function fetchArtist() {
+      try {
+        const response = await fetch('api/artist')
+        const artistFromApi = await response.json()
+        setArtists(artistFromApi)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    fetchArtist()
+  }, [])
+
+
+  console.log(artists)
+  console.log(trackdata)
 
   return (
     <SearchBarWrapperStyled>
@@ -38,8 +58,34 @@ const [trackdata, setTrackdata] = useState('')
             year={track.year}
             cover={track.cover_image}
           />
-          )) 
-        }
+        ))}
+      <input
+        type='search'
+        name='search'
+        id='search'
+        placeholder='search ...'
+        value={artists}
+        onChange={(event) => setArtists(event.target.value)}
+      />
+{artists
+        // .filter((artist) => {
+        //   if (artists === '') {
+        //     return artist
+        //   } else if (
+        //     artist.artistName.toLowerCase().includes(artists.toLowerCase())
+        //   )
+        //     return artist
+        // })
+        .map((artist) => (
+          <ArtistCard
+            key={artist._id}
+            artistName={artist.artistName}
+            infos={artist.infos}
+            tracks={artist.tracks}
+            artist_image={artist.artist_image}
+          />
+        ))}
+
     </SearchBarWrapperStyled>
   )
 }
