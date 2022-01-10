@@ -15,20 +15,18 @@ const dbUser = process.env.DB_USER
 const dbPassword = process.env.DB_PASSWORD
 const dbHost = process.env.DB_HOST
 const dbName = process.env.DB_NAME
-const dbPort = process.env.SERVER_PORT
 
-console.log(dbHost)
 
 dotenv.config()
 
-const serverPort = process.env.SERVER_PORT || 4000
+const serverPort = process.env.PORT || 4000
 const __dirname = dirname(import.meta.url)
 
 const server = express() // Express-Server erstellen
 server.use(cors())
 server.use(express.json()) // JSON Body Parser
 
-// const connectionString = `mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbName}?retryWrites=true&w=majority`
+const connectionString = `mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbName}?retryWrites=true&w=majority`
 mongoose.connect(connectionString)
 
 
