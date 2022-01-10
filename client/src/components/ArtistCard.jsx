@@ -7,12 +7,16 @@ function TrackCard({ key, artistName, infos, tracks, artist_image }) {
       <ArtistImage src={artist_image} />
       <TrackDetails>
         <ArtistName>{artistName}</ArtistName>
-        <Link to={`/artist/${artistName}`}>Visit</Link>
+        <Link to="/artist">Visit</Link>
       </TrackDetails>
     </SingleArtist>
   )
 }
 export default TrackCard
+
+
+
+{/* <Link to={`/artist/${artistName}`}>Visit</Link> */}
 
 // Styling
 

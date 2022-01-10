@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-function TrackCard({ trackName, artistName, year, cover}) {
+function TrackCard({ trackName, artistName, year, cover, key}) {
   return (
-    <SingleTrack>
+    <SingleTrack key={key}>
       <CoverImage src={cover}/>
       <TrackDetails>
       <TrackName>{trackName}</TrackName>

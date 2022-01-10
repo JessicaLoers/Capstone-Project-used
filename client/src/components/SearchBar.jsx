@@ -4,8 +4,6 @@ import tracksdata from '../lib/tracksdata'
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-
-
 export default function SearchBar() {
   const [trackdata, setTrackdata] = useState('')
   const [artists, setArtists] = useState([])
@@ -23,9 +21,6 @@ export default function SearchBar() {
     fetchArtist()
   }, [])
 
-
-  console.log(artists)
-  console.log(trackdata)
 
   return (
     <SearchBarWrapperStyled>
