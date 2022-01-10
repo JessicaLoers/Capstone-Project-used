@@ -9,15 +9,13 @@ import cors from 'cors'
 import ArtistRoutes from './routes/artist.route.js'
 import TrackRoutes from './routes/track.route.js'
 import UserRoutes from './routes/user.route.js'
-
+dotenv.config()
 
 const dbUser = process.env.DB_USER
 const dbPassword = process.env.DB_PASSWORD
 const dbHost = process.env.DB_HOST
 const dbName = process.env.DB_NAME
 
-
-dotenv.config()
 
 const serverPort = process.env.PORT || 4000
 const __dirname = dirname(import.meta.url)
