@@ -28,7 +28,6 @@ const connectionString = `mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbNa
 mongoose.connect(connectionString)
 
 
-
 server.use(express.static(path.join(__dirname, '../client/dist')))
 
 server.use('/api', [ArtistRoutes, TrackRoutes, UserRoutes])
