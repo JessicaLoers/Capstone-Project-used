@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-import Textinput from './Textinput'
+import TextInput from './TextInput'
 import NumberInput from './NumberInput'
 //import Select from './Select'
 import isTrackValid from '../lib/validation'
