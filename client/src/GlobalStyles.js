@@ -27,8 +27,6 @@ export default createGlobalStyle`
    //--> cards
  --cardtrack: #00CE82;
  --cardartist: #5B81EE; 
-
-
 }
 
  *,
@@ -60,8 +58,6 @@ h1,
     margin: 0;
   }
 
-
-
   ul,
   li {
     list-style: none;
@@ -69,8 +65,6 @@ h1,
     margin: 0;
   }
   
- 
-
 
 // --> card
 .card {

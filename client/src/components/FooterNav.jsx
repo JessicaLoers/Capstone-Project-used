@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Link, Route, Routes, NavLink } from 'react-router-dom'
 
 export default function FooterNavigation() {
+
   return (
     <footer>
       <Nav>
@@ -129,7 +130,7 @@ export default function FooterNavigation() {
         </li>
       </Nav>
     </footer>
-  )
+  ) 
 }
 
 const Nav = styled.ul`
