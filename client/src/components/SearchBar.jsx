@@ -8,6 +8,7 @@ import icon_search from '../assets/icons/icon_search.svg'
 
 export default function SearchBar({ artists }) {
   const [trackdata, setTrackdata] = useState('')
+  const [filteredArtist, setFilteredArtist] = useState('')
 
   return (
     <WrapperStyled>
@@ -16,27 +17,40 @@ export default function SearchBar({ artists }) {
           <button>track</button>
           <button>artist</button>
         </ToggleBtnPair>
-
         <SearchInput>
           <input
-            className='searchinput'
-            type='text'
-            placeholder='search ... '
+            type='search'
+            name='search'
+            id='search'
+            placeholder='search ...'
+            value={filteredArtist}
+            onChange={(event) => setFilteredArtist(event.target.value)}
           />
           <img className='closeIcon' src={icon_close} alt='close icon' />
           <img className='searchIcon' src={icon_search} alt='search icon' />
         </SearchInput>
       </SearchBarWrapperStyled>
-
       <Results>
-        {artists?.map((artist) => (
-          <div>
-            <ArtistCard
-              artistName={artist.artistName}
-              artist_image={artist.artist_image}
-            />
-          </div>
-        ))}
+        {artists
+          .filter((item) => {
+            if (item === '') {
+              return item
+            } else if (
+              item.artistName
+                .toLowerCase()
+                .includes(filteredArtist.toLowerCase())
+            )
+              return item
+          })
+
+          .map((artist, key) => (
+            <div>
+              <ArtistCard
+                artistName={artist.artistName}
+                artist_image={artist.artist_image}
+              />
+            </div>
+          ))}
       </Results>
     </WrapperStyled>
   )
@@ -106,32 +120,3 @@ const SearchInput = styled.div`
     z-index: 20;
   }
 `
-
-{
-  /* <input
-  type='search'
-  name='search'
-  id='search'
-  placeholder='search ...'
-  value={trackdata}
-  onChange={(event) => setTrackdata(event.target.value)}
-/>
-{tracksdata
-  .filter((track) => {
-    if (trackdata === '') {
-      return track
-    } else if (
-      track.title.toLowerCase().includes(trackdata.toLowerCase())
-    )
-      return track
-  })
-  .map((track) => (
-    <TrackCard
-      key={track.track_id}
-      trackName={track.title}
-      artistName={track.artist_name}
-      year={track.year}
-      cover={track.cover_image}
-    />
-  ))} */
-}
