@@ -60,6 +60,18 @@ h1,
     margin: 0;
   }
 
+
+
+  ul,
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+ 
+
+
 // --> card
 .card {
   display: flex;
