@@ -5,7 +5,10 @@ export default function FooterNavigation() {
     return (
       <footer>
         <Nav>
-          <NavLinkStyled  to="/">
+        <NavLinkStyled  to="/">
+              Home
+          </NavLinkStyled >
+          <NavLinkStyled  to="/search">
               Search
           </NavLinkStyled >
           <NavLinkStyled  to="/profile">

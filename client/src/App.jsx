@@ -5,6 +5,7 @@ import { saveToLocal, loadFromLocal } from './lib/localStorage'
 
 import Header from './components/Header'
 import FooterNavigation from './components/FooterNav'
+import Home from './pages/Home'
 import SearchBar from './components/SearchBar'
 import TrackForm from './components/TrackForm'
 import Profile from './components/MemberProfile'
@@ -13,27 +14,41 @@ import ArtistOverview from './pages/ArtistOverview'
 
 export default function App() {
   const [tracks, setTracks] = useState(loadFromLocal('_TRACKS') ?? [])
-  const [artist, setArtist] = useState(loadFromLocal('_ARTISTS') ?? [])
+  const [artists, setArtists] = useState(loadFromLocal('_ARTISTS') ?? [])
 
   useEffect(() => {
-    fetch('api/artist')
-      .then((result) => result.json())
-      .then((artist) => setArtist(artist))
-      .catch((error) => console.error(error.message))
-
-    fetch('api/tracks')
-      .then((result) => result.json())
-      .then((tracks) => setTracks(tracks))
-      .catch((error) => console.error(error.message))
+    async function fetchTracks() {
+      try {
+        const response = await fetch('api/tracks')
+        const trackFromApi = await response.json()
+        setTracks(trackFromApi)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    fetchTracks()
   }, [])
-
-  useEffect(() => {
-    saveToLocal('_ARTIST', artist)
-  }, [artist])
 
   useEffect(() => {
     saveToLocal('_TRACKS', tracks)
   }, [tracks])
+
+  useEffect(() => {
+    async function fetchArtists() {
+      try {
+        const response = await fetch('api/artist')
+        const artistFromApi = await response.json()
+        setArtists(artistFromApi)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    fetchArtists()
+  }, [])
+
+  useEffect(() => {
+    saveToLocal('_ARTIST', artists)
+  }, [artists])
 
   async function addTracksToDatabase(track) {
     const result = await fetch('api/track', {
@@ -46,17 +61,16 @@ export default function App() {
     return await result.json()
   }
 
-  function addTrack(track) {
-    addTracksToDatabase(track)
-    console.log(track)
-    setTracks()
+  async function addArtistToDatabase(artist) {
+    const result = await fetch('api/artist', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(artist),
+    })
+    return await result.json()
   }
-
-  const addedTracks = tracks.map((track) => ({
-    track_name: track.track_name,
-    year: track.year,
-  }))
-
 
   return (
     <div>
@@ -64,25 +78,16 @@ export default function App() {
         <Header />
       </div>
       <Routes>
-        <Route path='/' element={<SearchBar />}></Route>
+      <Route path='/' element={<Home/>}></Route>
+        <Route path='/search' element={<SearchBar artist={artists} />}></Route>
         <Route path='/profile/:name' element={<Profile />}></Route>
+        <Route path='/trackform' element={<TrackForm />}></Route>
       </Routes>
       <Routes>
-        <Route
-          path='/artist/:artist_name'
-          element={<ArtistOverview />}
-        ></Route>
+        <Route path='/artist' element={<ArtistOverview />}></Route>
       </Routes>
       <Routes>
         <Route path='/track/:title' element={<TrackOverview />}></Route>
-      </Routes>
-      <Routes>
-        <Route
-          path='/trackform'
-          element={
-            <TrackForm onAddTrack={addTrack} addedTracks={addedTracks} />
-          }
-        ></Route>
       </Routes>
       <FooterNavigation />
     </div>

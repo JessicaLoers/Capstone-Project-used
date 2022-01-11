@@ -4,40 +4,24 @@ import { useState, useEffect } from 'react'
 import { saveToLocal, loadFromLocal } from '../lib/localStorage'
 
 
-export default function ArtistOverview() {
+export default function ArtistOverview(allArtists) {
+    let artist = allArtists
 
-  const [artists, setArtists] = useState([])
-
-  useEffect(() => {
-    async function fetchArtist() {
-      try {
-        const response = await fetch('api/artist')
-        const artistFromApi = await response.json()
-        setArtists(artistFromApi)
-      } catch (error) {
-        console.log(error.message)
-      }
-    }
-    fetchArtist()
-  }, [])
-
-
-//   const { artist_Name } = useParams()
-//   const thisArtist = artist.find((item) => item.artistName === artist_Name)
+    console.log(artist)
 
   return (
-    <div>
-        <h1>hello</h1>
-{artists
-        .map((artist) => (
+<>
+<h1>hello</h1>
+{/* {artist.map((artist, index) => (
           <ArtistCard
-            key={artist._id}
+            key={index}
             artistName={artist.artistName}
             infos={artist.infos}
             tracks={artist.tracks}
             artist_image={artist.artist_image}
           />
-        ))}
-    </div>
+        ))} */}
+</>
   )
+
 }
