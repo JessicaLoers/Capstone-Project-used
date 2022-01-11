@@ -79,12 +79,12 @@ export default function App() {
       </div>
       <Routes>
       <Route path='/' element={<Home/>}></Route>
-        <Route path='/search' element={<SearchBar artist={artists} />}></Route>
+        <Route path='/search' element={<SearchBar artists={artists} />}></Route>
         <Route path='/profile/:name' element={<Profile />}></Route>
-        <Route path='/trackform' element={<TrackForm />}></Route>
+        <Route path='/trackform' element={<TrackForm artists={artists}/>}></Route>
       </Routes>
       <Routes>
-        <Route path='/artist' element={<ArtistOverview />}></Route>
+        <Route path='/artist' element={<ArtistOverview artists={artists}/>}></Route>
       </Routes>
       <Routes>
         <Route path='/track/:title' element={<TrackOverview />}></Route>

@@ -24,7 +24,7 @@ export default function FooterNavigation() {
   }
 
   const Nav = styled.nav`
-  background: #5b81ee;
+  background: var( --secondarycolor);
   display: flex;
   flex-direction: row;
   justify-content: space-around;

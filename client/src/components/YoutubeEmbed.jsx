@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import GlobalStyles from "./GlobalStyles";
 
 const YoutubeEmbed = ({ embedId }) => (
   <div className="video-responsive">

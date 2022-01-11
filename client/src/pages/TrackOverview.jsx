@@ -59,12 +59,16 @@ export default function TrackOverview() {
   )
 }
 
-const TrackInfoContainer = styled.div`
-  margin: 1rem;
-`
 const StyledWrapper = styled.div`
+background-color: var(--primarycolor);
   margin-top: 2rem;
    h3 {
      margin-left: 1rem;
    }
 `
+
+
+const TrackInfoContainer = styled.div`
+  margin: 1rem;
+`
+
