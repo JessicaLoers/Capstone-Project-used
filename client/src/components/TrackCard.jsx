@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-function TrackCard({ trackName, artistName, year, cover }) {
+function TrackCard({ track_name, artist, year, cover_image }) {
   return (
     <SingleTrack className='card'>
-      <CoverImage src={cover} />
+      <CoverImage src={cover_image} />
       <TrackDetails>
-        <TrackName>{trackName}</TrackName>
-        <ArtistName>by {artistName} </ArtistName>
+        <TrackName>{track_name}</TrackName>
+        <ArtistName>by {artist} </ArtistName>
         <Year>{year}</Year>
-        <Link to={`/track/${trackName}`}>Visit</Link>
+        <Link to={`/track/${track_name}`}>Visit</Link>
       </TrackDetails>
     </SingleTrack>
   )

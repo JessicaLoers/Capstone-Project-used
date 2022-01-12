@@ -14,6 +14,7 @@ export default createGlobalStyle`
   
  //--> btn
  --primarybtn: #FCD637;
+ --primarybtnlight: #CAB75B;
  --secondarybtn: #333333;
 
 //--> signals

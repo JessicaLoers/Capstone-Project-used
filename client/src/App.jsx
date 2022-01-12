@@ -19,7 +19,7 @@ export default function App() {
   useEffect(() => {
     async function fetchTracks() {
       try {
-        const response = await fetch('api/tracks')
+        const response = await fetch('api/track')
         const trackFromApi = await response.json()
         setTracks(trackFromApi)
       } catch (error) {
@@ -47,7 +47,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    saveToLocal('_ARTIST', artists)
+    saveToLocal('_ARTISTS', artists)
   }, [artists])
 
   async function addTracksToDatabase(track) {
