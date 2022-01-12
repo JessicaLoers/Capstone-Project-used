@@ -8,7 +8,7 @@ import icon_search from '../assets/icons/icon_search.svg'
 //import ButtonGroup from './ButtonGroup'
 
 export default function SearchBar({ artists, tracks }) {
-  const [filteredArtist, setFilteredArtist] = useState('')
+  const [searchWord, setSearchWord] = useState('')
   const [filteredTrack, setFilteredTrack] = useState('')
 
   const [isArtistBtnActive, setIsArtistBtnAtive] = useState(false)
@@ -24,6 +24,12 @@ export default function SearchBar({ artists, tracks }) {
           >
             artist
           </button>
+          <button
+            onClick={() => setIsArtistBtnAtive(!isArtistBtnActive)}
+            style={{ background: isArtistBtnActive ? '' : 'red' }}
+          >
+            Tracks
+          </button>
         </ToggleBtnPair>
         <SearchInput>
           <input
@@ -31,8 +37,8 @@ export default function SearchBar({ artists, tracks }) {
             name='search'
             id='search'
             placeholder='search ...'
-            value={filteredArtist}
-            onChange={(event) => setFilteredArtist(event.target.value)}
+            value={searchWord}
+            onChange={(event) => setSearchWord(event.target.value)}
           />
           {/*  --> Add on: icon_search and icon_close alias clear in input 
           <img className='closeIcon' src={icon_close} alt='close icon' />
@@ -41,29 +47,28 @@ export default function SearchBar({ artists, tracks }) {
       </SearchBarWrapperStyled>
 
       <Results>
-        {isArtistBtnActive ? (
-          artists
-            .filter((item) => {
-              if (item === '') {
-                return item
-              } else if (
-                item.artistName
-                  .toLowerCase()
-                  .includes(filteredArtist.toLowerCase())
+        {isArtistBtnActive
+          ? artists
+              .filter((item) =>
+                item.artistName.toLowerCase().includes(searchWord.toLowerCase())
               )
-                return item
-            })
-            .map((artist, key) => (
-              <div>
-                <ArtistCard
-                  artistName={artist.artistName}
-                  artist_image={artist.artist_image}
-                />
-              </div>
-            ))
-        ) : (
-          <div>Hello ich werde die Tracks Card sein</div>
-        )}
+              .map((artist) => (
+                <div key={artist._id}>
+                  <ArtistCard
+                    artistName={artist.artistName}
+                    artist_image={artist.artist_image}
+                  />
+                </div>
+              ))
+          : tracks
+              .filter((track) =>
+                searchWord !== '' && track.artist
+                  ? track.artist
+                      .toLowerCase()
+                      .includes(searchWord.toLowerCase())
+                  : true
+              )
+              .map((track) => track.artist)}
       </Results>
     </WrapperStyled>
   )

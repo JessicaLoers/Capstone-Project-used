@@ -78,13 +78,22 @@ export default function App() {
         <Header />
       </div>
       <Routes>
-      <Route path='/' element={<Home/>}></Route>
-        <Route path='/search' element={<SearchBar artists={artists} />}></Route>
+        <Route path='/' element={<Home />}></Route>
+        <Route
+          path='/search'
+          element={<SearchBar artists={artists} tracks={tracks} />}
+        ></Route>
         <Route path='/profile/:name' element={<Profile />}></Route>
-        <Route path='/trackform' element={<TrackForm artists={artists}/>}></Route>
+        <Route
+          path='/trackform'
+          element={<TrackForm artists={artists} />}
+        ></Route>
       </Routes>
       <Routes>
-        <Route path='/artist' element={<ArtistOverview artists={artists}/>}></Route>
+        <Route
+          path='/artist'
+          element={<ArtistOverview artists={artists} />}
+        ></Route>
       </Routes>
       <Routes>
         <Route path='/track/:title' element={<TrackOverview />}></Route>
