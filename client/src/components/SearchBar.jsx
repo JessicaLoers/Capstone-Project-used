@@ -5,19 +5,19 @@ import styled from 'styled-components'
 import icon_close from '../assets/icons/icon_close.svg'
 import icon_search from '../assets/icons/icon_search.svg'
 
+//import ButtonGroup from './ButtonGroup'
+
 export default function SearchBar({ artists, tracks }) {
   const [filteredArtist, setFilteredArtist] = useState('')
   const [filteredTrack, setFilteredTrack] = useState('')
 
   const [isArtistBtnActive, setIsArtistBtnAtive] = useState(false)
+  const [isTrackBtnActive, setIsTrackBtnAtive] = useState(false)
 
   return (
     <WrapperStyled>
       <SearchBarWrapperStyled>
         <ToggleBtnPair>
-          <button type='button' onClick={() => setIsArtistBtnAtive(false)}>
-            track
-          </button>
           <button
             type='button'
             onClick={() => setIsArtistBtnAtive(!isArtistBtnActive)}
@@ -41,7 +41,7 @@ export default function SearchBar({ artists, tracks }) {
       </SearchBarWrapperStyled>
 
       <Results>
-        {isArtistBtnActive &&
+        {isArtistBtnActive ? (
           artists
             .filter((item) => {
               if (item === '') {
@@ -60,10 +60,11 @@ export default function SearchBar({ artists, tracks }) {
                   artist_image={artist.artist_image}
                 />
               </div>
-            ))}
+            ))
+        ) : (
+          <div>Hello ich werde die Tracks Card sein</div>
+        )}
       </Results>
-
-      <div>Hello</div>
     </WrapperStyled>
   )
 }
@@ -132,3 +133,51 @@ const SearchInput = styled.div`
     z-index: 20;
   }
 `
+
+// {isArtistBtnActive &&
+//   artists
+//     .filter((item) => {
+//       if (item === '') {
+//         return item
+//       } else if (
+//         item.artistName
+//           .toLowerCase()
+//           .includes(filteredArtist.toLowerCase())
+//       )
+//         return item
+//     })
+//     .map((artist, key) => (
+//       <div>
+//         <ArtistCard
+//           artistName={artist.artistName}
+//           artist_image={artist.artist_image}
+//         />
+//       </div>
+//     ))}
+// </Results>
+
+{
+  /* <Results>
+        {isArtistBtnActive
+          ? artists
+              .filter((item) => {
+                if (item === '') {
+                  return item
+                } else if (
+                  item.artistName
+                    .toLowerCase()
+                    .includes(filteredArtist.toLowerCase())
+                )
+                  return item
+              })
+              .map((artist, key) => (
+                <div>
+                  <ArtistCard
+                    artistName={artist.artistName}
+                    artist_image={artist.artist_image}
+                  />
+                </div>
+              ))
+          : null}
+      </Results> */
+}
