@@ -43,12 +43,14 @@ export default function SearchBar({ artists, tracks }) {
         {isBtnActive
           ? artists
               .filter((item) =>
-                item.artistName.toLowerCase().includes(searchWord.toLowerCase())
+                item.artist_name
+                  .toLowerCase()
+                  .includes(searchWord.toLowerCase())
               )
               .map((artist) => (
                 <div key={artist._id}>
                   <ArtistCard
-                    artistName={artist.artistName}
+                    artist_name={artist.artist_name}
                     artist_image={artist.artist_image}
                   />
                 </div>

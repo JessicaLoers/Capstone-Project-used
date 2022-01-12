@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-function TrackCard({ key, artistName, infos, tracks, artist_image }) {
+function TrackCard({ key, artist_name, infos, tracks, artist_image }) {
   return (
     <SingleArtist className='card'>
       <ArtistImage src={artist_image} />
       <TrackDetails>
-        <ArtistName>{artistName}</ArtistName>
-        <Link to={`/artist/${artistName}`}>Visit</Link>
+        <ArtistName>{artist_name}</ArtistName>
+        <Link to={`/artist/${artist_name}`}>Visit</Link>
       </TrackDetails>
     </SingleArtist>
   )
@@ -26,7 +26,6 @@ const TrackDetails = styled.div`
 const SingleArtist = styled.div`
   background-color: var(--cardartist);
   border: solid 1px var(--cardartist);
-
 `
 
 const ArtistImage = styled.img`
