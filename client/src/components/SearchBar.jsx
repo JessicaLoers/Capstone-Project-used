@@ -1,21 +1,29 @@
 import TrackCard from './TrackCard'
 import ArtistCard from './ArtistCard'
-import tracksdata from '../lib/tracksdata'
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import icon_close from '../assets/icons/icon_close.svg'
 import icon_search from '../assets/icons/icon_search.svg'
 
-export default function SearchBar({ artists }) {
-  const [trackdata, setTrackdata] = useState('')
+export default function SearchBar({ artists, tracks }) {
   const [filteredArtist, setFilteredArtist] = useState('')
+  const [filteredTrack, setFilteredTrack] = useState('')
+
+  const [isArtistBtnActive, setIsArtistBtnAtive] = useState(false)
 
   return (
     <WrapperStyled>
       <SearchBarWrapperStyled>
         <ToggleBtnPair>
-          <button>track</button>
-          <button>artist</button>
+          <button type='button' onClick={() => setIsArtistBtnAtive(false)}>
+            track
+          </button>
+          <button
+            type='button'
+            onClick={() => setIsArtistBtnAtive(!isArtistBtnActive)}
+          >
+            artist
+          </button>
         </ToggleBtnPair>
         <SearchInput>
           <input
@@ -26,32 +34,36 @@ export default function SearchBar({ artists }) {
             value={filteredArtist}
             onChange={(event) => setFilteredArtist(event.target.value)}
           />
+          {/*  --> Add on: icon_search and icon_close alias clear in input 
           <img className='closeIcon' src={icon_close} alt='close icon' />
-          <img className='searchIcon' src={icon_search} alt='search icon' />
+          <img className='searchIcon' src={icon_search} alt='search icon' /> */}
         </SearchInput>
       </SearchBarWrapperStyled>
-      <Results>
-        {artists
-          .filter((item) => {
-            if (item === '') {
-              return item
-            } else if (
-              item.artistName
-                .toLowerCase()
-                .includes(filteredArtist.toLowerCase())
-            )
-              return item
-          })
 
-          .map((artist, key) => (
-            <div>
-              <ArtistCard
-                artistName={artist.artistName}
-                artist_image={artist.artist_image}
-              />
-            </div>
-          ))}
+      <Results>
+        {isArtistBtnActive &&
+          artists
+            .filter((item) => {
+              if (item === '') {
+                return item
+              } else if (
+                item.artistName
+                  .toLowerCase()
+                  .includes(filteredArtist.toLowerCase())
+              )
+                return item
+            })
+            .map((artist, key) => (
+              <div>
+                <ArtistCard
+                  artistName={artist.artistName}
+                  artist_image={artist.artist_image}
+                />
+              </div>
+            ))}
       </Results>
+
+      <div>Hello</div>
     </WrapperStyled>
   )
 }
