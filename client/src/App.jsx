@@ -91,7 +91,7 @@ export default function App() {
       </Routes>
       <Routes>
         <Route
-          path='/artist'
+          path='/artist/:artist_name'
           element={<ArtistOverview artists={artists} />}
         ></Route>
       </Routes>
