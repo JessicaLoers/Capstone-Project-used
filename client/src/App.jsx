@@ -97,7 +97,7 @@ export default function App() {
       </Routes>
       <Routes>
         <Route
-          path='/track/:track'
+          path='track/:track_name'
           element={<TrackOverview tracks={tracks} />}
         ></Route>
       </Routes>
@@ -105,3 +105,5 @@ export default function App() {
     </div>
   )
 }
+
+//path='/track/track_name'

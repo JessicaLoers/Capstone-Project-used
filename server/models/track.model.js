@@ -13,6 +13,6 @@ const trackSchema = new mongoose.Schema({
   cover_image: String,
 })
 
-const Track = mongoose.model('Track', trackSchema, 'tracks')
+const Track = mongoose.model('Track', trackSchema, 'track')
 
 export default Track
