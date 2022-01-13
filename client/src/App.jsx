@@ -92,7 +92,7 @@ export default function App() {
       <Routes>
         <Route
           path='/artist/:artist_name'
-          element={<ArtistOverview artists={artists} />}
+          element={<ArtistOverview artists={artists} tracks={tracks} />}
         ></Route>
       </Routes>
       <Routes>
