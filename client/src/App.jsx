@@ -96,7 +96,10 @@ export default function App() {
         ></Route>
       </Routes>
       <Routes>
-        <Route path='/track/:title' element={<TrackOverview />}></Route>
+        <Route
+          path='/track/:track'
+          element={<TrackOverview tracks={tracks} />}
+        ></Route>
       </Routes>
       <FooterNavigation />
     </div>
