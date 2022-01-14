@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Link, Route, Routes, NavLink } from 'react-router-dom'
 
-export default function FooterNavigation() {
+export default function Footer() {
   return (
     <footer>
       <Nav>

@@ -4,7 +4,7 @@ import { Link, Route, Routes } from 'react-router-dom'
 import { saveToLocal, loadFromLocal } from './lib/localStorage'
 
 import Header from './components/Header'
-import FooterNavigation from './components/FooterNav'
+import Footer from './components/Footer'
 import Home from './pages/Home'
 import SearchBar from './components/SearchBar'
 import TrackForm from './components/TrackForm'
@@ -71,7 +71,6 @@ export default function App() {
     })
     return await result.json()
   }
-
   return (
     <div>
       <div>
@@ -101,7 +100,7 @@ export default function App() {
           element={<Track tracks={tracks} />}
         ></Route>
       </Routes>
-      <FooterNavigation />
+      <Footer />
     </div>
   )
 }

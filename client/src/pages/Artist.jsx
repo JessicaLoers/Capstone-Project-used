@@ -40,7 +40,6 @@ export default function Artist({ artists, tracks }) {
       {thisArtistTrack.map((track) => (
         <CardTrack
           track_name={track.track_name}
-          artist={track.artist}
           cover_image={track.cover_image}
           year={track.year}
         />

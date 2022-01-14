@@ -29,7 +29,11 @@ function CardTrack({ track_name, artist, year, cover_image }) {
       <CoverImage src={cover_image} />
       <div className='card_details'>
         <h3>{track_name}</h3>
-        <p>{artist} </p>
+
+        <ArtistLink to={`/artist/${artist}`}>
+          <p>{artist}</p>
+        </ArtistLink>
+
         <p>{year}</p>
       </div>
       <Link to={`/track/${track_name}`} className='card_arrow'>
@@ -47,6 +51,13 @@ const SingleTrack = styled.div`
     font-size: 0.8rem;
   }
 `
+const ArtistLink = styled(Link)`
+  text-decoration: none;
+  color: var(--lightgrey);
+  font-weight: 500;
+  cursor: pointer;
+`
+
 const CoverImage = styled.img`
   border-radius: 2px;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
