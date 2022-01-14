@@ -2,6 +2,12 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 function TrackCard({ track_name, artist, year, cover_image }) {
+  //-- > try to remove %20 from URL - failed ;)
+  // let name = track_name
+  // name = name.split(' ').join('-')
+  // console.log(name)
+  // const url = `${name}`
+
   return (
     <SingleTrack className='card'>
       <CoverImage src={cover_image} />

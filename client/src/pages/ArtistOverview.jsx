@@ -11,10 +11,7 @@ export default function ArtistOverview({ artists, tracks }) {
       height='39px'
       width='60px'
     >
-      <path
-        class='a'
-        d='M19,0a19,19,0,0,0,0,38H59V0Zm5.26,30.2-1.88,1.69L20.5,30.18c-6.68-6.05-11.09-10-11.09-14.94a7.06,7.06,0,0,1,7.13-7.13,7.8,7.8,0,0,1,5.84,2.7,7.77,7.77,0,0,1,5.83-2.7,7.06,7.06,0,0,1,7.13,7.13C35.34,20.14,30.93,24.13,24.26,30.2Z'
-      />
+      <path d='M19,0a19,19,0,0,0,0,38H59V0Zm5.26,30.2-1.88,1.69L20.5,30.18c-6.68-6.05-11.09-10-11.09-14.94a7.06,7.06,0,0,1,7.13-7.13,7.8,7.8,0,0,1,5.84,2.7,7.77,7.77,0,0,1,5.83-2.7,7.06,7.06,0,0,1,7.13,7.13C35.34,20.14,30.93,24.13,24.26,30.2Z' />
     </svg>
   )
   const { artist_name } = useParams()
@@ -31,7 +28,7 @@ export default function ArtistOverview({ artists, tracks }) {
           <i className='favLabel'>{favLabel}</i>
           {/*
           --> pre production: add to favourites 
-          <span class='circle'></span> */}
+          <span className='circle'></span> */}
         </div>
         <h1>{thisArtist.artist_name}</h1>
         <ArtistImage src={thisArtist.artist_image} />
