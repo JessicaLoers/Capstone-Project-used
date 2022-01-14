@@ -42,10 +42,12 @@ export default function SearchBar({ artists, tracks }) {
       <Results>
         {isBtnActive
           ? artists
-              .filter((item) =>
-                item.artist_name
-                  .toLowerCase()
-                  .includes(searchWord.toLowerCase())
+              .filter((artist) =>
+                searchWord !== '' && artist.artist_name
+                  ? artist.artist_name
+                      .toLowerCase()
+                      .includes(searchWord.toLowerCase())
+                  : true
               )
               .map((artist) => (
                 <div key={artist._id}>
