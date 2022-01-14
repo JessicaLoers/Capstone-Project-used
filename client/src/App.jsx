@@ -71,6 +71,7 @@ export default function App() {
     })
     return await result.json()
   }
+
   return (
     <div>
       <div>
