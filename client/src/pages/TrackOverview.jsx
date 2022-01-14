@@ -43,7 +43,7 @@ export default function TrackOverview({ tracks }) {
         <h3>Contains Samples of:</h3>
         {containsSamples.map((track) => (
           <TrackCard
-            track_name={track.track_image}
+            track_name={track.track_name}
             artist={track.artist}
             cover_image={track.cover_image}
             year={track.year}
