@@ -15,6 +15,11 @@ import Artist from './pages/Artist'
 export default function App() {
   const [tracks, setTracks] = useState(loadFromLocal('_TRACKS') ?? [])
   const [artists, setArtists] = useState(loadFromLocal('_ARTISTS') ?? [])
+  const [favTracks, setFavTracks] = useState(loadFromLocal('_FAV_TRACKS') ?? [])
+
+  useEffect(() => {
+    saveToLocal('_FAV_TRACKS', favTracks)
+  }, [favTracks])
 
   useEffect(() => {
     async function fetchTracks() {
@@ -71,12 +76,23 @@ export default function App() {
     })
     return await result.json()
   }
-  function addToFavTracks(favTrackToAdd) {
-    if (isTrackInListOfFavs(favTrackToAdd)) {
-      const favsToKeep = removeTrackFromListOfFavs(favTrackstoAdd)
-      setfavTracks(favsToKeep)
+  // --> FAV TRACKS
+  function isTrackInListofFavs(favTrackToAdd) {
+    return favTracks.some(
+      (everyFavTrack) => everyFavTrack._id === favTrackToAdd._id
+    )
+  }
+
+  function removeTrackFromListOfFavs(track) {
+    return favTracks.filter((everyFavTrack) => everyFavTrack._id !== track._id)
+  }
+
+  function addTrackToFavs(favTrackToAdd) {
+    if (isTrackInListofFavs(favTrackToAdd)) {
+      const favsToKeep = removeTrackFromListOfFavs(favTrackToAdd)
+      setFavTracks(favsToKeep)
     } else {
-      setFavTracks([...favTracks, favTracksToAdd])
+      setFavTracks([...favTracks, favTrackToAdd])
     }
   }
 
@@ -91,10 +107,25 @@ export default function App() {
           path='/search'
           element={<SearchBar artists={artists} tracks={tracks} />}
         ></Route>
-        <Route path='/profile/:name' element={<Profile />}></Route>
+        <Route
+          path='/profile/:name'
+          element={
+            <Profile
+              tracks={tracks}
+              onAddToFavs={addTrackToFavs}
+              isFavsTrack={isTrackInListofFavs(tracks)}
+            />
+          }
+        ></Route>
         <Route
           path='/trackform'
-          element={<TrackForm artists={artists} />}
+          element={
+            <TrackForm
+              artists={artists}
+              onAddToFavs={addTrackToFavs}
+              isFavsTrack={isTrackInListofFavs}
+            />
+          }
         ></Route>
       </Routes>
       <Routes>

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import CardTrack from '../components/CardTrack'
 import YoutubeEmbed from '../components/YoutubeEmbed'
 
-export default function Track({ tracks }) {
+export default function Track({ tracks, onAddToFavs, isFavTrack }) {
   const favLabel = (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -25,17 +25,18 @@ export default function Track({ tracks }) {
   )
 
   return (
-    <StyledWrapper key={thisTrack._id}>
+    <StyledWrapper>
       <VideoContainer>
         <div className='favIcons'>
+          <span className='circle'></span>
           <i className='favLabel'>{favLabel}</i>
-          {/*
-          --> pre production: add to favourites 
-          <span className='circle'></span> */}
         </div>
         <YoutubeEmbed embedId={thisTrack.video_id} />
       </VideoContainer>
       <TrackInfoContainer>
+        <span onClick={() => onAddToFavs(thisTrack)}>
+          {isFavTrack ? '🫀' : '💩'}
+        </span>
         <h2>{thisTrack.track_name}</h2>
         <p>from year {thisTrack.year}</p>
         <p>by {thisTrack.artist}</p>
