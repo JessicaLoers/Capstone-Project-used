@@ -4,6 +4,17 @@ import TrackCard from '../components/TrackCard'
 import YoutubeEmbed from '../components/YoutubeEmbed'
 
 export default function TrackOverview({ tracks }) {
+  const favLabel = (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 50 38'
+      fill='#f7c4d4'
+      height='39px'
+      width='60px'
+    >
+      <path d='M19,0a19,19,0,0,0,0,38H59V0Zm5.26,30.2-1.88,1.69L20.5,30.18c-6.68-6.05-11.09-10-11.09-14.94a7.06,7.06,0,0,1,7.13-7.13,7.8,7.8,0,0,1,5.84,2.7,7.77,7.77,0,0,1,5.83-2.7,7.06,7.06,0,0,1,7.13,7.13C35.34,20.14,30.93,24.13,24.26,30.2Z' />
+    </svg>
+  )
   const { track_name } = useParams()
   const thisTrack = tracks.find((track) => track.track_name === track_name)
   const sampledIn = tracks.filter((item) =>
@@ -15,9 +26,15 @@ export default function TrackOverview({ tracks }) {
 
   return (
     <StyledWrapper key={thisTrack._id}>
-      <div>
+      <VideoContainer>
+        <div className='favIcons'>
+          <i className='favLabel'>{favLabel}</i>
+          {/*
+          --> pre production: add to favourites 
+          <span className='circle'></span> */}
+        </div>
         <YoutubeEmbed embedId={thisTrack.video_id} />
-      </div>
+      </VideoContainer>
       <TrackInfoContainer>
         <h2>{thisTrack.track_name}</h2>
         <h2>{thisTrack.album}</h2>
@@ -26,7 +43,6 @@ export default function TrackOverview({ tracks }) {
         <p>Sampled by: {thisTrack.sampled_in.length}</p>
         <p>Contains Samples: {thisTrack.sampled.length}</p>
       </TrackInfoContainer>
-
       <div>
         <h3>Sampled in:</h3>
         {sampledIn.map((track) => (
@@ -38,7 +54,6 @@ export default function TrackOverview({ tracks }) {
           />
         ))}
       </div>
-
       <div>
         <h3>Contains Samples of:</h3>
         {containsSamples.map((track) => (
@@ -54,13 +69,14 @@ export default function TrackOverview({ tracks }) {
   )
 }
 
+const VideoContainer = styled.section`
+  position: relative;
+`
+
 const StyledWrapper = styled.div`
   background-color: var(--primarycolor);
   margin-bottom: 13rem;
   margin-top: 2rem;
-  h3 {
-    margin-left: 1rem;
-  }
 `
 const TrackInfoContainer = styled.div`
   margin: 1rem;

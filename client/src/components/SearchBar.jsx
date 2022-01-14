@@ -11,13 +11,6 @@ export default function SearchBar({ artists, tracks }) {
     <WrapperStyled>
       <SearchBarWrapperStyled>
         <ToggleBtnPair>
-          <BtnArtist
-            type='button'
-            onClick={() => setIsBtnActive(!isBtnActive)}
-            className={!isBtnActive ? 'inactive' : 'active'}
-          >
-            Artist
-          </BtnArtist>
           <BtnTrack
             type='button'
             onClick={() => setIsBtnActive(!isBtnActive)}
@@ -25,6 +18,14 @@ export default function SearchBar({ artists, tracks }) {
           >
             Tracks
           </BtnTrack>
+
+          <BtnArtist
+            type='button'
+            onClick={() => setIsBtnActive(!isBtnActive)}
+            className={!isBtnActive ? 'inactive' : 'active'}
+          >
+            Artist
+          </BtnArtist>
         </ToggleBtnPair>
         <SearchInput>
           <input
@@ -38,7 +39,6 @@ export default function SearchBar({ artists, tracks }) {
           />
         </SearchInput>
       </SearchBarWrapperStyled>
-
       <Results>
         {isBtnActive
           ? artists
@@ -79,10 +79,10 @@ export default function SearchBar({ artists, tracks }) {
 }
 
 const BtnArtist = styled.button`
-  border-radius: 50px 0 0 50px;
+  border-radius: 0 50px 50px 0;
 `
 const BtnTrack = styled.button`
-  border-radius: 0 50px 50px 0;
+  border-radius: 50px 0 0 50px;
 `
 const Results = styled.div`
   margin-top: 3rem;

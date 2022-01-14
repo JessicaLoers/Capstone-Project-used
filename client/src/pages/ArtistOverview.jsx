@@ -15,6 +15,7 @@ export default function ArtistOverview({ artists, tracks }) {
     </svg>
   )
   const { artist_name } = useParams()
+
   const thisArtist = artists.find(
     (artist) => artist.artist_name === artist_name
   )
@@ -75,31 +76,6 @@ const Nav = styled.ul`
 `
 const ImageContainer = styled.section`
   position: relative;
-
-  .favIcons {
-    bottom: 6;
-    margin-top: 5rem;
-    position: fixed;
-    right: 0;
-    z-index: 80;
-  }
-  .circle {
-    background-color: #ff1d1d;
-    border-radius: 50%;
-    bottom: 2;
-    height: 33px;
-    margin-bottom: 8px;
-    position: absolute;
-    right: 0;
-    width: 48px;
-    z-index: 90;
-  }
-
-  .favLabel {
-    position: absolute;
-    right: 0;
-    z-index: 100;
-  }
 
   h1 {
     bottom: 0;
