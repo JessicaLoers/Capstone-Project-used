@@ -1,5 +1,5 @@
-import TrackCard from './TrackCard'
-import ArtistCard from './ArtistCard'
+import CardTrack from './CardTrack'
+import CardArtist from './CardArtist'
 import { useState } from 'react'
 import styled from 'styled-components'
 
@@ -49,7 +49,7 @@ export default function SearchBar({ artists, tracks }) {
               )
               .map((artist) => (
                 <div key={artist._id}>
-                  <ArtistCard
+                  <CardArtist
                     artist_name={artist.artist_name}
                     artist_image={artist.artist_image}
                   />
@@ -65,7 +65,7 @@ export default function SearchBar({ artists, tracks }) {
               )
               .map((track) => (
                 <div key={track._id}>
-                  <TrackCard
+                  <CardTrack
                     track_name={track.track_name}
                     year={track.year}
                     cover_image={track.cover_image}

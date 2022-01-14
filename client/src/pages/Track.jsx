@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import TrackCard from '../components/TrackCard'
+import CardTrack from '../components/CardTrack'
 import YoutubeEmbed from '../components/YoutubeEmbed'
 
-export default function TrackOverview({ tracks }) {
+export default function Track({ tracks }) {
   const favLabel = (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -37,16 +37,15 @@ export default function TrackOverview({ tracks }) {
       </VideoContainer>
       <TrackInfoContainer>
         <h2>{thisTrack.track_name}</h2>
-        <h2>{thisTrack.album}</h2>
-        <p>{thisTrack.year}</p>
-        <p>{thisTrack.artist}</p>
-        <p>Sampled by: {thisTrack.sampled_in.length}</p>
-        <p>Contains Samples: {thisTrack.sampled.length}</p>
+        <p>from year {thisTrack.year}</p>
+        <p>by {thisTrack.artist}</p>
+        <p>Sampled by {thisTrack.sampled_in.length}</p>
+        <p>Contains Samples of {thisTrack.sampled.length}</p>
       </TrackInfoContainer>
       <div>
-        <h3>Sampled in:</h3>
+        <h3 className='collections-headline'>Sampled in:</h3>
         {sampledIn.map((track) => (
-          <TrackCard
+          <CardTrack
             track_name={track.track_name}
             artist={track.artist}
             cover_image={track.cover_image}
@@ -55,9 +54,9 @@ export default function TrackOverview({ tracks }) {
         ))}
       </div>
       <div>
-        <h3>Contains Samples of:</h3>
+        <h3 className='collections-headline'>Contains Samples of:</h3>
         {containsSamples.map((track) => (
-          <TrackCard
+          <CardTrack
             track_name={track.track_name}
             artist={track.artist}
             cover_image={track.cover_image}
@@ -77,7 +76,17 @@ const StyledWrapper = styled.div`
   background-color: var(--primarycolor);
   margin-bottom: 13rem;
   margin-top: 2rem;
+
+  .collections-headline {
+    font-size: 0.9rem;
+    margin-left: 1rem;
+    margin-bottom: 0.6rem;
+    margin-top: 1.2rem;
+  }
 `
 const TrackInfoContainer = styled.div`
   margin: 1rem;
+  p {
+    font-size: 0.8rem;
+  }
 `

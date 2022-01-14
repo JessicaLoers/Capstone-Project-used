@@ -9,8 +9,8 @@ import Home from './pages/Home'
 import SearchBar from './components/SearchBar'
 import TrackForm from './components/TrackForm'
 import Profile from './components/MemberProfile'
-import TrackOverview from './pages/TrackOverview'
-import ArtistOverview from './pages/ArtistOverview'
+import Track from './pages/Track'
+import Artist from './pages/Artist'
 
 export default function App() {
   const [tracks, setTracks] = useState(loadFromLocal('_TRACKS') ?? [])
@@ -92,13 +92,13 @@ export default function App() {
       <Routes>
         <Route
           path='/artist/:artist_name'
-          element={<ArtistOverview artists={artists} tracks={tracks} />}
+          element={<Artist artists={artists} tracks={tracks} />}
         ></Route>
       </Routes>
       <Routes>
         <Route
           path='track/:track_name'
-          element={<TrackOverview tracks={tracks} />}
+          element={<Track tracks={tracks} />}
         ></Route>
       </Routes>
       <FooterNavigation />

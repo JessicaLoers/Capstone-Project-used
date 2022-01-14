@@ -1,22 +1,19 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-import TextInput from './TextInput'
-import NumberInput from './NumberInput'
-import Select from './Select'
+import TextInput from './FormInputs/TextInput'
+import NumberInput from './FormInputs/NumberInput'
+import SelectInput from './FormInputs/SelectInput'
 import isTrackValid from '../lib/validation'
 
 export default function TrackForm() {
-  
   return (
     <TrackFormWrapper>
       <FormSampled>
         <label>Choose</label>
         <div>
           <button>Add Track</button>
-          <button>
-            Reset
-          </button>
+          <button>Reset</button>
         </div>
       </FormSampled>
       <h2> added track:</h2>

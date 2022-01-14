@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import TrackCard from '../components/TrackCard'
+import CardTrack from '../components/CardTrack'
 
-export default function ArtistOverview({ artists, tracks }) {
+export default function Artist({ artists, tracks }) {
   const favLabel = (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -38,7 +38,7 @@ export default function ArtistOverview({ artists, tracks }) {
       <Info>{thisArtist.infos}</Info>
 
       {thisArtistTrack.map((track) => (
-        <TrackCard
+        <CardTrack
           track_name={track.track_name}
           artist={track.artist}
           cover_image={track.cover_image}

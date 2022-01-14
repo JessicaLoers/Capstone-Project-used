@@ -103,7 +103,7 @@ h1,
   justify-content: center;
 }
 
-// --> favIcon : ArtistOverview.jsx, TrackOverview.jsx
+// --> favIcon : Artist.jsx, Track.jsx
   .favIcons {
     bottom: 6;
     margin-top: 5rem;
