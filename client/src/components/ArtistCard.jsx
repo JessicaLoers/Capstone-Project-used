@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-function TrackCard({ key, artist_name, infos, tracks, artist_image }) {
+function TrackCard({ artist_name, artist_image }) {
   const arrow = (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -34,18 +34,17 @@ function TrackCard({ key, artist_name, infos, tracks, artist_image }) {
 }
 export default TrackCard
 
-// Styling
 const SingleArtist = styled.div`
   background-color: var(--cardartist);
   border: solid 1px var(--cardartist);
 `
 const ArtistImage = styled.img`
+  border-radius: 100px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
   filter: grayscale(var(--value, 100%));
   --value: 100%;
+  height: 20vw;
+  justify-self: center;
   object-fit: cover;
   width: 20vw;
-  height: 20vw;
-  border-radius: 100px;
-  justify-self: center;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
 `

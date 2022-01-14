@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import arrowRight from '../assets/icons/arrowRight.svg'
 
 function TrackCard({ track_name, artist, year, cover_image }) {
   const arrow = (
@@ -20,13 +19,11 @@ function TrackCard({ track_name, artist, year, cover_image }) {
       </g>
     </svg>
   )
-
-  //-- > try to remove %20 from URL - failed ;)
+  //-- > try to remove %20 from URL - failed for now;)
   // let name = track_name
   // name = name.split(' ').join('-')
   // console.log(name)
   // const url = `${name}`
-
   return (
     <SingleTrack className='card'>
       <CoverImage src={cover_image} />
@@ -43,8 +40,6 @@ function TrackCard({ track_name, artist, year, cover_image }) {
 }
 export default TrackCard
 
-// --> some styling
-
 const SingleTrack = styled.div`
   background-color: var(--cardtrack);
   border: solid 1px var(--cardtrack);
@@ -52,15 +47,14 @@ const SingleTrack = styled.div`
     font-size: 0.8rem;
   }
 `
-
 const CoverImage = styled.img`
+  border-radius: 2px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
   filter: grayscale(var(--value, 100%));
   --value: 100%;
+  height: 20vw;
+  justify-self: center;
+  margin-left: 5px;
   object-fit: cover;
   width: 20vw;
-  height: 20vw;
-  margin-left: 5px;
-  border-radius: 2px;
-  justify-self: center;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
 `

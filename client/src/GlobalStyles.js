@@ -34,8 +34,6 @@ export default createGlobalStyle`
   *::after {
     box-sizing: border-box;
   }
-
-
   body {
     color: var(--lightgrey);
     background-color: var(--primarycolor);
@@ -48,7 +46,6 @@ export default createGlobalStyle`
   font-weight: 500;
   
 }
-
 h1,
   h2,
   h3 {
@@ -70,7 +67,6 @@ h1,
     margin: 0;
   }
   
-
 // --> card
 .card {
   display: grid;
@@ -131,18 +127,13 @@ h1,
     width: 48px;
     z-index: 90;
   }
-
-
-
 // --> YoutubeEmbed
-
 .video-responsive {
     overflow: hidden;
     padding-bottom: 56.25%;
     position: relative;
     height: 0;
   }
-  
   .video-responsive iframe {
     left: 0;
     top: 0;
@@ -150,7 +141,6 @@ h1,
     width: 100%;
     position: absolute;
   }
-
   .customButton {
     width: 150px;
     height: 50px;
@@ -162,10 +152,8 @@ h1,
     border-radius: 5px;
     cursor: pointer;
     }
-
 .activeBtnGroup{
     background-color: rgb(25, 26, 24);
     border: 1.5px solid rgb(25, 26, 24);
     }
-
 `
