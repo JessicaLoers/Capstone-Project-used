@@ -71,6 +71,14 @@ export default function App() {
     })
     return await result.json()
   }
+  function addToFavTracks(favTrackToAdd) {
+    if (isTrackInListOfFavs(favTrackToAdd)) {
+      const favsToKeep = removeTrackFromListOfFavs(favTrackstoAdd)
+      setfavTracks(favsToKeep)
+    } else {
+      setFavTracks([...favTracks, favTracksToAdd])
+    }
+  }
 
   return (
     <div>
