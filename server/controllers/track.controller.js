@@ -21,6 +21,7 @@ const postTrack = async (req, res) => {
     sampled: req.body.sampled,
     video_id: req.body.video_id,
     cover_image: req.body.cover_image,
+    fav_of_user: req.body.fav_of_user,
   })
 
   try {

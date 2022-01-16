@@ -24,6 +24,8 @@ export default function Track({ tracks, onAddToFavs, isFavTrack }) {
     item.sampled_in.includes(thisTrack.track_name)
   )
 
+  console.log(thisTrack)
+
   return (
     <StyledWrapper>
       <VideoContainer>
@@ -34,7 +36,7 @@ export default function Track({ tracks, onAddToFavs, isFavTrack }) {
         <YoutubeEmbed embedId={thisTrack.video_id} />
       </VideoContainer>
       <TrackInfoContainer>
-        <span onClick={() => onAddToFavs(thisTrack)}>
+        <span onClick={() => onAddToFavs(tracks)}>
           {isFavTrack ? '🫀' : '💩'}
         </span>
         <h2>{thisTrack.track_name}</h2>

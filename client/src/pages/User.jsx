@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import userdata from '../lib/userdata'
-import CardTrack from './CardTrack'
 
-export default function Profile() {
+import CardTrack from '../components/CardTrack'
+
+export default function User() {
   const { name } = useParams()
   const thisMember = userdata.find((user) => user.name === name)
 

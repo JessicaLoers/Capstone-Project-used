@@ -8,19 +8,16 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import SearchBar from './components/SearchBar'
 import TrackForm from './components/TrackForm'
-import Profile from './components/MemberProfile'
+import Profile from './pages/User'
 import Track from './pages/Track'
 import Artist from './pages/Artist'
 
 export default function App() {
   const [tracks, setTracks] = useState(loadFromLocal('_TRACKS') ?? [])
   const [artists, setArtists] = useState(loadFromLocal('_ARTISTS') ?? [])
-  const [favTracks, setFavTracks] = useState(loadFromLocal('_FAV_TRACKS') ?? [])
+  const [users, setUsers] = useState(loadFromLocal('_USERS') ?? [])
 
-  useEffect(() => {
-    saveToLocal('_FAV_TRACKS', favTracks)
-  }, [favTracks])
-
+  // Get Artist, Tracks, Users
   useEffect(() => {
     async function fetchTracks() {
       try {
@@ -55,6 +52,24 @@ export default function App() {
     saveToLocal('_ARTISTS', artists)
   }, [artists])
 
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const response = await fetch('api/user')
+        const userFromApi = await response.json()
+        setUsers(userFromApi)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    fetchUsers()
+  }, [])
+
+  useEffect(() => {
+    saveToLocal('_USERS', users)
+  }, [users])
+
+  // add artists, tracks, users, "favs"
   async function addTracksToDatabase(track) {
     const result = await fetch('api/track', {
       method: 'POST',
@@ -76,25 +91,6 @@ export default function App() {
     })
     return await result.json()
   }
-  // --> FAV TRACKS
-  function isTrackInListofFavs(favTrackToAdd) {
-    return favTracks.some(
-      (everyFavTrack) => everyFavTrack._id === favTrackToAdd._id
-    )
-  }
-
-  function removeTrackFromListOfFavs(track) {
-    return favTracks.filter((everyFavTrack) => everyFavTrack._id !== track._id)
-  }
-
-  function addTrackToFavs(favTrackToAdd) {
-    if (isTrackInListofFavs(favTrackToAdd)) {
-      const favsToKeep = removeTrackFromListOfFavs(favTrackToAdd)
-      setFavTracks(favsToKeep)
-    } else {
-      setFavTracks([...favTracks, favTrackToAdd])
-    }
-  }
 
   return (
     <div>
@@ -109,23 +105,11 @@ export default function App() {
         ></Route>
         <Route
           path='/profile/:name'
-          element={
-            <Profile
-              tracks={tracks}
-              onAddToFavs={addTrackToFavs}
-              isFavsTrack={isTrackInListofFavs(tracks)}
-            />
-          }
+          element={<Profile tracks={tracks} />}
         ></Route>
         <Route
           path='/trackform'
-          element={
-            <TrackForm
-              artists={artists}
-              onAddToFavs={addTrackToFavs}
-              isFavsTrack={isTrackInListofFavs}
-            />
-          }
+          element={<TrackForm artists={artists} />}
         ></Route>
       </Routes>
       <Routes>
