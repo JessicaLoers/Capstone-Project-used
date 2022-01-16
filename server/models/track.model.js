@@ -11,7 +11,7 @@ const trackSchema = new mongoose.Schema({
   sampled: Array,
   video_id: String,
   cover_image: String,
-  // fav_of_user: { type: mongoose.Types.ObjectId, ref: 'user' },
+  fav_of_user: { type: mongoose.Types.ObjectId, ref: 'user' },
 })
 
 const Track = mongoose.model('Track', trackSchema, 'track')
