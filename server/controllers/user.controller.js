@@ -3,29 +3,21 @@ import mongoose from 'mongoose'
 import User from '../models/user.model.js'
 import Track from '../models/track.model.js'
 
-const toId = mongoose.Types.ObjectId
+// const toId = mongoose.Types.ObjectId
 
-const getUserFavourite = async (req, res) => {
-  const user = toId(req.params.user)
+// const getUserFavourite = async (req, res) => {
+//   const user = toId(req.params.user)
 
-  const favourite = await Track.findById(req.params.track)
-  favourite.user = user
-  favourite.save()
+//   const favourite = await Track.findById(req.params.track)
+//   favourite.user = user
+//   favourite.save()
 
-  // const favourites = User.findByIdAndUpdate(req.params.user, {
-  //   favourite_tracks: req.params.track,
-  // })
+//   // const favourites = User.findByIdAndUpdate(req.params.user, {
+//   //   favourite_tracks: req.params.track,
+//   // })
 
-  res.json(favourite)
-}
-
-const getFavourite = async (rq, res) => {
-  const favourites = await Track.find({}).populate({
-    path: 'user',
-    model: 'User',
-  })
-  res.json(favourites)
-}
+//   res.json(favourite)
+// }
 
 const getAllUsers = async (req, res) => {
   const user = await User.find()
@@ -40,10 +32,11 @@ const getUser = async (req, res) => {
 
 const postUser = async (req, res) => {
   const user = new User({
-    user_name: req.body.user_name,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    favourite_tracks: req.body.favourite_tracks,
+    name: req.body.name,
+    // first_name: req.body.first_name,
+    // last_name: req.body.last_name,
+    // user_image: req.body.user_image,
+    // favourite_tracks: req.body.favourite_tracks,
   })
 
   try {
@@ -88,12 +81,4 @@ const deleteUser = async (req, res) => {
   }
 }
 
-export {
-  getAllUsers,
-  getUser,
-  postUser,
-  putUser,
-  deleteUser,
-  getUserFavourite,
-  getFavourite,
-}
+export { getAllUsers, getUser, postUser, putUser, deleteUser }

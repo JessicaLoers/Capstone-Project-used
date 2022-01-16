@@ -11,9 +11,9 @@ const trackSchema = new mongoose.Schema({
   sampled: Array,
   video_id: String,
   cover_image: String,
-  fav_of_user: { type: mongoose.Types.ObjectId, ref: 'User' },
+  // fav_of_user: { type: mongoose.Types.ObjectId, ref: 'user' },
 })
 
-const Track = mongoose.model('Track', trackSchema, 'Track')
+const Track = mongoose.model('Track', trackSchema, 'track')
 
 export default Track

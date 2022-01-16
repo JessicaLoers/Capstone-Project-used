@@ -6,24 +6,16 @@ import {
   postUser,
   putUser,
   deleteUser,
-  getUserFavourite,
-  getFavourite,
 } from '../controllers/user.controller.js'
 
 const router = express.Router()
 
 router.get('/user', getAllUsers)
-
 router.get('/user/:userId', getUser)
-
 router.post('/user', postUser)
-
 router.put('/user/:userId', putUser)
-
 router.delete('/user/:userId', deleteUser)
 
-router.get('/favourite', getFavourite)
-
-router.get('/favourite/:user/:track', getUserFavourite)
+// router.get('/favourite/:user/:track', getUserFavourite)
 
 export default router
