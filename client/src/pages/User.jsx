@@ -1,17 +1,30 @@
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 import CardTrack from '../components/CardTrack'
 
-export default function User() {
+export default function User({ user, onLoginUser }) {
   const { name } = useParams()
-  const thisMember = userdata.find((user) => user.name === name)
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const response = await fetch('/api/user/' + name)
+        const userFromApi = await response.json()
+        onLoginUser(userFromApi)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    name && fetchUser()
+  }, [])
 
   return (
     <StyledWrapper>
-      <h1>Hey {thisMember.name}</h1>
+      <h1>Hey {user.first_name}</h1>
       <TrackInfoContainer>
-        <UserImage src={thisMember.image} alt='user image' />
+        <UserImage src={user.user_image} alt='user image' />
       </TrackInfoContainer>
 
       <div>

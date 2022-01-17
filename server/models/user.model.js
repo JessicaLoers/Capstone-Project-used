@@ -5,7 +5,9 @@ const userSchema = new mongoose.Schema({
   first_name: String,
   last_name: String,
   user_image: String,
-  favourite_tracks: { type: mongoose.Types.ObjectId, ref: 'track' },
+
+  // tells mongoose, that it referencing to document, track from collections "track" ??
+  favourite_tracks: [{ type: mongoose.Types.ObjectId, ref: 'Track' }],
 })
 
 const User = mongoose.model('User', userSchema, 'user')

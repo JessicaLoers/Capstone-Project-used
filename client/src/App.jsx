@@ -15,7 +15,7 @@ import Artist from './pages/Artist'
 export default function App() {
   const [tracks, setTracks] = useState(loadFromLocal('_TRACKS') ?? [])
   const [artists, setArtists] = useState(loadFromLocal('_ARTISTS') ?? [])
-  const [users, setUsers] = useState(loadFromLocal('_USERS') ?? [])
+  const [user, setUser] = useState(loadFromLocal('_USER') ?? {})
 
   // Get Artist, Tracks, Users
   useEffect(() => {
@@ -53,23 +53,18 @@ export default function App() {
   }, [artists])
 
   useEffect(() => {
-    async function fetchUsers() {
-      try {
-        const response = await fetch('api/user')
-        const userFromApi = await response.json()
-        setUsers(userFromApi)
-      } catch (error) {
-        console.log(error.message)
-      }
-    }
-    fetchUsers()
-  }, [])
-
-  useEffect(() => {
-    saveToLocal('_USERS', users)
-  }, [users])
+    saveToLocal('_USER', user)
+  }, [user])
 
   // add artists, tracks, users, "favs"
+
+  async function addTracksToFavourites(track) {
+    const result = await fetch('api/favourite', {
+      method: 'POST',
+    })
+    return await result.json()
+  }
+
   async function addTracksToDatabase(track) {
     const result = await fetch('api/track', {
       method: 'POST',
@@ -104,8 +99,16 @@ export default function App() {
           element={<SearchBar artists={artists} tracks={tracks} />}
         ></Route>
         <Route
+          path='/profile'
+          element={
+            <Profile tracks={tracks} user={user} onLoginUser={setUser} />
+          }
+        ></Route>
+        <Route
           path='/profile/:name'
-          element={<Profile tracks={tracks} />}
+          element={
+            <Profile tracks={tracks} user={user} onLoginUser={setUser} />
+          }
         ></Route>
         <Route
           path='/trackform'
@@ -121,7 +124,12 @@ export default function App() {
       <Routes>
         <Route
           path='track/:track_name'
-          element={<Track tracks={tracks} />}
+          element={
+            <Track
+              tracks={tracks}
+              addTracksToFavourites={addTracksToFavourites}
+            />
+          }
         ></Route>
       </Routes>
       <Footer />

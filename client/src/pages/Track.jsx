@@ -3,18 +3,19 @@ import { useParams } from 'react-router-dom'
 import CardTrack from '../components/CardTrack'
 import YoutubeEmbed from '../components/YoutubeEmbed'
 
-export default function Track({ tracks, onAddToFavs, isFavTrack }) {
-  const favLabel = (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 50 38'
-      fill='#f7c4d4'
-      height='39px'
-      width='60px'
-    >
-      <path d='M19,0a19,19,0,0,0,0,38H59V0Zm5.26,30.2-1.88,1.69L20.5,30.18c-6.68-6.05-11.09-10-11.09-14.94a7.06,7.06,0,0,1,7.13-7.13,7.8,7.8,0,0,1,5.84,2.7,7.77,7.77,0,0,1,5.83-2.7,7.06,7.06,0,0,1,7.13,7.13C35.34,20.14,30.93,24.13,24.26,30.2Z' />
-    </svg>
-  )
+const favLabel = (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    viewBox='0 0 50 38'
+    fill='#f7c4d4'
+    height='39px'
+    width='60px'
+  >
+    <path d='M19,0a19,19,0,0,0,0,38H59V0Zm5.26,30.2-1.88,1.69L20.5,30.18c-6.68-6.05-11.09-10-11.09-14.94a7.06,7.06,0,0,1,7.13-7.13,7.8,7.8,0,0,1,5.84,2.7,7.77,7.77,0,0,1,5.83-2.7,7.06,7.06,0,0,1,7.13,7.13C35.34,20.14,30.93,24.13,24.26,30.2Z' />
+  </svg>
+)
+
+export default function Track({ tracks, addTracksToFavourites }) {
   const { track_name } = useParams()
   const thisTrack = tracks.find((track) => track.track_name === track_name)
   const sampledIn = tracks.filter((item) =>
@@ -23,8 +24,6 @@ export default function Track({ tracks, onAddToFavs, isFavTrack }) {
   const containsSamples = tracks.filter((item) =>
     item.sampled_in.includes(thisTrack.track_name)
   )
-
-  console.log(thisTrack)
 
   return (
     <StyledWrapper>
@@ -36,9 +35,7 @@ export default function Track({ tracks, onAddToFavs, isFavTrack }) {
         <YoutubeEmbed embedId={thisTrack.video_id} />
       </VideoContainer>
       <TrackInfoContainer>
-        <span onClick={() => onAddToFavs(tracks)}>
-          {isFavTrack ? '🫀' : '💩'}
-        </span>
+        <button onClick={() => addTracksToFavourites(thisTrack)}>add</button>
         <h2>{thisTrack.track_name}</h2>
         <p>from year {thisTrack.year}</p>
         <p>by {thisTrack.artist}</p>
