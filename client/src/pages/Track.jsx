@@ -15,7 +15,7 @@ const favLabel = (
   </svg>
 )
 
-export default function Track({ tracks, addTracksToFavourites }) {
+export default function Track({ tracks, user }) {
   const { track_name } = useParams()
   const thisTrack = tracks.find((track) => track.track_name === track_name)
   const sampledIn = tracks.filter((item) =>
@@ -24,6 +24,26 @@ export default function Track({ tracks, addTracksToFavourites }) {
   const containsSamples = tracks.filter((item) =>
     item.sampled_in.includes(thisTrack.track_name)
   )
+
+  console.log(thisTrack._id)
+  console.log(user._id)
+
+  async function handleClick(event) {
+    event.preventDefault()
+    const favouriteTrack = {
+      trackId: thisTrack._id,
+      userId: user._id,
+    }
+    const result = await fetch('/api/favourite', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify(favouriteTrack),
+    })
+
+    return await result.json(favouriteTrack)
+  }
 
   return (
     <StyledWrapper key={thisTrack._id}>
@@ -35,9 +55,8 @@ export default function Track({ tracks, addTracksToFavourites }) {
         <YoutubeEmbed embedId={thisTrack.video_id} />
       </VideoContainer>
       <TrackInfoContainer>
-        <button onClick={() => addTracksToFavourites(thisTrack._id)}>
-          add
-        </button>
+        <button onClick={handleClick}>add</button>
+
         <h2>{thisTrack.track_name}</h2>
         <p>from year {thisTrack.year}</p>
         <p>by {thisTrack.artist}</p>
@@ -94,3 +113,16 @@ const TrackInfoContainer = styled.div`
     font-size: 0.8rem;
   }
 `
+
+{
+  /* <button onClick={() => addTracksToFavourites(thisTrack._id)}> */
+}
+
+//body: JSON.stringify(track),
+// async function addTracksToFavourites(track) {
+//   const result = await fetch('api/favourite/61e6732cb45e3076aadeae41/', {
+//     method: 'POST',
+//   })
+
+//   return await result.json()
+// }

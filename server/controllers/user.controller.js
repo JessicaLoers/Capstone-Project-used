@@ -2,16 +2,21 @@ import User from '../models/user.model.js'
 import Track from '../models/track.model.js'
 
 const putUserToTrack = async (req, res) => {
-  const user = await User.findById(req.params.userId)
-  const favourite = await Track.findById(req.params.trackId)
-  favourite.fav_of_user.push(user)
-  user.favourite_tracks.push(favourite)
-  try {
-    await favourite.save()
-    await user.save()
-    res.json(favourite)
-  } catch (error) {
-    res.json(error)
+  const user = await User.findById(req.body.userId)
+  const favourite = await Track.findById(req.body.trackId)
+  console.log(req.body)
+  if (favourite && user) {
+    favourite.fav_of_user.push(user)
+    user.favourite_tracks.push(favourite)
+    try {
+      await favourite.save()
+      await user.save()
+      res.json(favourite)
+    } catch (error) {
+      res.json(error)
+    }
+  } else {
+    res.json({ message: 'track not found' })
   }
 }
 

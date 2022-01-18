@@ -14,6 +14,6 @@ router.get('/user', getAllUsers)
 router.get('/user/:userName', getUser)
 router.post('/user', postUser)
 router.put('/user/:userId', putUser)
-router.post('/favourite/:userId/:trackId', putUserToTrack)
+router.post('/favourite', putUserToTrack)
 
 export default router

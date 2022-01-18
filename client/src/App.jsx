@@ -56,16 +56,6 @@ export default function App() {
     saveToLocal('_USER', user)
   }, [user])
 
-  //body: JSON.stringify(track),
-
-  async function addTracksToFavourites(track) {
-    const result = await fetch('api/favourite', {
-      method: 'POST',
-    })
-
-    return await result.json()
-  }
-
   return (
     <div>
       <div>
@@ -103,15 +93,22 @@ export default function App() {
       <Routes>
         <Route
           path='/track/:track_name'
-          element={
-            <Track
-              tracks={tracks}
-              addTracksToFavourites={addTracksToFavourites}
-            />
-          }
+          element={<Track tracks={tracks} user={user} />}
         ></Route>
       </Routes>
       <Footer />
     </div>
   )
 }
+
+// //body: JSON.stringify(track),
+
+// async function addTracksToFavourites(track) {
+//   const result = await fetch('api/favourite/61e6732cb45e3076aadeae41/', {
+//     method: 'POST',
+//   })
+
+//   return await result.json()
+// }
+
+// addTracksToFavourites={addTracksToFavourites}
