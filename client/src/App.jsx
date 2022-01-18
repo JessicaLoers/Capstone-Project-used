@@ -56,34 +56,13 @@ export default function App() {
     saveToLocal('_USER', user)
   }, [user])
 
-  // add artists, tracks, users, "favs"
+  //body: JSON.stringify(track),
 
   async function addTracksToFavourites(track) {
     const result = await fetch('api/favourite', {
       method: 'POST',
     })
-    return await result.json()
-  }
 
-  async function addTracksToDatabase(track) {
-    const result = await fetch('api/track', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(track),
-    })
-    return await result.json()
-  }
-
-  async function addArtistToDatabase(artist) {
-    const result = await fetch('api/artist', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(artist),
-    })
     return await result.json()
   }
 
@@ -123,7 +102,7 @@ export default function App() {
       </Routes>
       <Routes>
         <Route
-          path='track/:track_name'
+          path='/track/:track_name'
           element={
             <Track
               tracks={tracks}

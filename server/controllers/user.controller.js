@@ -1,8 +1,6 @@
 import User from '../models/user.model.js'
 import Track from '../models/track.model.js'
-import mongoose from 'mongoose'
 
-// post favourite to user
 const putUserToTrack = async (req, res) => {
   const user = await User.findById(req.params.userId)
   const favourite = await Track.findById(req.params.trackId)

@@ -26,7 +26,7 @@ export default function Track({ tracks, addTracksToFavourites }) {
   )
 
   return (
-    <StyledWrapper>
+    <StyledWrapper key={thisTrack._id}>
       <VideoContainer>
         <div className='favIcons'>
           <span className='circle'></span>
@@ -35,7 +35,9 @@ export default function Track({ tracks, addTracksToFavourites }) {
         <YoutubeEmbed embedId={thisTrack.video_id} />
       </VideoContainer>
       <TrackInfoContainer>
-        <button onClick={() => addTracksToFavourites(thisTrack)}>add</button>
+        <button onClick={() => addTracksToFavourites(thisTrack._id)}>
+          add
+        </button>
         <h2>{thisTrack.track_name}</h2>
         <p>from year {thisTrack.year}</p>
         <p>by {thisTrack.artist}</p>
@@ -46,6 +48,7 @@ export default function Track({ tracks, addTracksToFavourites }) {
         <h3 className='collections-headline'>Sampled in:</h3>
         {sampledIn.map((track) => (
           <CardTrack
+            key={track._id}
             track_name={track.track_name}
             artist={track.artist}
             cover_image={track.cover_image}
@@ -57,6 +60,7 @@ export default function Track({ tracks, addTracksToFavourites }) {
         <h3 className='collections-headline'>Contains Samples of:</h3>
         {containsSamples.map((track) => (
           <CardTrack
+            key={track._id}
             track_name={track.track_name}
             artist={track.artist}
             cover_image={track.cover_image}
