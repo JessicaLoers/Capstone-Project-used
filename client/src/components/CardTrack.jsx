@@ -52,7 +52,6 @@ const SingleTrack = styled.div`
   }
 `
 const ArtistLink = styled(Link)`
-  text-decoration: none;
   color: var(--lightgrey);
   font-weight: 500;
   cursor: pointer;

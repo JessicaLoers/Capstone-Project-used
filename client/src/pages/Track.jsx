@@ -58,9 +58,6 @@ export default function Track({ tracks, user }) {
     }
   }
 
-  console.log(user._id)
-  console.log(thisTrack.fav_of_user)
-
   return (
     <StyledWrapper key={thisTrack._id}>
       <VideoContainer>
@@ -68,8 +65,13 @@ export default function Track({ tracks, user }) {
       </VideoContainer>
       <span onClick={handleClick} className='favIcons'>
         <i className='favLabel'>{favLabel}</i>
-        <span className='circle'></span>
+        {thisTrack.fav_of_user.includes(user._id) ? (
+          <span className='circle'></span>
+        ) : (
+          <i></i>
+        )}
       </span>
+
       <TrackInfoContainer>
         <h2>{thisTrack.track_name}</h2>
         <p>from year {thisTrack.year}</p>
