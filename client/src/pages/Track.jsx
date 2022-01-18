@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import CardTrack from '../components/CardTrack'
 import YoutubeEmbed from '../components/YoutubeEmbed'
 
@@ -25,15 +26,24 @@ export default function Track({ tracks, user }) {
     item.sampled_in.includes(thisTrack.track_name)
   )
 
-  console.log(thisTrack._id)
-  console.log(user._id)
-
   async function handleClick(event) {
     if (thisTrack.fav_of_user.includes(user._id)) {
-      return console.log('already added to favourites')
-    } else {
       event.preventDefault()
       const favouriteTrack = {
+        trackId: thisTrack._id,
+        userId: user._id,
+      }
+      const result = await fetch('/api/favourite/remove', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'PUT',
+        body: JSON.stringify(favouriteTrack),
+      })
+      return await result.json(favouriteTrack)
+    } else {
+      event.preventDefault()
+      const addToFavouriteTrack = {
         trackId: thisTrack._id,
         userId: user._id,
       }
@@ -42,24 +52,25 @@ export default function Track({ tracks, user }) {
           'Content-Type': 'application/json',
         },
         method: 'POST',
-        body: JSON.stringify(favouriteTrack),
+        body: JSON.stringify(addToFavouriteTrack),
       })
-      return await result.json(favouriteTrack)
+      return await result.json(addToFavouriteTrack)
     }
   }
+
+  console.log(user._id)
+  console.log(thisTrack.fav_of_user)
 
   return (
     <StyledWrapper key={thisTrack._id}>
       <VideoContainer>
-        <div className='favIcons'>
-          <span className='circle'></span>
-          <i className='favLabel'>{favLabel}</i>
-        </div>
         <YoutubeEmbed embedId={thisTrack.video_id} />
       </VideoContainer>
+      <span onClick={handleClick} className='favIcons'>
+        <i className='favLabel'>{favLabel}</i>
+        <span className='circle'></span>
+      </span>
       <TrackInfoContainer>
-        <button onClick={handleClick}>add</button>
-
         <h2>{thisTrack.track_name}</h2>
         <p>from year {thisTrack.year}</p>
         <p>by {thisTrack.artist}</p>
@@ -129,3 +140,9 @@ const TrackInfoContainer = styled.div`
 
 //   return await result.json()
 // }
+
+/* <i className='favLabel'>{favLabel}</i> 
+        <span className='circle'></span>
+        
+        
+        */

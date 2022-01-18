@@ -16,7 +16,26 @@ const putUserToTrack = async (req, res) => {
       res.json(error)
     }
   } else {
-    res.json({ message: 'track and/or useer not found' })
+    res.json({ message: 'track and/or user not found' })
+  }
+}
+
+const deleteUserToTrack = async (req, res) => {
+  const user = await User.findById(req.body.userId)
+  const favourite = await Track.findById(req.body.trackId)
+  console.log(req.body)
+  if (favourite && user) {
+    favourite.fav_of_user.pull(user)
+    user.favourite_tracks.pull(favourite)
+    try {
+      await favourite.save()
+      await user.save()
+      res.json(favourite)
+    } catch (error) {
+      res.json(error)
+    }
+  } else {
+    res.json({ message: 'track and/or user not found' })
   }
 }
 
@@ -24,7 +43,7 @@ const getUser = async (req, res) => {
   const userName = req.params.userName
   const foundUser = await User.findOne({ first_name: userName }).populate(
     'favourite_tracks',
-    'track_name artist'
+    'track_name artist year cover_image'
   )
   console.log(foundUser)
   res.json(foundUser)
@@ -64,4 +83,11 @@ const postUser = async (req, res) => {
   }
 }
 
-export { getAllUsers, getUser, postUser, putUser, putUserToTrack }
+export {
+  getAllUsers,
+  getUser,
+  postUser,
+  putUser,
+  putUserToTrack,
+  deleteUserToTrack,
+}

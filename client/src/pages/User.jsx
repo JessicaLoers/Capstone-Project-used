@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 import CardTrack from '../components/CardTrack'
 
-export default function User({ user, onLoginUser }) {
+export default function User({ tracks, user, onLoginUser }) {
   const { name } = useParams()
 
   useEffect(() => {
@@ -20,6 +20,10 @@ export default function User({ user, onLoginUser }) {
     name && fetchUser()
   }, [])
 
+  console.log(user.favourite_tracks)
+
+  const userFavouriteTracks = user.favourite_tracks
+
   return (
     <StyledWrapper>
       <h1>Hey {user.first_name}</h1>
@@ -28,10 +32,17 @@ export default function User({ user, onLoginUser }) {
       </TrackInfoContainer>
 
       <div>
-        <h2>Your Favourite Artists</h2>
-      </div>
-      <div>
         <h2>Your Favourite Tracks</h2>
+        {userFavouriteTracks?.map((track) => (
+          <div key={track._id}>
+            <CardTrack
+              track_name={track.track_name}
+              artist={track.artist}
+              cover_image={track.cover_image}
+              year={track.year}
+            />
+          </div>
+        ))}
       </div>
       <div>
         <h2>Your Added Tracks</h2>
@@ -45,9 +56,6 @@ const TrackInfoContainer = styled.div`
 `
 const StyledWrapper = styled.div`
   margin-top: 2rem;
-  h3 {
-    margin-left: 1rem;
-  }
 `
 const UserImage = styled.img`
   filter: grayscale(var(--value, 100%));
