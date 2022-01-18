@@ -29,20 +29,23 @@ export default function Track({ tracks, user }) {
   console.log(user._id)
 
   async function handleClick(event) {
-    event.preventDefault()
-    const favouriteTrack = {
-      trackId: thisTrack._id,
-      userId: user._id,
+    if (thisTrack.fav_of_user.includes(user._id)) {
+      return console.log('already added to favourites')
+    } else {
+      event.preventDefault()
+      const favouriteTrack = {
+        trackId: thisTrack._id,
+        userId: user._id,
+      }
+      const result = await fetch('/api/favourite', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify(favouriteTrack),
+      })
+      return await result.json(favouriteTrack)
     }
-    const result = await fetch('/api/favourite', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify(favouriteTrack),
-    })
-
-    return await result.json(favouriteTrack)
   }
 
   return (

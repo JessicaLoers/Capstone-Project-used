@@ -16,7 +16,7 @@ const putUserToTrack = async (req, res) => {
       res.json(error)
     }
   } else {
-    res.json({ message: 'track not found' })
+    res.json({ message: 'track and/or useer not found' })
   }
 }
 
