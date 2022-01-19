@@ -10,16 +10,7 @@ export default function User({ user, onLoginUser }) {
   const { name } = useParams()
 
   useEffect(() => {
-    async function fetchUser() {
-      try {
-        const response = await fetch('/api/user/' + name)
-        const userFromApi = await response.json()
-        onLoginUser(userFromApi)
-      } catch (error) {
-        console.log(error.message)
-      }
-    }
-    name && fetchUser()
+    name && onLoginUser(name)
   }, [])
 
   const userFavouriteTracks = user.favourite_tracks

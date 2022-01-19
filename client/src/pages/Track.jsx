@@ -17,8 +17,9 @@ const favLabel = (
   </svg>
 )
 
-export default function Track({ tracks, user }) {
+export default function Track({ tracks, user, onAddToFavourites }) {
   const { track_name } = useParams()
+
   const thisTrack = tracks.find((track) => track.track_name === track_name)
   const sampledIn = tracks.filter((item) =>
     item.sampled.includes(thisTrack.track_name)
@@ -27,53 +28,15 @@ export default function Track({ tracks, user }) {
     item.sampled_in.includes(thisTrack.track_name)
   )
 
-  async function addToFavourite() {
-    const addToFavouriteTrack = {
-      trackId: thisTrack._id,
-      userId: user._id,
-    }
-    const result = await fetch('/api/favourite', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify(addToFavouriteTrack),
-    })
-    return await result.json(addToFavouriteTrack)
-  }
-
-  function addToFavourites(track) {
-    if (thisTrack.fav_of_user.includes(user._id)) {
-      return removeFromFavourite(track)
-    } else {
-      addToFavourite(track)
-    }
-  }
-  useEffect(() => addToFavourite(), [])
-
-  async function removeFromFavourite() {
-    const favouriteTrack = {
-      trackId: thisTrack._id,
-      userId: user._id,
-    }
-    const result = await fetch('/api/favourite/remove', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'PUT',
-      body: JSON.stringify(favouriteTrack),
-    })
-    return await result.json(favouriteTrack)
-  }
-
-  useEffect(() => removeFromFavourite(), [])
-
   return (
     <StyledWrapper key={thisTrack._id}>
       <VideoContainer>
         <YoutubeEmbed embedId={thisTrack.video_id} />
       </VideoContainer>
-      <span onClick={addToFavourites} className='favIcons'>
+      <span
+        onClick={() => onAddToFavourites(thisTrack, user)}
+        className='favIcons'
+      >
         <i className='favLabel'>{favLabel}</i>
         {thisTrack.fav_of_user.includes(user._id) ? (
           <span className='circle'></span>
