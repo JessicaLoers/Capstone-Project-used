@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { saveToLocal, loadFromLocal } from '../lib/localStorage.js'
 
 import CardTrack from '../components/CardTrack'
 import YoutubeEmbed from '../components/YoutubeEmbed'
@@ -28,44 +27,53 @@ export default function Track({ tracks, user }) {
     item.sampled_in.includes(thisTrack.track_name)
   )
 
-  async function handleClick(event) {
+  async function addToFavourite() {
+    const addToFavouriteTrack = {
+      trackId: thisTrack._id,
+      userId: user._id,
+    }
+    const result = await fetch('/api/favourite', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify(addToFavouriteTrack),
+    })
+    return await result.json(addToFavouriteTrack)
+  }
+
+  function addToFavourites(track) {
     if (thisTrack.fav_of_user.includes(user._id)) {
-      event.preventDefault()
-      const favouriteTrack = {
-        trackId: thisTrack._id,
-        userId: user._id,
-      }
-      const result = await fetch('/api/favourite/remove', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'PUT',
-        body: JSON.stringify(favouriteTrack),
-      })
-      return await result.json(favouriteTrack)
+      return removeFromFavourite(track)
     } else {
-      event.preventDefault()
-      const addToFavouriteTrack = {
-        trackId: thisTrack._id,
-        userId: user._id,
-      }
-      const result = await fetch('/api/favourite', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify(addToFavouriteTrack),
-      })
-      return await result.json(addToFavouriteTrack)
+      addToFavourite(track)
     }
   }
+  useEffect(() => addToFavourite(), [])
+
+  async function removeFromFavourite() {
+    const favouriteTrack = {
+      trackId: thisTrack._id,
+      userId: user._id,
+    }
+    const result = await fetch('/api/favourite/remove', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'PUT',
+      body: JSON.stringify(favouriteTrack),
+    })
+    return await result.json(favouriteTrack)
+  }
+
+  useEffect(() => removeFromFavourite(), [])
 
   return (
     <StyledWrapper key={thisTrack._id}>
       <VideoContainer>
         <YoutubeEmbed embedId={thisTrack.video_id} />
       </VideoContainer>
-      <span onClick={handleClick} className='favIcons'>
+      <span onClick={addToFavourites} className='favIcons'>
         <i className='favLabel'>{favLabel}</i>
         {thisTrack.fav_of_user.includes(user._id) ? (
           <span className='circle'></span>

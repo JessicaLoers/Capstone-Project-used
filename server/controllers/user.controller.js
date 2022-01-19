@@ -21,8 +21,8 @@ const putUserToTrack = async (req, res) => {
 }
 
 const deleteUserInTrack = async (req, res) => {
-  const user = await User.findByIdAndUpdate(req.body.userId)
-  const favourite = await Track.findByIdAndUpdate(req.body.trackId)
+  const user = await User.findById(req.body.userId)
+  const favourite = await Track.findById(req.body.trackId)
   console.log(req.body)
   if (favourite && user) {
     favourite.fav_of_user.pull(user)
