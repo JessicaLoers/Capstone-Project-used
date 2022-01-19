@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
 import { saveToLocal, loadFromLocal } from './lib/localStorage'
 
+import { addToFavourite, removeFromFavourite } from './lib/favourites'
+
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -26,8 +28,6 @@ export default function App() {
       console.log(error.message)
     }
   }
-
-  // Get Artist, Tracks, Users
   useEffect(() => {
     fetchTracks()
   }, [])
@@ -67,36 +67,6 @@ export default function App() {
     }
   }
 
-  async function addToFavourite(track, user) {
-    const addToFavouriteTrack = {
-      trackId: track._id,
-      userId: user._id,
-    }
-    const result = await fetch('/api/favourite', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify(addToFavouriteTrack),
-    })
-    return await result.json(addToFavouriteTrack)
-  }
-
-  async function removeFromFavourite(track, user) {
-    const favouriteTrack = {
-      trackId: track._id,
-      userId: user._id,
-    }
-    const result = await fetch('/api/favourite/remove', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'PUT',
-      body: JSON.stringify(favouriteTrack),
-    })
-    return await result.json(favouriteTrack)
-  }
-
   async function handleAddToFavourites(track, user) {
     if (track.fav_of_user.includes(user._id)) {
       await removeFromFavourite(track, user)
@@ -104,7 +74,6 @@ export default function App() {
       await addToFavourite(track, user)
     }
     fetchTracks()
-    // TODO: fetch use
     fetchUserAndLogin(user.first_name)
   }
 
