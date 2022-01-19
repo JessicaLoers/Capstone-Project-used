@@ -156,4 +156,5 @@ h1,
     background-color: rgb(25, 26, 24);
     border: 1.5px solid rgb(25, 26, 24);
     }
+
 `

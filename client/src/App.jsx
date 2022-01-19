@@ -2,15 +2,13 @@ import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
 import { saveToLocal, loadFromLocal } from './lib/localStorage'
-
 import { addToFavourite, removeFromFavourite } from './lib/favourites'
-
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import SearchBar from './components/SearchBar'
 import TrackForm from './components/TrackForm'
-import Profile from './pages/User'
+import User from './pages/User'
 import Track from './pages/Track'
 import Artist from './pages/Artist'
 
@@ -89,19 +87,13 @@ export default function App() {
           element={<SearchBar artists={artists} tracks={tracks} />}
         ></Route>
         <Route
-          path='/profile'
-          element={
-            <Profile tracks={tracks} user={user} onLoginUser={setUser} />
-          }
+          path='/user'
+          element={<User tracks={tracks} user={user} onLoginUser={setUser} />}
         ></Route>
         <Route
-          path='/profile/:name'
+          path='/user/:name'
           element={
-            <Profile
-              tracks={tracks}
-              user={user}
-              onLoginUser={fetchUserAndLogin}
-            />
+            <User tracks={tracks} user={user} onLoginUser={fetchUserAndLogin} />
           }
         ></Route>
         <Route
