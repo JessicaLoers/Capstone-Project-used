@@ -15,6 +15,8 @@ export default function Profile({ user, onLoginUser }) {
 
   const userFavouriteTracks = user.favourite_tracks
 
+  console.log(userFavouriteTracks?.length)
+
   return (
     <StyledWrapper>
       <UserInfoContainer>
@@ -38,7 +40,7 @@ export default function Profile({ user, onLoginUser }) {
 
       <h3 className='favourite-headline'>Your Favourite Tracks</h3>
       <div className='horizontal-scroll-wrapper'>
-        {userFavouriteTracks?.lenght > 0 ? (
+        {userFavouriteTracks.length > 0 ? (
           userFavouriteTracks?.map((track) => (
             <div className='wrapper-items' key={track._id}>
               <CardTrack
@@ -50,37 +52,15 @@ export default function Profile({ user, onLoginUser }) {
             </div>
           ))
         ) : (
-          <h3 className='favourite-headline'>
-            <p className='card'> It's time to select your favourites artists</p>
-          </h3>
-        )}
-      </div>
-
-      <h3 className='favourite-headline'>
-        Your Favourite Artists ... coming soon!
-      </h3>
-      <div className='horizontal-scroll-wrapper'>
-        {userFavouriteTracks?.lenght > 0 ? (
-          userFavouriteTracks?.map((track) => (
-            <div className='wrapper-items' key={track._id}>
-              <CardTrack
-                track_name={track.track_name}
-                artist={track.artist}
-                cover_image={track.cover_image}
-                year={track.year}
-              />
-            </div>
-          ))
-        ) : (
-          <h3 className='favourite-headline'>
-            <p className='card'> It's time to select your favourites artists</p>
-          </h3>
+          <MessageTracks className='card'>
+            <p>It's time to add Favourite Tracks</p>
+          </MessageTracks>
         )}
       </div>
 
       <h3 className='favourite-headline'>Your added tracks</h3>
       <div className='horizontal-scroll-wrapper'>
-        {userFavouriteTracks ? (
+        {userFavouriteTracks.length > 0 ? (
           userFavouriteTracks?.map((track) => (
             <div className='wrapper-items' key={track._id}>
               <CardTrack
@@ -92,14 +72,30 @@ export default function Profile({ user, onLoginUser }) {
             </div>
           ))
         ) : (
-          <h3 className='favourite-headline'>
-            <p className='card'> It's time to select your favourites artists</p>
-          </h3>
+          <MessageArtist className='card'>
+            <p>It's time to add Favourite Artists</p>
+          </MessageArtist>
         )}
       </div>
     </StyledWrapper>
   )
 }
+
+const MessageTracks = styled.div`
+  background-color: var(--cardtrack);
+  border: solid 1px var(--cardtrack);
+  p {
+    margin-left: 1rem;
+  }
+`
+
+const MessageArtist = styled.div`
+  background-color: var(--cardartist);
+  border: solid 1px var(--cardartist);
+  p {
+    margin-left: 1rem;
+  }
+`
 
 const UserImageContainer = styled.div`
   align-items: flex-end;
@@ -160,9 +156,5 @@ const StyledWrapper = styled.div`
     margin-left: 1rem;
     margin-bottom: 0.6rem;
     margin-top: 1.2rem;
-  }
-
-  p {
-    padding-left: 1rem;
   }
 `
