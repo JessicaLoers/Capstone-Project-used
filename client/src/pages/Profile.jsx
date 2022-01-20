@@ -31,9 +31,9 @@ export default function Profile({ user, onLoginUser }) {
         <div>
           <h1>Hey {user.first_name}!</h1>
           <ul>
-            <li>Track Artist: {userFavouriteTracks?.length}</li>
-            <li>Track Favourites: {userFavouriteTracks?.length}</li>
-            <li>Track Entries: {userFavouriteTracks?.length}</li>
+            <li>Tracks: {userFavouriteTracks?.length}</li>
+            <li>Artists: {userFavouriteTracks?.length}</li>
+            <li>Entries: {userFavouriteTracks?.length}</li>
           </ul>
         </div>
       </UserInfoContainer>
