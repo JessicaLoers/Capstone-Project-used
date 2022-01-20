@@ -6,7 +6,7 @@ import CardTrack from '../components/CardTrack'
 
 import userImageOverlay from '../assets/icons/userImageOverlay.svg'
 
-export default function Profile({ tracks, user, onLoginUser }) {
+export default function Profile({ user, onLoginUser }) {
   const { name } = useParams()
 
   useEffect(() => {
@@ -14,6 +14,7 @@ export default function Profile({ tracks, user, onLoginUser }) {
   }, [])
 
   const userFavouriteTracks = user.favourite_tracks
+
   return (
     <StyledWrapper>
       <UserInfoContainer>
@@ -37,46 +38,64 @@ export default function Profile({ tracks, user, onLoginUser }) {
 
       <h3 className='favourite-headline'>Your Favourite Tracks</h3>
       <div className='horizontal-scroll-wrapper'>
-        {userFavouriteTracks?.map((track) => (
-          <div className='wrapper-items' key={track._id}>
-            <CardTrack
-              track_name={track.track_name}
-              artist={track.artist}
-              cover_image={track.cover_image}
-              year={track.year}
-            />
-          </div>
-        ))}
+        {userFavouriteTracks?.lenght > 0 ? (
+          userFavouriteTracks?.map((track) => (
+            <div className='wrapper-items' key={track._id}>
+              <CardTrack
+                track_name={track.track_name}
+                artist={track.artist}
+                cover_image={track.cover_image}
+                year={track.year}
+              />
+            </div>
+          ))
+        ) : (
+          <h3 className='favourite-headline'>
+            <p className='card'> It's time to select your favourites artists</p>
+          </h3>
+        )}
       </div>
 
       <h3 className='favourite-headline'>
         Your Favourite Artists ... coming soon!
       </h3>
       <div className='horizontal-scroll-wrapper'>
-        {userFavouriteTracks?.map((track) => (
-          <div className='wrapper-items' key={track._id}>
-            <CardTrack
-              track_name={track.track_name}
-              artist={track.artist}
-              cover_image={track.cover_image}
-              year={track.year}
-            />
-          </div>
-        ))}
+        {userFavouriteTracks?.lenght > 0 ? (
+          userFavouriteTracks?.map((track) => (
+            <div className='wrapper-items' key={track._id}>
+              <CardTrack
+                track_name={track.track_name}
+                artist={track.artist}
+                cover_image={track.cover_image}
+                year={track.year}
+              />
+            </div>
+          ))
+        ) : (
+          <h3 className='favourite-headline'>
+            <p className='card'> It's time to select your favourites artists</p>
+          </h3>
+        )}
       </div>
 
-      <h3 className='favourite-headline'>Your Added Tracks ... coming soon!</h3>
+      <h3 className='favourite-headline'>Your added tracks</h3>
       <div className='horizontal-scroll-wrapper'>
-        {userFavouriteTracks?.map((track) => (
-          <div className='wrapper-items' key={track._id}>
-            <CardTrack
-              track_name={track.track_name}
-              artist={track.artist}
-              cover_image={track.cover_image}
-              year={track.year}
-            />
-          </div>
-        ))}
+        {userFavouriteTracks ? (
+          userFavouriteTracks?.map((track) => (
+            <div className='wrapper-items' key={track._id}>
+              <CardTrack
+                track_name={track.track_name}
+                artist={track.artist}
+                cover_image={track.cover_image}
+                year={track.year}
+              />
+            </div>
+          ))
+        ) : (
+          <h3 className='favourite-headline'>
+            <p className='card'> It's time to select your favourites artists</p>
+          </h3>
+        )}
       </div>
     </StyledWrapper>
   )
@@ -141,5 +160,9 @@ const StyledWrapper = styled.div`
     margin-left: 1rem;
     margin-bottom: 0.6rem;
     margin-top: 1.2rem;
+  }
+
+  p {
+    padding-left: 1rem;
   }
 `
