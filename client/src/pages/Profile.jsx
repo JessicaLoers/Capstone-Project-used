@@ -6,7 +6,7 @@ import CardTrack from '../components/CardTrack'
 
 import userImageOverlay from '../assets/icons/userImageOverlay.svg'
 
-export default function User({ user, onLoginUser }) {
+export default function Profile({ tracks, user, onLoginUser }) {
   const { name } = useParams()
 
   useEffect(() => {

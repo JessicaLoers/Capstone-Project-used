@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import SearchBar from './components/SearchBar'
 import TrackForm from './components/TrackForm'
-import User from './pages/User'
+import Profile from './pages/Profile'
 import Track from './pages/Track'
 import Artist from './pages/Artist'
 
@@ -87,13 +87,19 @@ export default function App() {
           element={<SearchBar artists={artists} tracks={tracks} />}
         ></Route>
         <Route
-          path='/user'
-          element={<User tracks={tracks} user={user} onLoginUser={setUser} />}
+          path='/profile'
+          element={
+            <Profile tracks={tracks} user={user} onLoginUser={setUser} />
+          }
         ></Route>
         <Route
-          path='/user/:name'
+          path='/profile/:name'
           element={
-            <User tracks={tracks} user={user} onLoginUser={fetchUserAndLogin} />
+            <Profile
+              tracks={tracks}
+              user={user}
+              onLoginUser={fetchUserAndLogin}
+            />
           }
         ></Route>
         <Route
