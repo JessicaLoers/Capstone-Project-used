@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 import CardTrack from '../components/CardTrack'
+import CardArtist from '../components/CardArtist'
 
 import userImageOverlay from '../assets/icons/userImageOverlay.svg'
 
@@ -14,8 +15,10 @@ export default function Profile({ user, onLoginUser }) {
   }, [])
 
   const userFavouriteTracks = user.favourite_tracks
+  const userFavouriteArtists = user.favourite_artists
 
   console.log(userFavouriteTracks?.length)
+  console.log(userFavouriteArtists?.length)
 
   return (
     <StyledWrapper>
@@ -40,7 +43,7 @@ export default function Profile({ user, onLoginUser }) {
 
       <h3 className='favourite-headline'>Your Favourite Tracks</h3>
       <div className='horizontal-scroll-wrapper'>
-        {userFavouriteTracks.length > 0 ? (
+        {userFavouriteTracks?.length > 0 ? (
           userFavouriteTracks?.map((track) => (
             <div className='wrapper-items' key={track._id}>
               <CardTrack
@@ -60,20 +63,18 @@ export default function Profile({ user, onLoginUser }) {
 
       <h3 className='favourite-headline'>Your added tracks</h3>
       <div className='horizontal-scroll-wrapper'>
-        {userFavouriteTracks.length > 0 ? (
-          userFavouriteTracks?.map((track) => (
-            <div className='wrapper-items' key={track._id}>
-              <CardTrack
-                track_name={track.track_name}
-                artist={track.artist}
-                cover_image={track.cover_image}
-                year={track.year}
+        {userFavouriteArtists?.length > 0 ? (
+          userFavouriteArtists?.map((artist) => (
+            <div className='wrapper-items' key={artist._id}>
+              <CardArtist
+                artist_name={artist.artist_name}
+                artist_image={artist.artist_image}
               />
             </div>
           ))
         ) : (
           <MessageArtist className='card'>
-            <p>It's time to add Favourite Artists</p>
+            <p>Go to Search and find your Favourite!</p>
           </MessageArtist>
         )}
       </div>

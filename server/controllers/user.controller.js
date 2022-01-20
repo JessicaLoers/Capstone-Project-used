@@ -1,6 +1,8 @@
 import User from '../models/user.model.js'
 import Track from '../models/track.model.js'
+import Artist from '../models/artist.model.js'
 
+//## USER FAV TRACK
 const putUserToTrack = async (req, res) => {
   const user = await User.findById(req.body.userId)
   const favourite = await Track.findById(req.body.trackId)
@@ -39,12 +41,52 @@ const deleteUserInTrack = async (req, res) => {
   }
 }
 
+//## USER FAV ARTIST
+
+const putUserToArtist = async (req, res) => {
+  const user = await User.findById(req.body.userId)
+  const favourite = await Artist.findById(req.body.artistId)
+  console.log(req.body)
+  if (favourite && user) {
+    favourite.fav_of_user.push(user)
+    user.favourite_artists.push(favourite)
+    try {
+      await favourite.save()
+      await user.save()
+      res.json(favourite)
+    } catch (error) {
+      res.json(error)
+    }
+  } else {
+    res.json({ message: 'artist and/or user not found' })
+  }
+}
+
+const deleteUserInArtist = async (req, res) => {
+  const user = await User.findById(req.body.userId)
+  const favourite = await Artist.findById(req.body.artistId)
+  console.log(req.body)
+  if (favourite && user) {
+    favourite.fav_of_user.pull(user)
+    user.favourite_artists.pull(favourite)
+    try {
+      await favourite.save()
+      await user.save()
+      res.json(favourite)
+    } catch (error) {
+      res.json(error)
+    }
+  } else {
+    res.json({ message: 'artist and/or user not found' })
+  }
+}
+
+//## USER
 const getUser = async (req, res) => {
   const userName = req.params.userName
-  const foundUser = await User.findOne({ first_name: userName }).populate(
-    'favourite_tracks',
-    'track_name artist year cover_image'
-  )
+  const foundUser = await User.findOne({ first_name: userName })
+    .populate('favourite_tracks', 'track_name artist year cover_image')
+    .populate('favourite_artists', 'artist_name artist_image')
   console.log(foundUser)
   res.json(foundUser)
 }
@@ -70,6 +112,7 @@ const postUser = async (req, res) => {
     last_name: req.body.last_name,
     user_image: req.body.user_image,
     favourite_tracks: req.body.favourite_tracks,
+    favourite_artists: req.body.favourite_artists,
   })
 
   try {
@@ -90,4 +133,6 @@ export {
   putUser,
   putUserToTrack,
   deleteUserInTrack,
+  putUserToArtist,
+  deleteUserInArtist,
 }

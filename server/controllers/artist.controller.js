@@ -18,6 +18,7 @@ const postArtist = async (req, res) => {
     infos: req.body.infos,
     tracks: req.body.tracks,
     artist_image: req.body.artist_image,
+    fav_of_user: req.body.fav_of_user,
   })
 
   try {
@@ -33,12 +34,10 @@ const postArtist = async (req, res) => {
 
 const putArtist = async (req, res) => {
   const artistId = req.params.artistId
-  const artist = req.body // sind alle Eigenschaften hinter
-
-  // dritter Paramter (.., .., {return }) damit bei Postman PUT nicht der letzte Stand sondern, das Update angezeigt wird!!
+  const artist = req.body
   const result = await Artist.findByIdAndUpdate(artistId, artist, {
     returnDocument: 'after',
-  }) // {new: true} deprecated
+  })
   res.json(result)
 }
 

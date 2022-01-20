@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import CardTrack from '../components/CardTrack'
 
-export default function Artist({ artists, tracks }) {
+export default function Artist({ artists, tracks, onAddToFavourites, user }) {
   const favLabel = (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -25,20 +25,26 @@ export default function Artist({ artists, tracks }) {
   return (
     <CardWrapper>
       <ImageContainer>
-        <div className='favIcons'>
-          <i className='favLabel'>{favLabel}</i>
-          {/*
-          --> pre production: add to favourites 
-          <span className='circle'></span> */}
-        </div>
         <h1>{thisArtist.artist_name}</h1>
         <ArtistImage src={thisArtist.artist_image} />
       </ImageContainer>
+      <span
+        onClick={() => onAddToFavourites(thisArtist, user)}
+        className='favIcons'
+      >
+        <i className='favLabel'>{favLabel}</i>
+        {thisArtist.fav_of_user.includes(user._id) ? (
+          <span className='circle'></span>
+        ) : (
+          <i></i>
+        )}
+      </span>
 
       <Info>{thisArtist.infos}</Info>
 
       {thisArtistTrack.map((track) => (
         <CardTrack
+          key={track._id}
           track_name={track.track_name}
           cover_image={track.cover_image}
           year={track.year}
@@ -48,31 +54,6 @@ export default function Artist({ artists, tracks }) {
   )
 }
 
-const Nav = styled.ul`
-  padding: 1rem;
-  background: var(--secondarycolor);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  position: fixed;
-  bottom: 0;
-  height: 4.4rem;
-  right: 0;
-  left: 0;
-
-  .addbtn {
-    margin-bottom: 3rem;
-  }
-
-  li a.active {
-    display: inline-block;
-    svg {
-      fill: var(--lightgrey);
-      transform: scale(1.2);
-    }
-  }
-`
 const ImageContainer = styled.section`
   position: relative;
 
@@ -105,10 +86,4 @@ const CardWrapper = styled.div`
 const Info = styled.section`
   font-size: 0.9rem;
   margin: 1rem;
-`
-const ArtistName = styled.h1`
-  display: flex;
-  position: absolute;
-  top: 0;
-  z-index: 90;
 `

@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
 import { saveToLocal, loadFromLocal } from './lib/localStorage'
 import { addToFavourite, removeFromFavourite } from './lib/favourites'
+import {
+  addToFavouriteArtist,
+  removeFromFavouriteArtist,
+} from './lib/favourite-artists'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -34,26 +38,21 @@ export default function App() {
     saveToLocal('_TRACKS', tracks)
   }, [tracks])
 
-  useEffect(() => {
-    async function fetchArtists() {
-      try {
-        const response = await fetch('/api/artist')
-        const artistFromApi = await response.json()
-        setArtists(artistFromApi)
-      } catch (error) {
-        console.log(error.message)
-      }
+  async function fetchArtists() {
+    try {
+      const response = await fetch('/api/artist')
+      const artistFromApi = await response.json()
+      setArtists(artistFromApi)
+    } catch (error) {
+      console.log(error.message)
     }
+  }
+  useEffect(() => {
     fetchArtists()
   }, [])
-
   useEffect(() => {
     saveToLocal('_ARTISTS', artists)
   }, [artists])
-
-  useEffect(() => {
-    saveToLocal('_USER', user)
-  }, [user])
 
   async function fetchUserAndLogin(name) {
     try {
@@ -64,12 +63,25 @@ export default function App() {
       console.log(error.message)
     }
   }
+  useEffect(() => {
+    saveToLocal('_USER', user)
+  }, [user])
 
   async function handleAddToFavourites(track, user) {
     if (track.fav_of_user.includes(user._id)) {
       await removeFromFavourite(track, user)
     } else {
       await addToFavourite(track, user)
+    }
+    fetchTracks()
+    fetchUserAndLogin(user.first_name)
+  }
+
+  async function handleAddToFavouriteArtist(artist, user) {
+    if (artist.fav_of_user.includes(user._id)) {
+      await removeFromFavouriteArtist(artist, user)
+    } else {
+      await addToFavouriteArtist(artist, user)
     }
     fetchTracks()
     fetchUserAndLogin(user.first_name)
@@ -110,7 +122,14 @@ export default function App() {
       <Routes>
         <Route
           path='/artist/:artist_name'
-          element={<Artist artists={artists} tracks={tracks} />}
+          element={
+            <Artist
+              artists={artists}
+              tracks={tracks}
+              user={user}
+              onAddToFavourites={handleAddToFavouriteArtist}
+            />
+          }
         ></Route>
       </Routes>
       <Routes>
