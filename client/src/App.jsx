@@ -83,7 +83,7 @@ export default function App() {
     } else {
       await addToFavouriteArtist(artist, user)
     }
-    fetchTracks()
+    fetchArtists()
     fetchUserAndLogin(user.first_name)
   }
 
