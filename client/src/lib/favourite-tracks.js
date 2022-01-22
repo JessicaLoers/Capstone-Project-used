@@ -1,4 +1,4 @@
-async function addToFavourite(track, user) {
+async function addToFavouriteTrack(track, user) {
   const addToFavouriteTrack = {
     trackId: track._id,
     userId: user._id,
@@ -12,7 +12,7 @@ async function addToFavourite(track, user) {
   })
   return await result.json(addToFavouriteTrack)
 }
-async function removeFromFavourite(track, user) {
+async function removeFromFavouriteTrack(track, user) {
   const favouriteTrack = {
     trackId: track._id,
     userId: user._id,
@@ -27,4 +27,4 @@ async function removeFromFavourite(track, user) {
   return await result.json(favouriteTrack)
 }
 
-export { addToFavourite, removeFromFavourite }
+export { addToFavouriteTrack, removeFromFavouriteTrack }

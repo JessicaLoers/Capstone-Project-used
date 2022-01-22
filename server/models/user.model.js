@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   user_image: String,
   favourite_tracks: [{ type: mongoose.Types.ObjectId, ref: 'Track' }],
   favourite_artists: [{ type: mongoose.Types.ObjectId, ref: 'Artist' }],
+  track_entries: [{ type: mongoose.Types.ObjectId, ref: 'Track' }],
 })
 
 const User = mongoose.model('User', userSchema, 'user')

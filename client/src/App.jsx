@@ -2,16 +2,20 @@ import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
 import { saveToLocal, loadFromLocal } from './lib/localStorage'
-import { addToFavourite, removeFromFavourite } from './lib/favourites'
+import {
+  addToFavouriteTrack,
+  removeFromFavouriteTrack,
+} from './lib/favourite-tracks'
 import {
   addToFavouriteArtist,
   removeFromFavouriteArtist,
 } from './lib/favourite-artists'
+import { addTracksToDatabase } from './lib/addTracks'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import SearchBar from './components/SearchBar'
-import TrackForm from './components/TrackForm'
+import AddForm from './components/AddForm'
 import Profile from './pages/Profile'
 import Track from './pages/Track'
 import Artist from './pages/Artist'
@@ -67,11 +71,11 @@ export default function App() {
     saveToLocal('_USER', user)
   }, [user])
 
-  async function handleAddToFavourites(track, user) {
+  async function handleAddToFavouriteTrack(track, user) {
     if (track.fav_of_user.includes(user._id)) {
-      await removeFromFavourite(track, user)
+      await removeFromFavouriteTrack(track, user)
     } else {
-      await addToFavourite(track, user)
+      await addToFavouriteTrack(track, user)
     }
     fetchTracks()
     fetchUserAndLogin(user.first_name)
@@ -85,6 +89,11 @@ export default function App() {
     }
     fetchArtists()
     fetchUserAndLogin(user.first_name)
+  }
+
+  function handleAddTrack(track) {
+    addTracksToDatabase(track)
+    fetchTracks()
   }
 
   return (
@@ -116,7 +125,14 @@ export default function App() {
         ></Route>
         <Route
           path='/trackform'
-          element={<TrackForm artists={artists} />}
+          element={
+            <AddForm
+              artists={artists}
+              tracks={tracks}
+              user={user}
+              onAddTrack={handleAddTrack}
+            />
+          }
         ></Route>
       </Routes>
       <Routes>
@@ -139,7 +155,7 @@ export default function App() {
             <Track
               tracks={tracks}
               user={user}
-              onAddToFavourites={handleAddToFavourites}
+              onAddToFavourites={handleAddToFavouriteTrack}
             />
           }
         ></Route>
@@ -149,14 +165,8 @@ export default function App() {
   )
 }
 
-// //body: JSON.stringify(track),
-
-// async function addTracksToFavourites(track) {
-//   const result = await fetch('api/favourite/61e6732cb45e3076aadeae41/', {
-//     method: 'POST',
-//   })
-
-//   return await result.json()
+// function handleAddTrack(track, user) {
+//   addTrackToDatabase(track, user)
+//   fetchTracks()
+//   fetchUserAndLogin(user.first_name)
 // }
-
-// addTracksToFavourites={addTracksToFavourites}

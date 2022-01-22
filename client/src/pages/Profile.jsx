@@ -17,9 +17,6 @@ export default function Profile({ user, onLoginUser }) {
   const userFavouriteTracks = user.favourite_tracks
   const userFavouriteArtists = user.favourite_artists
 
-  console.log(userFavouriteTracks?.length)
-  console.log(userFavouriteArtists?.length)
-
   return (
     <StyledWrapper>
       <UserInfoContainer>
@@ -35,7 +32,7 @@ export default function Profile({ user, onLoginUser }) {
           <h1>Hey {user.first_name}!</h1>
           <ul>
             <li>Tracks: {userFavouriteTracks?.length}</li>
-            <li>Artists: {userFavouriteTracks?.length}</li>
+            <li>Artists: {userFavouriteArtists?.length}</li>
             <li>Entries: {userFavouriteTracks?.length}</li>
           </ul>
         </div>
