@@ -26,6 +26,10 @@ export default function AddForm({ tracks, artists, onAddTrack }) {
       inputValue = inputValue.split('/')[3]
     }
 
+    // if (event.target.name === 'artist') {
+    //   inputValue = event.target.name
+    // }
+
     setTrack({
       ...track,
       [event.target.name]: inputValue,
@@ -44,7 +48,7 @@ export default function AddForm({ tracks, artists, onAddTrack }) {
         <div>
           <label htmlFor='artist'>choose</label>
           <select
-            value={artists}
+            value={track.artist}
             onChange={handleChange}
             name='artist'
             id={tracks._id}
