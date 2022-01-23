@@ -15,7 +15,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import SearchBar from './components/SearchBar'
-import AddForm from './components/AddForm'
+import Add from './pages/Add'
 import Profile from './pages/Profile'
 import Track from './pages/Track'
 import Artist from './pages/Artist'
@@ -125,9 +125,9 @@ export default function App() {
           }
         ></Route>
         <Route
-          path='/trackform'
+          path='/add'
           element={
-            <AddForm
+            <Add
               artists={artists}
               tracks={tracks}
               user={user}

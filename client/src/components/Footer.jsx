@@ -54,7 +54,7 @@ export default function Footer() {
         </li>
 
         <li className='addbtn'>
-          <NavLink to='/trackform'>
+          <NavLink to='/add'>
             <svg
               width='66'
               height='66'
