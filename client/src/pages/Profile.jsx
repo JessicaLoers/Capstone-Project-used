@@ -16,6 +16,9 @@ export default function Profile({ user, onLoginUser, tracks }) {
 
   const userFavouriteTracks = user.favourite_tracks
   const userFavouriteArtists = user.favourite_artists
+  const userAddedTracks = tracks.entry_of_user
+
+  console.log(userAddedTracks)
 
   return (
     <StyledWrapper>
@@ -33,7 +36,7 @@ export default function Profile({ user, onLoginUser, tracks }) {
           <ul>
             <li>Tracks: {userFavouriteTracks?.length}</li>
             <li>Artists: {userFavouriteArtists?.length}</li>
-            <li>Entries: {userFavouriteTracks?.length}</li>
+            <li>Entries: {userAddedTracks?.length}</li>
           </ul>
         </div>
       </UserInfoContainer>
@@ -77,12 +80,14 @@ export default function Profile({ user, onLoginUser, tracks }) {
       </div>
       <h3 className='favourite-headline'>Your added tracks</h3>
       <div className='horizontal-scroll-wrapper'>
-        {userFavouriteArtists?.length > 0 ? (
-          userFavouriteArtists?.map((artist) => (
-            <div className='wrapper-items' key={artist._id}>
-              <CardArtist
-                artist_name={artist.artist_name}
-                artist_image={artist.artist_image}
+        {userAddedTracks?.length > 0 && userAddedTracks?.includes(user._id) ? (
+          tracks?.map((track) => (
+            <div className='wrapper-items' key={track._id}>
+              <CardTrack
+                track_name={track.track_name}
+                artist={track.artist}
+                cover_image={track.cover_image}
+                year={track.year}
               />
             </div>
           ))

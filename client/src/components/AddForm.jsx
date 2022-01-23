@@ -9,7 +9,7 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
   const initialTrack = {
     artist: '',
     cover_image: '',
-    entry_of_user: [],
+    entry_of_user: [user._id],
     fav_of_user: [],
     sampled: [],
     sampled_in: [],
@@ -19,10 +19,6 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
   }
 
   const [track, setTrack] = useState(initialTrack)
-
-  const userId = user._id
-
-  console.log(userId)
 
   const handleChange = (event) => {
     let inputValue = event.target.value

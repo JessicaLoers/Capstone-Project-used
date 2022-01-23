@@ -14,7 +14,7 @@ const getTrack = async (req, res) => {
 }
 
 const postTrack = async (req, res) => {
-  const track = new Track({
+  const track = await new Track({
     track_name: req.body.track_name,
     artist: req.body.artist,
     year: req.body.year,
@@ -25,6 +25,7 @@ const postTrack = async (req, res) => {
     fav_of_user: req.body.fav_of_user,
     entry_of_user: req.body.entry_of_user,
   })
+
   console.log(req.body)
 
   try {
