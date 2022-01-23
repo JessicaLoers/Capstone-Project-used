@@ -69,35 +69,3 @@ const deleteTrack = async (req, res) => {
 }
 
 export { getAllTracks, getTrack, postTrack, putTrack, deleteTrack }
-
-// const postTrack = async (req, res) => {
-//   const user = await User.findById(req.body.userId)
-//   const track = new Track({
-//     track_name: req.body.track_name,
-//     artist: req.body.artist,
-//     year: req.body.year,
-//     sampled_in: req.body.sampled_in,
-//     sampled: req.body.sampled,
-//     video_id: req.body.video_id,
-//     cover_image: req.body.cover_image,
-//     fav_of_user: req.body.fav_of_user,
-//     entry_of_user: req.body.entry_of_user,
-//   })
-//   console.log(req.body)
-//   if (track && user) {
-//     track.entry_of_user.push(user)
-//     user.track_entries.push(track)
-//     try {
-//       await user.save()
-//       const result = await track.save()
-//       res.json({
-//         message: 'You inserted the track sucessfully with the id:' + result._id,
-//         data: result,
-//       })
-//     } catch (error) {
-//       res.json(error)
-//     }
-//   } else {
-//     res.json({ message: 'track not added' })
-//   }
-// }
