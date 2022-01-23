@@ -94,6 +94,7 @@ export default function App() {
   function handleAddTrack(track) {
     addTracksToDatabase(track)
     fetchTracks()
+    fetchUserAndLogin(user.first_name)
   }
 
   return (

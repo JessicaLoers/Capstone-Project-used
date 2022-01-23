@@ -16,9 +16,9 @@ export default function Profile({ user, onLoginUser, tracks }) {
 
   const userFavouriteTracks = user.favourite_tracks
   const userFavouriteArtists = user.favourite_artists
-  const userAddedTracks = tracks.entry_of_user
-
-  console.log(userAddedTracks)
+  const filteredTracksByUserId = tracks.filter(
+    (track) => track.entry_of_user == user._id
+  )
 
   return (
     <StyledWrapper>
@@ -36,7 +36,6 @@ export default function Profile({ user, onLoginUser, tracks }) {
           <ul>
             <li>Tracks: {userFavouriteTracks?.length}</li>
             <li>Artists: {userFavouriteArtists?.length}</li>
-            <li>Entries: {userAddedTracks?.length}</li>
           </ul>
         </div>
       </UserInfoContainer>
@@ -78,10 +77,10 @@ export default function Profile({ user, onLoginUser, tracks }) {
           </MessageArtist>
         )}
       </div>
-      <h3 className='favourite-headline'>Your added tracks</h3>
+      <h3 className='favourite-headline'>Your Added Tracks</h3>
       <div className='horizontal-scroll-wrapper'>
-        {userAddedTracks?.length > 0 && userAddedTracks?.includes(user._id) ? (
-          tracks?.map((track) => (
+        {filteredTracksByUserId?.length > 0 ? (
+          filteredTracksByUserId?.map((track) => (
             <div className='wrapper-items' key={track._id}>
               <CardTrack
                 track_name={track.track_name}
@@ -92,9 +91,9 @@ export default function Profile({ user, onLoginUser, tracks }) {
             </div>
           ))
         ) : (
-          <MessageArtist className='card'>
-            <p>Go to Search and find your Favourite!</p>
-          </MessageArtist>
+          <MessageTracks className='card'>
+            <p>It's time to add Favourite Tracks</p>
+          </MessageTracks>
         )}
       </div>
     </StyledWrapper>

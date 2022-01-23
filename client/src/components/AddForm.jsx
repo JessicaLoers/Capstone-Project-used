@@ -33,8 +33,8 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    onAddTrack(track)
-    console.log(track)
+    onAddTrack(track, user)
+    console.log(track, user)
   }
 
   return (
