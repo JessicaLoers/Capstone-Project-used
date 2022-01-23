@@ -87,6 +87,7 @@ const getUser = async (req, res) => {
   const foundUser = await User.findOne({ first_name: userName })
     .populate('favourite_tracks', 'track_name artist year cover_image')
     .populate('favourite_artists', 'artist_name artist_image')
+    .populate('track_entries', 'track_name artist year cover_image')
   console.log(foundUser)
   res.json(foundUser)
 }

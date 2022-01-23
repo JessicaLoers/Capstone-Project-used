@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import CardTrack from '../components/CardTrack'
 import CardArtist from '../components/CardArtist'
 
 import userImageOverlay from '../assets/icons/userImageOverlay.svg'
 
-export default function Profile({ user, onLoginUser }) {
+export default function Profile({ user, onLoginUser, tracks }) {
   const { name } = useParams()
 
   useEffect(() => {
@@ -58,6 +58,23 @@ export default function Profile({ user, onLoginUser }) {
         )}
       </div>
 
+      <h3 className='favourite-headline'>Your added tracks</h3>
+      <div className='horizontal-scroll-wrapper'>
+        {userFavouriteArtists?.length > 0 ? (
+          userFavouriteArtists?.map((artist) => (
+            <div className='wrapper-items' key={artist._id}>
+              <CardArtist
+                artist_name={artist.artist_name}
+                artist_image={artist.artist_image}
+              />
+            </div>
+          ))
+        ) : (
+          <MessageArtist className='card'>
+            <p>Go to Search and find your Favourite!</p>
+          </MessageArtist>
+        )}
+      </div>
       <h3 className='favourite-headline'>Your added tracks</h3>
       <div className='horizontal-scroll-wrapper'>
         {userFavouriteArtists?.length > 0 ? (

@@ -9,7 +9,7 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
   const initialTrack = {
     artist: '',
     cover_image: '',
-    entry_of_user: [user._id],
+    entry_of_user: [],
     fav_of_user: [],
     sampled: [],
     sampled_in: [],

@@ -29,12 +29,13 @@ const postTrack = async (req, res) => {
 
   try {
     const result = await track.save()
+
     res.json({
       message: 'You inserted the track sucessfully with the id:' + result._id,
       data: result,
     })
   } catch (error) {
-    res.json(error)
+    res.json({ status: 'Something else happened.' })
   }
 }
 

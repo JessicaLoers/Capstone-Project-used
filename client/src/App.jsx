@@ -164,9 +164,3 @@ export default function App() {
     </div>
   )
 }
-
-// function handleAddTrack(track, user) {
-//   addTrackToDatabase(track, user)
-//   fetchTracks()
-//   fetchUserAndLogin(user.first_name)
-// }
