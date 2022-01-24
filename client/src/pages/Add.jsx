@@ -4,13 +4,20 @@ import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 
 import AddTrackForm from '../components/AddTrackForm'
+import AddSamplePair from '../components/AddSamplePair'
 
-export default function Add({ tracks, artists, onAddTrack, user }) {
+export default function Add({
+  tracks,
+  artists,
+  onAddTrack,
+  user,
+  onAddSamplePair,
+}) {
   const [isBtnActive, setIsBtnActive] = useState(false)
 
   return (
     <Wrapper>
-      <p>Coming soon: Add Sample Pair</p>
+      <AddSamplePair tracks={tracks} artists={artists} />
 
       <button
         type='button'
@@ -25,6 +32,7 @@ export default function Add({ tracks, artists, onAddTrack, user }) {
           artists={artists}
           onAddTrack={onAddTrack}
           user={user}
+          onAddSamplePair={onAddSamplePair}
         />
       ) : (
         ''
@@ -35,4 +43,8 @@ export default function Add({ tracks, artists, onAddTrack, user }) {
 
 const Wrapper = styled.section`
   margin: 3rem;
+
+  button {
+    margin-top: 3rem;
+  }
 `

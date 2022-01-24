@@ -97,6 +97,11 @@ export default function App() {
     fetchUserAndLogin(user.first_name)
   }
 
+  function handleAddSamplePair(track) {
+    addSamplesToTracks(track)
+    fetchTracks()
+  }
+
   return (
     <div>
       <div>
@@ -132,6 +137,7 @@ export default function App() {
               tracks={tracks}
               user={user}
               onAddTrack={handleAddTrack}
+              onAddSamplePair={handleAddSamplePair}
             />
           }
         ></Route>

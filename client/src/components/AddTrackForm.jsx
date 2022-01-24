@@ -99,17 +99,16 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
         <TextInput
           onTextInputChange={handleChange}
           name='track_name'
-          autoComplete='off'
-          placeholder='type in trackname ...*'
+          placeholder='type in trackname ...'
           value={track.track_name}
         >
-          Trackname
+          Trackname*
         </TextInput>
         <NumberInput
           name='year'
           value={track.year}
           onNumberInputChange={handleChange}
-          placeholder='1900'
+          placeholder=''
         >
           Release year
         </NumberInput>

@@ -13,6 +13,25 @@ const getTrack = async (req, res) => {
   res.json(foundTrack)
 }
 
+const putSamplesAndUserToTracks = async (req, res) => {
+  const sampledIn = await Track.findOne(req.body.sampeldInTrackName)
+  const sampled = await Track.findOne(req.body.sampeldTrackName)
+  console.log(req.body)
+  if (sampledIn & sampled) {
+    sampledIn.sampled_in.push(sampled)
+    sampled.sampeld.push(sampledIn)
+    try {
+      await sampledIn.save()
+      await sampled.save()
+      res.json(sampledIn, sampled)
+    } catch (error) {
+      res.json(error)
+    }
+  } else {
+    res.json({ message: 'Not added' })
+  }
+}
+
 const postTrack = async (req, res) => {
   const track = await new Track({
     track_name: req.body.track_name,
@@ -70,4 +89,11 @@ const deleteTrack = async (req, res) => {
   }
 }
 
-export { getAllTracks, getTrack, postTrack, putTrack, deleteTrack }
+export {
+  getAllTracks,
+  getTrack,
+  postTrack,
+  putTrack,
+  deleteTrack,
+  putSamplesAndUserToTracks,
+}
