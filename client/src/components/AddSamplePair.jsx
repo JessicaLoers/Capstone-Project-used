@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 
+import { isSampleValid } from '../lib/form-validation'
+
+import dead_melody from '../assets/icons/dead_melody.svg'
+import used_melody from '../assets/icons/used_melody.svg'
+
 export default function AddSamplePair({ tracks, onAddSamplePair }) {
   const [pair, setPair] = useState({ first: '', second: '' })
   const [hasFormErrors, setHasFormErrors] = useState(false)
@@ -8,6 +13,11 @@ export default function AddSamplePair({ tracks, onAddSamplePair }) {
 
   const sortedTrackNames = tracks.sort((a, b) => {
     if (a.track_name < b.track_name) return -1
+    return 1
+  })
+
+  const sortedArtistNames = tracks.sort((a, b) => {
+    if (a.artist < b.artist) return -1
     return 1
   })
 
@@ -19,6 +29,17 @@ export default function AddSamplePair({ tracks, onAddSamplePair }) {
   }
   console.log(pair)
 
+  const handleSubmit = () => {
+    if (isSampleValid(pair)) {
+      onAddSamplePair(pair)
+      setHasFormErrors(false)
+      setHasFormSend(true)
+    } else {
+      setHasFormErrors(true)
+      setHasFormSend(false)
+    }
+  }
+
   return (
     <div>
       {hasFormErrors && (
@@ -27,7 +48,7 @@ export default function AddSamplePair({ tracks, onAddSamplePair }) {
 
           <p>
             <strong>Oh no! </strong>
-            Check if all fields are correctly filled.
+            Select two different tracks.
           </p>
         </ErrorMessage>
       )}
@@ -37,11 +58,21 @@ export default function AddSamplePair({ tracks, onAddSamplePair }) {
 
           <p>
             <strong>Yes! </strong>
-            Your track is added.
+            Your Sample is added.
           </p>
         </ErrorMessage>
       )}
       <AddSampleForm>
+        <label htmlFor='first-artist'></label>
+        <select value={tracks._id} name='first-artist' id={tracks._id}>
+          <option value=''>choose artist ... </option>
+          {sortedArtistNames.map((track) => (
+            <option key={track._id} value={track._id}>
+              {track.artist}
+            </option>
+          ))}
+        </select>
+
         <label htmlFor='first'></label>
         <select
           value={tracks._id}
@@ -73,17 +104,18 @@ export default function AddSamplePair({ tracks, onAddSamplePair }) {
         </select>
         <BtnPair>
           <button
-            onClick={() => onAddSamplePair(pair)}
+            onClick={() => handleSubmit(pair)}
             type='button'
             className='addBtn'
           >
             Add
           </button>
+
           <button
             className='clearBtn'
             type='reset'
             onClick={() => {
-              setTrack()
+              setPair()
             }}
           >
             Clear
@@ -145,5 +177,18 @@ const BtnPair = styled.div`
   .addBtn {
     background-color: var(--secondarycolor);
     border-radius: 50px 0 0 50px;
+  }
+`
+const ErrorMessage = styled.div`
+  display: flex;
+  align-items: flex-end;
+  background: var(--warning);
+  color: var(--lightgrey);
+  display: flex;
+  gap: 0.8rem;
+  margin: 0 0 1rem;
+  padding: 0.5rem;
+  .melody {
+    width: 4rem;
   }
 `

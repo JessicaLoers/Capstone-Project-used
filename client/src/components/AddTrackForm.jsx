@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { isTrackValid } from '../lib/form-validation'
 import TextInput from './FormInputs/TextInput'
 import NumberInput from './FormInputs/NumberInput'
-import SelectInput from './FormInputs/SelectInput'
 
 import dead_melody from '../assets/icons/dead_melody.svg'
 import used_melody from '../assets/icons/used_melody.svg'
