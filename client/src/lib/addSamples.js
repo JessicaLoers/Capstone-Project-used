@@ -1,9 +1,9 @@
-async function addSamplesToTracks(track) {
+async function addSamplesToTracks(pair) {
   const trackSamples = {
-    sampeldInTrackName: track.sampled_in,
-    sampeldTrackName: track.sampled,
+    sampledInId: pair.first,
+    sampledId: pair.second,
   }
-  const result = await fetch('/api/add-sample', {
+  const result = await fetch('/api/track/add-sample', {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -12,3 +12,4 @@ async function addSamplesToTracks(track) {
   })
   return await result.json(trackSamples)
 }
+export { addSamplesToTracks }

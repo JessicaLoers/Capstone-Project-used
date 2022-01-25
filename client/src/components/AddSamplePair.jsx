@@ -1,80 +1,67 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 
-export default function AddSamplePair({ tracks, artists, onAddSamplePair }) {
-  const [track, setTrack] = useState()
-
-  const sortedArtistNames = artists.sort((a, b) => {
-    if (a.artist_name < b.artist_name) return -1
-    return 1
-  })
+export default function AddSamplePair({ tracks, onAddSamplePair }) {
+  const [pair, setPair] = useState({ first: '', second: '' })
 
   const handleChange = (event) => {
-    let inputValue = event.target.value
+    const firstOrSecond = event.target.name // first / second
+    const trackId = event.target.value
 
-    setTrack({
-      ...track,
-      [event.target.name]: inputValue,
-    })
-    console.log(track)
+    setPair({ ...pair, [firstOrSecond]: trackId })
   }
+  console.log(pair)
 
   return (
     <div>
       <form>
-        <label htmlFor='sampled-in'></label>
-        <select
-          value={tracks._id}
-          onChange={handleChange}
-          name='sampled-in'
-          id={tracks._id}
-        >
-          <option value=''>choose track ... </option>
-          {tracks
-            .map((track) => (
-              <option key={track._id} value={track.track_name}>
-                {track.track_name}
-              </option>
-            ))
-            .sort()}
-        </select>
-
-        <label htmlFor='used-a-sample'></label>
-        <select
-          value={tracks.track_name}
-          onChange={handleChange}
-          name='used-a-sample'
-          id={tracks._id}
-        >
-          <option value=''>choose track ... </option>
-          {tracks
-            .map((track) => (
-              <option key={track._id} value={track.track_name}>
-                {track.track_name}
-              </option>
-            ))
-            .sort()}
-        </select>
         <BtnPair>
           <button
-            type='submit'
+            onClick={() => onAddSamplePair(pair)}
+            type='button'
             className='addBtn'
-            onClick={() => onAddSamplePair(track)}
           >
             Add
           </button>
-
           <button
             className='clearBtn'
             type='reset'
             onClick={() => {
               setTrack()
-              //setHasFormErrors(false)
             }}
           >
             Clear
           </button>
         </BtnPair>
+        <label htmlFor='first'></label>
+        <select
+          value={tracks._id}
+          onChange={handleChange}
+          name='first'
+          id={tracks._id}
+        >
+          <option value=''>choose track ... </option>
+          {tracks.map((track) => (
+            <option key={track._id} value={track._id}>
+              {track.track_name}
+            </option>
+          ))}
+        </select>
+
+        <label htmlFor='second'></label>
+        <select
+          value={tracks.track_name}
+          onChange={handleChange}
+          name='second'
+          id={tracks._id}
+        >
+          <option value=''>choose track ... </option>
+          {tracks.map((track) => (
+            <option key={track._id} value={track._id}>
+              {track.track_name}
+            </option>
+          ))}
+        </select>
       </form>
     </div>
   )
@@ -106,3 +93,20 @@ const BtnPair = styled.div`
     border-radius: 50px 0 0 50px;
   }
 `
+
+//## Monster
+// const handleChange = (event) => {
+//     let sampled = event.target.sampledTrack.value
+//     let sampled_in = event.target.sampledIn.value
+
+//     let pair = {
+//       [event.target.name]: sampled,
+//       [event.target.name]: sampled_in,
+//     }
+
+//     setTrack({
+//       ...track,
+//       pair,
+//     })
+//     console.log(track)
+//   }

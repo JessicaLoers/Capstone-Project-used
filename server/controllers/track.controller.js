@@ -14,16 +14,16 @@ const getTrack = async (req, res) => {
 }
 
 const putSamplesAndUserToTracks = async (req, res) => {
-  const sampledIn = await Track.findOne(req.body.sampeldInTrackName)
-  const sampled = await Track.findOne(req.body.sampeldTrackName)
+  const sampledIn = await Track.findById(req.body.sampledInId)
+  const sampled = await Track.findById(req.body.sampledId)
   console.log(req.body)
-  if (sampledIn & sampled) {
-    sampledIn.sampled_in.push(sampled)
-    sampled.sampeld.push(sampledIn)
+  if (sampledIn && sampled) {
+    sampledIn.sampled_in.push(sampled.track_name)
+    sampled.sampled.push(sampledIn.track_name)
     try {
       await sampledIn.save()
       await sampled.save()
-      res.json(sampledIn, sampled)
+      res.json([sampledIn, sampled])
     } catch (error) {
       res.json(error)
     }

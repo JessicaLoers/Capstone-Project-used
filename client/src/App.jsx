@@ -11,6 +11,7 @@ import {
   removeFromFavouriteArtist,
 } from './lib/favourite-artists'
 import { addTracksToDatabase } from './lib/addTracks'
+import { addSamplesToTracks } from './lib/addSamples'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -97,8 +98,8 @@ export default function App() {
     fetchUserAndLogin(user.first_name)
   }
 
-  function handleAddSamplePair(track) {
-    addSamplesToTracks(track)
+  function handleAddSamplePair(pair) {
+    addSamplesToTracks(pair)
     fetchTracks()
   }
 

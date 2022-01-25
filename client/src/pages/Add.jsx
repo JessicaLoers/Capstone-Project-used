@@ -17,7 +17,11 @@ export default function Add({
 
   return (
     <Wrapper>
-      <AddSamplePair tracks={tracks} artists={artists} />
+      <AddSamplePair
+        tracks={tracks}
+        artists={artists}
+        onAddSamplePair={onAddSamplePair}
+      />
 
       <button
         type='button'
@@ -32,7 +36,6 @@ export default function Add({
           artists={artists}
           onAddTrack={onAddTrack}
           user={user}
-          onAddSamplePair={onAddSamplePair}
         />
       ) : (
         ''
