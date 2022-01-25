@@ -6,20 +6,20 @@ import { isSampleValid } from '../lib/form-validation'
 import dead_melody from '../assets/icons/dead_melody.svg'
 import used_melody from '../assets/icons/used_melody.svg'
 
-export default function AddSamplePair({ tracks, onAddSamplePair }) {
+export default function AddSamplePair({ tracks, artists, onAddSamplePair }) {
   const [pair, setPair] = useState({ first: '', second: '' })
+  const [selection, setSelection] = useState({
+    firstArtist: '',
+    secondArtist: '',
+  })
   const [hasFormErrors, setHasFormErrors] = useState(false)
   const [hasFormSend, setHasFormSend] = useState(false)
 
-  const sortedTrackNames = tracks.sort((a, b) => {
-    if (a.track_name < b.track_name) return -1
-    return 1
-  })
-
-  const sortedArtistNames = tracks.sort((a, b) => {
-    if (a.artist < b.artist) return -1
-    return 1
-  })
+  const handelArtistSelection = (event) => {
+    const firstOrSecond = event.target.name
+    const artistName = event.target.value
+    setSelection({ ...selection, [firstOrSecond]: artistName })
+  }
 
   const handleChange = (event) => {
     const firstOrSecond = event.target.name
@@ -39,6 +39,14 @@ export default function AddSamplePair({ tracks, onAddSamplePair }) {
       setHasFormSend(false)
     }
   }
+
+  const firstArtistTracks = tracks
+    .filter((item) => item.artist === selection.firstArtist)
+    .sort()
+
+  const secondArtistTracks = tracks
+    .filter((item) => item.artist === selection.secondArtist)
+    .sort()
 
   return (
     <div>
@@ -63,12 +71,18 @@ export default function AddSamplePair({ tracks, onAddSamplePair }) {
         </ErrorMessage>
       )}
       <AddSampleForm>
-        <label htmlFor='first-artist'></label>
-        <select value={tracks._id} name='first-artist' id={tracks._id}>
+        <p>This Track</p>
+        <label htmlFor='firstArtist'></label>
+        <select
+          value={tracks._id}
+          onChange={handelArtistSelection}
+          name='firstArtist'
+          id={tracks._id}
+        >
           <option value=''>choose artist ... </option>
-          {sortedArtistNames.map((track) => (
-            <option key={track._id} value={track._id}>
-              {track.artist}
+          {artists.map((track) => (
+            <option key={track._id} value={track.artist_name}>
+              {track.artist_name}
             </option>
           ))}
         </select>
@@ -81,13 +95,28 @@ export default function AddSamplePair({ tracks, onAddSamplePair }) {
           id={tracks._id}
         >
           <option value=''>choose track ... </option>
-          {sortedTrackNames.map((track) => (
+          {firstArtistTracks.map((track) => (
             <option key={track._id} value={track._id}>
               {track.track_name}
             </option>
           ))}
         </select>
+        <p>is sampled in this Track</p>
 
+        <label htmlFor='secondArtist'></label>
+        <select
+          value={tracks._id}
+          onChange={handelArtistSelection}
+          name='secondArtist'
+          id={tracks._id}
+        >
+          <option value=''>choose artist ... </option>
+          {artists.map((track) => (
+            <option key={track._id} value={track.artist_name}>
+              {track.artist_name}
+            </option>
+          ))}
+        </select>
         <label htmlFor='second'></label>
         <select
           value={tracks.track_name}
@@ -96,7 +125,7 @@ export default function AddSamplePair({ tracks, onAddSamplePair }) {
           id={tracks._id}
         >
           <option value=''>choose track ... </option>
-          {sortedTrackNames.map((track) => (
+          {secondArtistTracks.map((track) => (
             <option key={track._id} value={track._id}>
               {track.track_name}
             </option>
@@ -127,6 +156,8 @@ export default function AddSamplePair({ tracks, onAddSamplePair }) {
 }
 
 const AddSampleForm = styled.form`
+  margin: 1rem 0 1rem 0;
+
   display: flex;
   flex-direction: column;
   label {
@@ -150,6 +181,11 @@ const AddSampleForm = styled.form`
 
   button:active {
     background-color: #00ce82ab;
+  }
+
+  p {
+    align-self: center;
+    margin: 1rem;
   }
 `
 
