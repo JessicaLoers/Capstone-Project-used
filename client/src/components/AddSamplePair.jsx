@@ -30,7 +30,7 @@ export default function AddSamplePair({ tracks, artists, onAddSamplePair }) {
   console.log(pair)
 
   const handleSubmit = () => {
-    if (isSampleValid(pair)) {
+    if (isSampleValid(pair, selection)) {
       onAddSamplePair(pair)
       setHasFormErrors(false)
       setHasFormSend(true)

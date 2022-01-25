@@ -1,4 +1,4 @@
-const hasTrackNameMinLenght = (track_name, stringLength, pair) => {
+const hasTrackNameMinLenght = (track_name, stringLength) => {
   return track_name.length > stringLength
 }
 
@@ -10,6 +10,11 @@ const isTrackValid = (track) =>
   hasValidArtist(track.artist) &&
   isYearValid(track.year)
 
-const isSampleValid = (pair) => pair.first !== pair.second
+const isTrackSingleValue = (pair) => pair.first !== pair.second
+const isArtistSingleValue = (selection) =>
+  selection.firstArtist !== selection.secondArtist
+
+const isSampleValid = (pair, selection) =>
+  isTrackSingleValue(pair) && isArtistSingleValue(selection)
 
 export { isTrackValid, isSampleValid }
