@@ -13,7 +13,7 @@ const getTrack = async (req, res) => {
   res.json(foundTrack)
 }
 
-const putSamplesAndUserToTracks = async (req, res) => {
+const putSamples = async (req, res) => {
   const sampledIn = await Track.findById(req.body.sampledInId)
   const sampled = await Track.findById(req.body.sampledId)
   console.log(req.body)
@@ -89,11 +89,4 @@ const deleteTrack = async (req, res) => {
   }
 }
 
-export {
-  getAllTracks,
-  getTrack,
-  postTrack,
-  putTrack,
-  deleteTrack,
-  putSamplesAndUserToTracks,
-}
+export { getAllTracks, getTrack, postTrack, putTrack, deleteTrack, putSamples }

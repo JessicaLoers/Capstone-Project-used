@@ -128,7 +128,7 @@ const ToggleBtnPair = styled.div`
   }
   .inactive {
     background: var(--primarybtnlight);
-    color: #968944;
+    color: #918441;
   }
   button {
     border: none;

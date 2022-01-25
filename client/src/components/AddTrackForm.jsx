@@ -79,14 +79,14 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
       )}
 
       <AddTrackForm onSubmit={handleSubmit}>
-        <label htmlFor='artist'>Artist</label>
+        <label htmlFor='artist'>Artist*</label>
         <select
           value={track.artist}
           onChange={handleChange}
           name='artist'
           id={tracks._id}
         >
-          <option value=''>choose one ... *</option>
+          <option value=''>choose one ... </option>
           {sortedArtistNames
             .map((artist) => (
               <option key={artist._id} value={artist.artist_name}>
@@ -134,7 +134,7 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
 
         <BtnPair>
           <button type='submit' className='addBtn'>
-            Add
+            Save
           </button>
 
           <button
@@ -169,9 +169,7 @@ const ErrorMessage = styled.div`
   }
 `
 
-const OverallWrapper = styled.section`
-  margin-top: 3rem;
-`
+const OverallWrapper = styled.section``
 const AddTrackForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -192,6 +190,10 @@ const AddTrackForm = styled.form`
     box-sizing: border-box;
     height: 1.8rem;
     color: #848484;
+  }
+
+  button:active {
+    background-color: #00ce82ab;
   }
 `
 
@@ -215,7 +217,6 @@ const BtnPair = styled.div`
     background-color: transparent;
     color: var(--cardtrack);
   }
-
   .addBtn {
     background-color: var(--cardtrack);
     border-radius: 50px 0 0 50px;
