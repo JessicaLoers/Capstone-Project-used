@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import CardTrack from '../components/CardTrack'
 import YoutubeEmbed from '../components/YoutubeEmbed'
@@ -47,7 +48,9 @@ export default function Track({ tracks, user, onAddToFavourites }) {
       <TrackInfoContainer>
         <h2>{thisTrack.track_name}</h2>
         <p>from year {thisTrack.year}</p>
-        <p>by {thisTrack.artist}</p>
+        <ArtistLink to={`/artist/${thisTrack.artist}`}>
+          <p>by {thisTrack.artist}</p>
+        </ArtistLink>
         <p>Sampled by {thisTrack.sampled_in.length}</p>
         <p>Contains Samples of {thisTrack.sampled.length}</p>
       </TrackInfoContainer>
@@ -79,10 +82,15 @@ export default function Track({ tracks, user, onAddToFavourites }) {
   )
 }
 
+const ArtistLink = styled(Link)`
+  color: var(--lightgrey);
+  font-weight: 500;
+  cursor: pointer;
+`
+
 const VideoContainer = styled.section`
   position: relative;
 `
-
 const StyledWrapper = styled.div`
   background-color: var(--primarycolor);
   margin-bottom: 13rem;
@@ -101,22 +109,3 @@ const TrackInfoContainer = styled.div`
     font-size: 0.8rem;
   }
 `
-
-{
-  /* <button onClick={() => addTracksToFavourites(thisTrack._id)}> */
-}
-
-//body: JSON.stringify(track),
-// async function addTracksToFavourites(track) {
-//   const result = await fetch('api/favourite/61e6732cb45e3076aadeae41/', {
-//     method: 'POST',
-//   })
-
-//   return await result.json()
-// }
-
-/* <i className='favLabel'>{favLabel}</i> 
-        <span className='circle'></span>
-        
-        
-        */

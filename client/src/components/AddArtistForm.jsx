@@ -89,7 +89,7 @@ export default function AddForm({ tracks, artists, onAddArtist, user }) {
         <TextInput
           onTextInputChange={handleChange}
           name='artist_image'
-          placeholder='insert link ...'
+          placeholder='https://...'
           value={artist.artist_image}
         >
           Cover Image
@@ -159,7 +159,6 @@ const AddArtistForm = styled.form`
     background-color: #00ce82ab;
   }
 `
-
 const BtnPair = styled.div`
   align-self: center;
   display: flex;

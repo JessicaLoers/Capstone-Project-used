@@ -18,7 +18,7 @@ export default function Add({
 
   return (
     <Wrapper>
-      <h1>What you'd like to do, {user.first_name}?</h1>
+      <h1>What you'd like to do, dear {user.first_name}?</h1>
       <section className='section-wrapper'>
         <BtnShowFormSamples
           type='button'
@@ -86,6 +86,10 @@ const Wrapper = styled.section`
   margin: 3rem 3rem 7rem 3rem;
   button {
     margin-top: 1rem;
+  }
+
+  h1 {
+    text-align: center;
   }
   .section-wrapper {
     display: flex;

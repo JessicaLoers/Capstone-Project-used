@@ -110,9 +110,10 @@ const SearchInput = styled.div`
     background-color: var(--lightgrey);
     border: 0;
     border-radius: 3px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     padding: 1rem;
     height: 1.8rem;
+    color: #848484;
     width: 60vw;
   }
   .searchinput:focus {
@@ -141,5 +142,5 @@ const ToggleBtnPair = styled.div`
   }
 `
 const WrapperStyled = styled.div`
-  margin-bottom: 5rem;
+  margin-bottom: 7rem;
 `

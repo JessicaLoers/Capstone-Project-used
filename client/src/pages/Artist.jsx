@@ -80,10 +80,11 @@ const ArtistImage = styled.img`
 `
 const CardWrapper = styled.div`
   background-color: var(--primarycolor);
-  margin-bottom: 50rem;
+  margin-bottom: 15rem;
   margin-top: 2rem;
 `
 const Info = styled.section`
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin: 1rem;
+  width: 80vw;
 `

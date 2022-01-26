@@ -116,7 +116,7 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
           onTextInputChange={handleChange}
           name='cover_image'
           autoComplete='off'
-          placeholder='insert link ...'
+          placeholder='https://...'
           value={track.cover_image}
         >
           Cover Image
@@ -125,7 +125,7 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
           onTextInputChange={handleChange}
           name='video_id'
           autoComplete='off'
-          placeholder='insert link ...'
+          placeholder='https://youtube...'
           value={track.video_id}
         >
           Youtube Video
@@ -141,7 +141,7 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
             type='reset'
             onClick={() => {
               setTrack(initialTrack)
-              //setHasFormErrors(false)
+              setHasFormErrors(false)
             }}
           >
             Clear
@@ -151,8 +151,6 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
     </OverallWrapper>
   )
 }
-
-// ---> some styling
 
 const ErrorMessage = styled.div`
   display: flex;
@@ -167,7 +165,6 @@ const ErrorMessage = styled.div`
     width: 4rem;
   }
 `
-
 const OverallWrapper = styled.section``
 const AddTrackForm = styled.form`
   display: flex;
@@ -186,7 +183,6 @@ const AddTrackForm = styled.form`
     border-radius: 3px;
     font-size: 0.8rem;
     padding-left: 1rem;
-    box-sizing: border-box;
     height: 1.8rem;
     color: #848484;
     :focus {
@@ -198,7 +194,6 @@ const AddTrackForm = styled.form`
     background-color: #00ce82ab;
   }
 `
-
 const BtnPair = styled.div`
   align-self: center;
   display: flex;

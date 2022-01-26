@@ -192,7 +192,6 @@ const AddSampleForm = styled.form`
     margin: 1rem 0 0 0;
   }
 `
-
 const BtnPair = styled.div`
   align-self: center;
   display: flex;

@@ -34,8 +34,8 @@ export default function Profile({ user, onLoginUser, tracks }) {
         <div>
           <h1>Hey {user.first_name}!</h1>
           <ul>
-            <li>Tracks: {userFavouriteTracks?.length}</li>
-            <li>Artists: {userFavouriteArtists?.length}</li>
+            <li>Favourite Tracks: {userFavouriteTracks?.length}</li>
+            <li>Favourite Artists: {userFavouriteArtists?.length}</li>
           </ul>
         </div>
       </UserInfoContainer>
@@ -60,7 +60,7 @@ export default function Profile({ user, onLoginUser, tracks }) {
         )}
       </div>
 
-      <h3 className='favourite-headline'>Your added tracks</h3>
+      <h3 className='favourite-headline'>Your Favourite Artists</h3>
       <div className='horizontal-scroll-wrapper'>
         {userFavouriteArtists?.length > 0 ? (
           userFavouriteArtists?.map((artist) => (
@@ -134,7 +134,7 @@ const UserImageContainer = styled.div`
     filter: grayscale(var(--value, 100%));
     --value: 100%;
     width: auto;
-    height: 28vw;
+    height: 27vw;
     border-radius: 100%;
     margin-bottom: 3px;
   }
@@ -155,6 +155,7 @@ const UserInfoContainer = styled.div`
   }
 `
 const StyledWrapper = styled.div`
+  margin-bottom: 15rem;
   .horizontal-scroll-wrapper {
     width: 100vw;
     height: auto;
