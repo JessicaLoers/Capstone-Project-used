@@ -1,12 +1,15 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-
 import { isSampleValid } from '../lib/form-validation'
-
 import dead_melody from '../assets/icons/dead_melody.svg'
 import used_melody from '../assets/icons/used_melody.svg'
 
-export default function AddSamplePair({ tracks, artists, onAddSamplePair }) {
+export default function AddSamplePair({
+  tracks,
+  artists,
+  onAddSamplePair,
+  user,
+}) {
   const [pair, setPair] = useState({ first: '', second: '' })
   const [selection, setSelection] = useState({
     firstArtist: '',
@@ -14,6 +17,14 @@ export default function AddSamplePair({ tracks, artists, onAddSamplePair }) {
   })
   const [hasFormErrors, setHasFormErrors] = useState(false)
   const [hasFormSend, setHasFormSend] = useState(false)
+
+  const firstArtistTracks = tracks
+    .filter((item) => item.artist === selection.firstArtist)
+    .sort()
+
+  const secondArtistTracks = tracks
+    .filter((item) => item.artist === selection.secondArtist)
+    .sort()
 
   const handelArtistSelection = (event) => {
     const firstOrSecond = event.target.name
@@ -27,8 +38,6 @@ export default function AddSamplePair({ tracks, artists, onAddSamplePair }) {
 
     setPair({ ...pair, [firstOrSecond]: trackId })
   }
-  console.log(pair)
-
   const handleSubmit = () => {
     if (isSampleValid(pair, selection)) {
       onAddSamplePair(pair)
@@ -40,14 +49,6 @@ export default function AddSamplePair({ tracks, artists, onAddSamplePair }) {
     }
   }
 
-  const firstArtistTracks = tracks
-    .filter((item) => item.artist === selection.firstArtist)
-    .sort()
-
-  const secondArtistTracks = tracks
-    .filter((item) => item.artist === selection.secondArtist)
-    .sort()
-
   return (
     <div>
       {hasFormErrors && (
@@ -55,7 +56,7 @@ export default function AddSamplePair({ tracks, artists, onAddSamplePair }) {
           <img src={dead_melody} alt='' className='melody' />
 
           <p>
-            <strong>Oh no! </strong>
+            <strong>Oh no, {user.first_name}! </strong>
             Select two different tracks.
           </p>
         </ErrorMessage>
@@ -65,21 +66,21 @@ export default function AddSamplePair({ tracks, artists, onAddSamplePair }) {
           <img src={used_melody} alt='' className='melody' />
 
           <p>
-            <strong>Yes! </strong>
+            <strong>Yes, {user.first_name}! </strong>
             Your Sample is added.
           </p>
         </ErrorMessage>
       )}
       <AddSampleForm>
         <p>This Track</p>
-        <label htmlFor='firstArtist'></label>
+        <label htmlFor='firstArtist'>Artist</label>
         <select
           value={tracks._id}
           onChange={handelArtistSelection}
           name='firstArtist'
           id={tracks._id}
         >
-          <option value=''>choose artist ... </option>
+          <option value=''>choose one ... </option>
           {artists.map((track) => (
             <option key={track._id} value={track.artist_name}>
               {track.artist_name}
@@ -87,14 +88,14 @@ export default function AddSamplePair({ tracks, artists, onAddSamplePair }) {
           ))}
         </select>
 
-        <label htmlFor='first'></label>
+        <label htmlFor='first'>Track</label>
         <select
           value={tracks._id}
           onChange={handleChange}
           name='first'
           id={tracks._id}
         >
-          <option value=''>choose track ... </option>
+          <option value=''>choose one ... </option>
           {firstArtistTracks.map((track) => (
             <option key={track._id} value={track._id}>
               {track.track_name}
@@ -103,28 +104,28 @@ export default function AddSamplePair({ tracks, artists, onAddSamplePair }) {
         </select>
         <p>is sampled in this Track</p>
 
-        <label htmlFor='secondArtist'></label>
+        <label htmlFor='secondArtist'>Artist</label>
         <select
           value={tracks._id}
           onChange={handelArtistSelection}
           name='secondArtist'
           id={tracks._id}
         >
-          <option value=''>choose artist ... </option>
+          <option value=''>choose one ... </option>
           {artists.map((track) => (
             <option key={track._id} value={track.artist_name}>
               {track.artist_name}
             </option>
           ))}
         </select>
-        <label htmlFor='second'></label>
+        <label htmlFor='second'>Track</label>
         <select
           value={tracks.track_name}
           onChange={handleChange}
           name='second'
           id={tracks._id}
         >
-          <option value=''>choose track ... </option>
+          <option value=''>choose one ... </option>
           {secondArtistTracks.map((track) => (
             <option key={track._id} value={track._id}>
               {track.track_name}
@@ -172,11 +173,14 @@ const AddSampleForm = styled.form`
     background-color: var(--lightgrey);
     border: 0;
     border-radius: 3px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     padding-left: 1rem;
     box-sizing: border-box;
     height: 1.8rem;
     color: #848484;
+    :focus {
+      outline: none;
+    }
   }
 
   button:active {
@@ -185,7 +189,7 @@ const AddSampleForm = styled.form`
 
   p {
     align-self: center;
-    margin: 1rem;
+    margin: 1rem 0 0 0;
   }
 `
 
@@ -209,7 +213,6 @@ const BtnPair = styled.div`
     background-color: transparent;
     color: var(--secondarycolor);
   }
-
   .addBtn {
     background-color: var(--secondarycolor);
     border-radius: 50px 0 0 50px;

@@ -19,8 +19,9 @@ const postArtist = async (req, res) => {
     tracks: req.body.tracks,
     artist_image: req.body.artist_image,
     fav_of_user: req.body.fav_of_user,
+    entry_of_user: req.body.entry_of_user,
   })
-
+  console.log(req.body)
   try {
     const result = await artist.save()
     res.json({

@@ -6,6 +6,7 @@ const artistSchema = new mongoose.Schema({
   tracks: Array,
   artist_image: String,
   fav_of_user: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
+  entry_of_user: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
 })
 
 const Artist = mongoose.model('Artist', artistSchema, 'artist')

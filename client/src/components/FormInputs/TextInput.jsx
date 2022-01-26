@@ -1,3 +1,5 @@
+import styled from 'styled-components'
+
 function TextInput({ name, value, onTextInputChange, placeholder, children }) {
   return (
     <>

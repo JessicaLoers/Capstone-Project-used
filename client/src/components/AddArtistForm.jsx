@@ -1,42 +1,32 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 
-import { isTrackValid } from '../lib/form-validation'
+import { isArtistValid } from '../lib/form-validation'
 import TextInput from './FormInputs/TextInput'
-import NumberInput from './FormInputs/NumberInput'
+import InputTextAreaInput from './FormInputs/TextAreaInput'
 
 import dead_melody from '../assets/icons/dead_melody.svg'
 import used_melody from '../assets/icons/used_melody.svg'
 
-export default function AddForm({ tracks, artists, onAddTrack, user }) {
-  const initialTrack = {
-    artist: '',
-    cover_image: '',
+export default function AddForm({ tracks, artists, onAddArtist, user }) {
+  const initialArtist = {
+    artist_image: '',
+    artist_name: '',
     entry_of_user: [user._id],
     fav_of_user: [],
-    sampled: [],
-    sampled_in: [],
-    track_name: '',
-    video_id: '',
-    year: '',
+    infos: '',
+    tracks: [],
   }
 
-  const [track, setTrack] = useState(initialTrack)
+  const [artist, setArtist] = useState(initialArtist)
   const [hasFormErrors, setHasFormErrors] = useState(false)
   const [hasFormSend, setHasFormSend] = useState(false)
 
-  const sortedArtistNames = artists.sort((a, b) => {
-    if (a.artist_name < b.artist_name) return -1
-    return 1
-  })
-
   const handleChange = (event) => {
     let inputValue = event.target.value
-    if (event.target.name === 'video_id') {
-      inputValue = inputValue.split('/')[3]
-    }
-    setTrack({
-      ...track,
+
+    setArtist({
+      ...artist,
       [event.target.name]: inputValue,
     })
   }
@@ -44,8 +34,8 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    if (isTrackValid(track)) {
-      onAddTrack(track)
+    if (isArtistValid(artist)) {
+      onAddArtist(artist)
       setHasFormErrors(false)
       setHasFormSend(true)
     } else {
@@ -55,7 +45,7 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
   }
 
   return (
-    <OverallWrapper>
+    <>
       {hasFormErrors && (
         <ErrorMessage>
           <img src={dead_melody} alt='' className='melody' />
@@ -72,63 +62,37 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
 
           <p>
             <strong>Yes, {user.first_name}! </strong>
-            Your track is added.
+            Your artist is added.
           </p>
         </ErrorMessage>
       )}
 
-      <AddTrackForm onSubmit={handleSubmit}>
-        <label htmlFor='artist'>Artist</label>
-        <select
-          value={track.artist}
-          onChange={handleChange}
-          name='artist'
-          id={tracks._id}
-        >
-          <option value=''>choose one ... </option>
-          {sortedArtistNames
-            .map((artist) => (
-              <option key={artist._id} value={artist.artist_name}>
-                {artist.artist_name}
-              </option>
-            ))
-            .sort()}
-        </select>
-
+      <AddArtistForm onSubmit={handleSubmit}>
         <TextInput
           onTextInputChange={handleChange}
-          name='track_name'
-          placeholder='type in trackname ...'
-          value={track.track_name}
+          name='artist_name'
+          placeholder='type in artistname ...'
+          value={artist.artist_name}
         >
-          Track
+          Artist
         </TextInput>
-        <NumberInput
-          name='year'
-          value={track.year}
-          onNumberInputChange={handleChange}
-          placeholder=''
+
+        <InputTextAreaInput
+          onTextInputChange={handleChange}
+          name='infos'
+          placeholder='type in ..'
+          value={artist.infos}
         >
-          Release Year
-        </NumberInput>
+          Some kind words
+        </InputTextAreaInput>
 
         <TextInput
           onTextInputChange={handleChange}
-          name='cover_image'
-          autoComplete='off'
+          name='artist_image'
           placeholder='insert link ...'
-          value={track.cover_image}
+          value={artist.artist_image}
         >
           Cover Image
-        </TextInput>
-        <TextInput
-          onTextInputChange={handleChange}
-          name='video_id'
-          autoComplete='off'
-          placeholder='insert link ...'
-          value={track.video_id}
-        >
-          Youtube Video
         </TextInput>
 
         <BtnPair>
@@ -140,24 +104,21 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
             className='clearBtn'
             type='reset'
             onClick={() => {
-              setTrack(initialTrack)
+              setArtist(initialArtist)
               //setHasFormErrors(false)
             }}
           >
             Clear
           </button>
         </BtnPair>
-      </AddTrackForm>
-    </OverallWrapper>
+      </AddArtistForm>
+    </>
   )
 }
-
-// ---> some styling
 
 const ErrorMessage = styled.div`
   display: flex;
   align-items: flex-end;
-  background: var(--warning);
   color: var(--lightgrey);
   display: flex;
   gap: 0.8rem;
@@ -167,9 +128,7 @@ const ErrorMessage = styled.div`
     width: 4rem;
   }
 `
-
-const OverallWrapper = styled.section``
-const AddTrackForm = styled.form`
+const AddArtistForm = styled.form`
   display: flex;
   flex-direction: column;
   label {
@@ -181,14 +140,16 @@ const AddTrackForm = styled.form`
   input,
   select,
   option {
+    font-family: 'Poppins', sans-serif;
     background-color: var(--lightgrey);
     border: 0;
     border-radius: 3px;
-    font-size: 0.8rem;
     padding-left: 1rem;
     box-sizing: border-box;
     height: 1.8rem;
     color: #848484;
+    font-size: 0.8rem;
+    margin-bottom: 7px;
     :focus {
       outline: none;
     }
@@ -212,15 +173,15 @@ const BtnPair = styled.div`
     font-size: 0.9rem;
     padding: 5px;
     width: 6rem;
-    border: 1px solid var(--cardtrack);
+    border: 1px solid var(--cardartist);
   }
   .clearBtn {
     border-radius: 0 50px 50px 0;
     background-color: transparent;
-    color: var(--cardtrack);
+    color: var(--cardartist);
   }
   .addBtn {
-    background-color: var(--cardtrack);
+    background-color: var(--cardartist);
     border-radius: 50px 0 0 50px;
   }
 `
