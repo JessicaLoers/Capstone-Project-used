@@ -20,29 +20,29 @@ export default function Artist({ artists, tracks, onAddToFavourites, user }) {
     (artist) => artist.artist_name === artist_name
   )
   const thisArtistTrack = tracks.filter((item) =>
-    item.artist.includes(thisArtist.artist_name)
+    item.artist.includes(thisArtist?.artist_name)
   )
   return (
     <CardWrapper>
       <ImageContainer>
-        <h1>{thisArtist.artist_name}</h1>
-        <ArtistImage src={thisArtist.artist_image} />
+        <h1>{thisArtist?.artist_name}</h1>
+        <ArtistImage src={thisArtist?.artist_image} />
       </ImageContainer>
       <span
         onClick={() => onAddToFavourites(thisArtist, user)}
         className='favIcons'
       >
         <i className='favLabel'>{favLabel}</i>
-        {thisArtist.fav_of_user.includes(user._id) ? (
+        {thisArtist?.fav_of_user.includes(user._id) ? (
           <span className='circle'></span>
         ) : (
           <i></i>
         )}
       </span>
 
-      <Info>{thisArtist.infos}</Info>
+      <Info>{thisArtist?.infos}</Info>
 
-      {thisArtistTrack.map((track) => (
+      {thisArtistTrack?.map((track) => (
         <CardTrack
           key={track._id}
           track_name={track.track_name}
