@@ -17,7 +17,7 @@ const isArtistValid = (artist) =>
 const hasValidTrackValue = (artist) => artist !== ''
 const isYearValid = (year) => year > 1900
 const isTrackCoverALink = (cover_image) =>
-  track_cover.match(/\.(jpeg|jpg|gif|png)$/) != null
+  cover_image.match(/\.(jpeg|jpg|gif|png)$/) != null
 //
 const isTrackValid = (track) =>
   hasValidTrackValue(track.track_name) &&
