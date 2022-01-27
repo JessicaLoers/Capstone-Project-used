@@ -12,14 +12,13 @@ export default function SearchBar({
   const [searchWord, setSearchWord] = useState('')
   const [isBtnActive, setIsBtnActive] = useState(false)
 
-  useEffect(async () => {
-    await onArtistRender
-    setIsBtnActive
-  }, [artists])
-
-  useEffect(async () => {
-    await onTrackRender
-  }, [tracks])
+  // useEffect(async () => {
+  //   await onArtistRender
+  //   setIsBtnActive
+  // }, [artists])
+  // useEffect(async () => {
+  //   await onTrackRender
+  // }, [tracks])
 
   const handleChange = (event) => {
     let inputValue = event.target.value

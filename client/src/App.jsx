@@ -93,21 +93,21 @@ export default function App() {
     fetchUserAndLogin(user.first_name)
   }
 
-  function handleAddTrack(track) {
-    addTracksToDatabase(track)
-    fetchTracks()
-    fetchUserAndLogin(user.first_name)
+  async function handleAddTrack(track) {
+    await addTracksToDatabase(track)
+    await fetchTracks()
+    await fetchUserAndLogin(user.first_name)
   }
 
-  function handleAddArtist(artist) {
-    addArtistToDatabase(artist)
-    fetchArtists()
-    fetchUserAndLogin(user.first_name)
+  async function handleAddArtist(artist) {
+    await addArtistToDatabase(artist)
+    await fetchArtists()
+    await fetchUserAndLogin(user.first_name)
   }
 
-  function handleAddSamplePair(pair) {
-    addSamplesToTracks(pair)
-    fetchTracks()
+  async function handleAddSamplePair(pair) {
+    await addSamplesToTracks(pair)
+    await fetchTracks()
   }
 
   return (

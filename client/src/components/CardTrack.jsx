@@ -19,11 +19,7 @@ function CardTrack({ track_name, artist, year, cover_image }) {
       </g>
     </svg>
   )
-  //-- > try to remove %20 from URL - failed for now;)
-  // let name = track_name
-  // name = name.split(' ').join('-')
-  // console.log(name)
-  // const url = `${name}`
+
   return (
     <SingleTrack className='card'>
       <CoverImage src={cover_image} />

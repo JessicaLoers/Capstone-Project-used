@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import CardTrack from '../components/CardTrack'
@@ -70,6 +69,7 @@ export default function Track({ tracks, user, onAddToFavourites }) {
             artist={track.artist}
             cover_image={track.cover_image}
             year={track.year}
+            tracks={tracks}
           />
         ))}
       </div>
