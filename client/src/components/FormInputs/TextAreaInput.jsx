@@ -35,7 +35,7 @@ const StyledComp = styled.div`
     font-size: 0.8rem;
   }
   textarea {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-family: 'Poppins', sans-serif;
     background-color: var(--lightgrey);
     border: 0;

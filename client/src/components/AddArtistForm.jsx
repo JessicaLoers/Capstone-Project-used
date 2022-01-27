@@ -8,7 +8,7 @@ import InputTextAreaInput from './FormInputs/TextAreaInput'
 import dead_melody from '../assets/icons/dead_melody.svg'
 import used_melody from '../assets/icons/used_melody.svg'
 
-export default function AddForm({ tracks, artists, onAddArtist, user }) {
+export default function AddForm({ onAddArtist, user }) {
   const initialArtist = {
     artist_image: '',
     artist_name: '',
@@ -89,7 +89,7 @@ export default function AddForm({ tracks, artists, onAddArtist, user }) {
         <TextInput
           onTextInputChange={handleChange}
           name='artist_image'
-          placeholder='https://...'
+          placeholder='https://... .png or .jpg'
           value={artist.artist_image}
         >
           Cover Image
@@ -148,7 +148,7 @@ const AddArtistForm = styled.form`
     box-sizing: border-box;
     height: 1.8rem;
     color: #848484;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     margin-bottom: 7px;
     :focus {
       outline: none;

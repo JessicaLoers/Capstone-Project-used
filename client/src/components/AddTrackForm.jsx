@@ -116,7 +116,7 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
           onTextInputChange={handleChange}
           name='cover_image'
           autoComplete='off'
-          placeholder='https://... .png or.jpg'
+          placeholder='https://... .png or .jpg'
           value={track.cover_image}
         >
           Cover Image
