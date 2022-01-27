@@ -21,10 +21,16 @@ export default function Track({ tracks, user, onAddToFavourites }) {
   const { track_name } = useParams()
 
   const thisTrack = tracks.find((track) => track.track_name === track_name)
-  const sampledIn = tracks.filter((item) =>
+
+  const sortedTrackNames = tracks.sort((a, b) => {
+    if (a.track_name < b.track_name) return -1
+    return 1
+  })
+
+  const sampledIn = sortedTrackNames.filter((item) =>
     item.sampled.includes(thisTrack.track_name)
   )
-  const containsSamples = tracks.filter((item) =>
+  const containsSamples = sortedTrackNames.filter((item) =>
     item.sampled_in.includes(thisTrack.track_name)
   )
 

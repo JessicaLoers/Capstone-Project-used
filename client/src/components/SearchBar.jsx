@@ -7,6 +7,29 @@ export default function SearchBar({ artists, tracks }) {
   const [searchWord, setSearchWord] = useState('')
   const [isBtnActive, setIsBtnActive] = useState(false)
 
+  const handleChange = (event) => {
+    let inputValue = event.target.value
+    setSearchWord(inputValue)
+  }
+  const sortedArtistNames = artists.sort((a, b) => {
+    if (a.artist_name < b.artist_name) return -1
+    return 1
+  })
+  const sortedTrackNames = tracks.sort((a, b) => {
+    if (a.track_name < b.track_name) return -1
+    return 1
+  })
+  const searchedArtist = sortedArtistNames.filter((artist) =>
+    searchWord !== '' && artist.artist_name
+      ? artist.artist_name.toLowerCase().includes(searchWord.toLowerCase())
+      : true
+  )
+
+  const searchedTrack = sortedTrackNames.filter((track) =>
+    searchWord !== '' && track.track_name
+      ? track.track_name.toLowerCase().includes(searchWord.toLowerCase())
+      : true
+  )
   return (
     <WrapperStyled>
       <SearchBarWrapperStyled>
@@ -35,46 +58,30 @@ export default function SearchBar({ artists, tracks }) {
             id='search'
             placeholder='search ...'
             value={searchWord}
-            onChange={(event) => setSearchWord(event.target.value)}
+            onChange={handleChange}
           />
         </SearchInput>
       </SearchBarWrapperStyled>
       <Results>
         {isBtnActive
-          ? artists
-              .filter((artist) =>
-                searchWord !== '' && artist.artist_name
-                  ? artist.artist_name
-                      .toLowerCase()
-                      .includes(searchWord.toLowerCase())
-                  : true
-              )
-              .map((artist) => (
-                <div key={artist._id}>
-                  <CardArtist
-                    artist_name={artist.artist_name}
-                    artist_image={artist.artist_image}
-                  />
-                </div>
-              ))
-          : tracks
-              .filter((track) =>
-                searchWord !== '' && track.track_name
-                  ? track.track_name
-                      .toLowerCase()
-                      .includes(searchWord.toLowerCase())
-                  : true
-              )
-              .map((track) => (
-                <div key={track._id}>
-                  <CardTrack
-                    track_name={track.track_name}
-                    year={track.year}
-                    cover_image={track.cover_image}
-                    artist={track.artist}
-                  />
-                </div>
-              ))}
+          ? searchedArtist?.map((artist) => (
+              <div key={artist._id}>
+                <CardArtist
+                  artist_name={artist.artist_name}
+                  artist_image={artist.artist_image}
+                />
+              </div>
+            ))
+          : searchedTrack?.map((track) => (
+              <div key={track._id}>
+                <CardTrack
+                  track_name={track.track_name}
+                  year={track.year}
+                  cover_image={track.cover_image}
+                  artist={track.artist}
+                />
+              </div>
+            ))}
       </Results>
     </WrapperStyled>
   )

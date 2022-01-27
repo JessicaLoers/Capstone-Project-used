@@ -19,6 +19,19 @@ export default function Profile({ user, onLoginUser, tracks }) {
   const filteredTracksByUserId = tracks.filter(
     (track) => track.entry_of_user == user._id
   )
+  const sortedFavouriteTracks = userFavouriteTracks.sort((a, b) => {
+    if (a.track_name < b.track_name) return -1
+    return 1
+  })
+  const sortedFavouriteArtists = userFavouriteArtists.sort((a, b) => {
+    if (a.artist_name < b.artist_name) return -1
+    return 1
+  })
+
+  const sortedTracksByUserId = filteredTracksByUserId.sort((a, b) => {
+    if (a.track_name < b.track_name) return -1
+    return 1
+  })
 
   return (
     <StyledWrapper>
@@ -40,10 +53,10 @@ export default function Profile({ user, onLoginUser, tracks }) {
         </div>
       </UserInfoContainer>
 
-      <h3 className='favourite-headline'>Your Favourite Tracks</h3>
+      <h3 className='favourite-headline'>Your Favourite Tracks from A to Z</h3>
       <div className='horizontal-scroll-wrapper'>
-        {userFavouriteTracks?.length > 0 ? (
-          userFavouriteTracks?.map((track) => (
+        {sortedFavouriteTracks?.length > 0 ? (
+          sortedFavouriteTracks?.map((track) => (
             <div className='wrapper-items' key={track._id}>
               <CardTrack
                 track_name={track.track_name}
@@ -60,10 +73,10 @@ export default function Profile({ user, onLoginUser, tracks }) {
         )}
       </div>
 
-      <h3 className='favourite-headline'>Your Favourite Artists</h3>
+      <h3 className='favourite-headline'>Your Favourite Artists from A to Z</h3>
       <div className='horizontal-scroll-wrapper'>
-        {userFavouriteArtists?.length > 0 ? (
-          userFavouriteArtists?.map((artist) => (
+        {sortedFavouriteArtists?.length > 0 ? (
+          sortedFavouriteArtists?.map((artist) => (
             <div className='wrapper-items' key={artist._id}>
               <CardArtist
                 artist_name={artist.artist_name}
@@ -77,10 +90,10 @@ export default function Profile({ user, onLoginUser, tracks }) {
           </MessageArtist>
         )}
       </div>
-      <h3 className='favourite-headline'>Your Added Tracks</h3>
+      <h3 className='favourite-headline'>Your Added Tracks from A to Z</h3>
       <div className='horizontal-scroll-wrapper'>
-        {filteredTracksByUserId?.length > 0 ? (
-          filteredTracksByUserId?.map((track) => (
+        {sortedTracksByUserId?.length > 0 ? (
+          sortedTracksByUserId?.map((track) => (
             <div className='wrapper-items' key={track._id}>
               <CardTrack
                 track_name={track.track_name}
@@ -107,7 +120,6 @@ const MessageTracks = styled.div`
     margin-left: 1rem;
   }
 `
-
 const MessageArtist = styled.div`
   background-color: var(--cardartist);
   border: solid 1px var(--cardartist);
@@ -115,7 +127,6 @@ const MessageArtist = styled.div`
     margin-left: 1rem;
   }
 `
-
 const UserImageContainer = styled.div`
   align-items: flex-end;
   justify-items: center;
@@ -139,7 +150,6 @@ const UserImageContainer = styled.div`
     margin-bottom: 3px;
   }
 `
-
 const UserInfoContainer = styled.div`
   align-items: flex-end;
   background-color: var(--secondarycolor);
