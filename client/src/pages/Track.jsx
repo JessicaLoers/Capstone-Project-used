@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import CardTrack from '../components/CardTrack'

@@ -1,11 +1,25 @@
 import CardTrack from './CardTrack'
 import CardArtist from './CardArtist'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-export default function SearchBar({ artists, tracks }) {
+export default function SearchBar({
+  artists,
+  tracks,
+  onTrackRender,
+  onArtistRender,
+}) {
   const [searchWord, setSearchWord] = useState('')
   const [isBtnActive, setIsBtnActive] = useState(false)
+
+  useEffect(async () => {
+    await onArtistRender
+    setIsBtnActive
+  }, [artists])
+
+  useEffect(async () => {
+    await onTrackRender
+  }, [tracks])
 
   const handleChange = (event) => {
     let inputValue = event.target.value
@@ -19,17 +33,18 @@ export default function SearchBar({ artists, tracks }) {
     if (a.track_name < b.track_name) return -1
     return 1
   })
+
   const searchedArtist = sortedArtistNames.filter((artist) =>
     searchWord !== '' && artist.artist_name
       ? artist.artist_name.toLowerCase().includes(searchWord.toLowerCase())
       : true
   )
-
   const searchedTrack = sortedTrackNames.filter((track) =>
     searchWord !== '' && track.track_name
       ? track.track_name.toLowerCase().includes(searchWord.toLowerCase())
       : true
   )
+
   return (
     <WrapperStyled>
       <SearchBarWrapperStyled>

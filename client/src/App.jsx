@@ -119,7 +119,14 @@ export default function App() {
         <Route path='/' element={<Home />}></Route>
         <Route
           path='/search'
-          element={<SearchBar artists={artists} tracks={tracks} />}
+          element={
+            <SearchBar
+              artists={artists}
+              tracks={tracks}
+              onTrackRender={fetchTracks}
+              onArtistRender={fetchArtists}
+            />
+          }
         ></Route>
         <Route
           path='/profile'
