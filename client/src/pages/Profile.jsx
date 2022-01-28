@@ -22,7 +22,7 @@ export default function Profile({ user, onLoginUser, tracks }) {
   const filteredTracksByUserId = tracks.filter(
     (track) => track.entry_of_user == user._id
   )
-  const sortedFavouriteTracks = userFavouriteTracks.sort((a, b) => {
+  const sortedFavouriteTracks = userFavouriteTracks?.sort((a, b) => {
     if (a.track_name < b.track_name) return -1
     return 1
   })
