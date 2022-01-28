@@ -26,12 +26,12 @@ export default function Profile({ user, onLoginUser, tracks }) {
     if (a.track_name < b.track_name) return -1
     return 1
   })
-  const sortedFavouriteArtists = userFavouriteArtists.sort((a, b) => {
+  const sortedFavouriteArtists = userFavouriteArtists?.sort((a, b) => {
     if (a.artist_name < b.artist_name) return -1
     return 1
   })
 
-  const sortedTracksByUserId = filteredTracksByUserId.sort((a, b) => {
+  const sortedTracksByUserId = filteredTracksByUserId?.sort((a, b) => {
     if (a.track_name < b.track_name) return -1
     return 1
   })
