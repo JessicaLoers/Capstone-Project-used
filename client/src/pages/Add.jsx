@@ -3,6 +3,8 @@ import { useState } from 'react'
 import AddTrackForm from '../components/AddTrackForm'
 import AddArtistForm from '../components/AddArtistForm'
 import AddSamplePair from '../components/AddSamplePair'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 export default function Add({
   tracks,
@@ -17,73 +19,78 @@ export default function Add({
   const [isArtistBtnActive, setIsArtistBtnActive] = useState(false)
 
   return (
-    <Wrapper>
-      <h1>What you'd like to do, dear {user.first_name}?</h1>
-      <section className='section-wrapper'>
-        <BtnShowFormSamples
-          type='button'
-          onClick={() => setIsSampleBtnActive(!isSampleBtnActive)}
-          className={isSampleBtnActive ? 'inactive' : 'active'}
-        >
-          {isSampleBtnActive ? <span>close</span> : <span>Add Sample</span>}
-        </BtnShowFormSamples>
+    <>
+      {' '}
+      <Wrapper>
+        <Header pageTitle={'Add'} />
+        <h1>What you'd like to do, dear {user.first_name}?</h1>
+        <section className='section-wrapper'>
+          <BtnShowFormSamples
+            type='button'
+            onClick={() => setIsSampleBtnActive(!isSampleBtnActive)}
+            className={isSampleBtnActive ? 'inactive' : 'active'}
+          >
+            {isSampleBtnActive ? <span>close</span> : <span>Add Sample</span>}
+          </BtnShowFormSamples>
 
-        {isSampleBtnActive ? (
-          <AddSamplePair
-            tracks={tracks}
-            artists={artists}
-            onAddSamplePair={onAddSamplePair}
-            user={user}
-          />
-        ) : (
-          ''
-        )}
-      </section>
-      <section className='section-wrapper'>
-        <BtnShowFormAddTrack
-          type='button'
-          onClick={() => setIsTrackBtnActive(!isTrackBtnActive)}
-          className={isTrackBtnActive ? 'inactive' : 'active'}
-        >
-          {isTrackBtnActive ? <span>close</span> : <span>Add Track</span>}
-        </BtnShowFormAddTrack>
-        {isTrackBtnActive ? (
-          <AddTrackForm
-            tracks={tracks}
-            artists={artists}
-            onAddTrack={onAddTrack}
-            user={user}
-          />
-        ) : (
-          ''
-        )}
-      </section>
+          {isSampleBtnActive ? (
+            <AddSamplePair
+              tracks={tracks}
+              artists={artists}
+              onAddSamplePair={onAddSamplePair}
+              user={user}
+            />
+          ) : (
+            ''
+          )}
+        </section>
+        <section className='section-wrapper'>
+          <BtnShowFormAddTrack
+            type='button'
+            onClick={() => setIsTrackBtnActive(!isTrackBtnActive)}
+            className={isTrackBtnActive ? 'inactive' : 'active'}
+          >
+            {isTrackBtnActive ? <span>close</span> : <span>Add Track</span>}
+          </BtnShowFormAddTrack>
+          {isTrackBtnActive ? (
+            <AddTrackForm
+              tracks={tracks}
+              artists={artists}
+              onAddTrack={onAddTrack}
+              user={user}
+            />
+          ) : (
+            ''
+          )}
+        </section>
 
-      <section className='section-wrapper'>
-        <BtnShowFormAddArtist
-          type='button'
-          onClick={() => setIsArtistBtnActive(!isArtistBtnActive)}
-          className={isArtistBtnActive ? 'inactive' : 'active'}
-        >
-          {isArtistBtnActive ? <span>close</span> : <span>Add Artist</span>}
-        </BtnShowFormAddArtist>
-        {isArtistBtnActive ? (
-          <AddArtistForm
-            tracks={tracks}
-            artists={artists}
-            onAddArtist={onAddArtist}
-            user={user}
-          />
-        ) : (
-          ''
-        )}
-      </section>
-    </Wrapper>
+        <section className='section-wrapper'>
+          <BtnShowFormAddArtist
+            type='button'
+            onClick={() => setIsArtistBtnActive(!isArtistBtnActive)}
+            className={isArtistBtnActive ? 'inactive' : 'active'}
+          >
+            {isArtistBtnActive ? <span>close</span> : <span>Add Artist</span>}
+          </BtnShowFormAddArtist>
+          {isArtistBtnActive ? (
+            <AddArtistForm
+              tracks={tracks}
+              artists={artists}
+              onAddArtist={onAddArtist}
+              user={user}
+            />
+          ) : (
+            ''
+          )}
+        </section>
+      </Wrapper>
+      <Footer />
+    </>
   )
 }
 
 const Wrapper = styled.section`
-  margin: 3rem 3rem 7rem 3rem;
+  margin: 5rem 3rem 7rem 3rem;
   button {
     margin-top: 1rem;
   }

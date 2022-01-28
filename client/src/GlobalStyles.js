@@ -66,9 +66,6 @@ h1,
     padding: 0;
     margin: 0;
   }
-
-
-
   
 // --> card
 .card {
@@ -144,20 +141,6 @@ h1,
     width: 100%;
     position: absolute;
   }
-  /* .customButton {
-    width: 150px;
-    height: 50px;
-    letter-spacing: 0.5px;
-    background-color: #E0314B;
-    color: white;
-    font-size: 32px;
-    border: 1.5px solid #E0314B;
-    border-radius: 5px;
-    cursor: pointer;
-    }
-.activeBtnGroup{
-    background-color: rgb(25, 26, 24);
-    border: 1.5px solid rgb(25, 26, 24);
-    } */
+
 
 `

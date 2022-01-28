@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import CardTrack from '../components/CardTrack'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 export default function Artist({ artists, tracks, onAddToFavourites, user }) {
   const favLabel = (
@@ -23,40 +25,42 @@ export default function Artist({ artists, tracks, onAddToFavourites, user }) {
     item.artist.includes(thisArtist?.artist_name)
   )
   return (
-    <CardWrapper>
-      <ImageContainer>
-        <h1>{thisArtist?.artist_name}</h1>
-        <ArtistImage src={thisArtist?.artist_image} />
-      </ImageContainer>
-      <span
-        onClick={() => onAddToFavourites(thisArtist, user)}
-        className='favIcons'
-      >
-        <i className='favLabel'>{favLabel}</i>
-        {thisArtist?.fav_of_user.includes(user._id) ? (
-          <span className='circle'></span>
-        ) : (
-          <i></i>
-        )}
-      </span>
+    <>
+      <CardWrapper>
+        <Header pageTitle={'Artist'} />
+        <ImageContainer>
+          <h1>{thisArtist?.artist_name}</h1>
+          <ArtistImage src={thisArtist?.artist_image} />
+        </ImageContainer>
+        <span
+          onClick={() => onAddToFavourites(thisArtist, user)}
+          className='favIcons'
+        >
+          <i className='favLabel'>{favLabel}</i>
+          {thisArtist?.fav_of_user.includes(user._id) ? (
+            <span className='circle'></span>
+          ) : (
+            <i></i>
+          )}
+        </span>
 
-      <Info>{thisArtist?.infos}</Info>
+        <Info>{thisArtist?.infos}</Info>
 
-      {thisArtistTrack?.map((track) => (
-        <CardTrack
-          key={track._id}
-          track_name={track.track_name}
-          cover_image={track.cover_image}
-          year={track.year}
-        />
-      ))}
-    </CardWrapper>
+        {thisArtistTrack?.map((track) => (
+          <CardTrack
+            key={track._id}
+            track_name={track.track_name}
+            cover_image={track.cover_image}
+            year={track.year}
+          />
+        ))}
+      </CardWrapper>
+      <Footer />
+    </>
   )
 }
-
 const ImageContainer = styled.section`
   position: relative;
-
   h1 {
     bottom: 0;
     display: flex;
@@ -81,7 +85,7 @@ const ArtistImage = styled.img`
 const CardWrapper = styled.div`
   background-color: var(--primarycolor);
   margin-bottom: 15rem;
-  margin-top: 2rem;
+  margin-top: 3.2rem;
 `
 const Info = styled.section`
   font-size: 0.8rem;

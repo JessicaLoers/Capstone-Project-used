@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 import CardTrack from '../components/CardTrack'
+import Header from '../components/Header'
 import YoutubeEmbed from '../components/YoutubeEmbed'
+import Footer from '../components/Footer'
 
 const favLabel = (
   <svg
@@ -35,57 +37,61 @@ export default function Track({ tracks, user, onAddToFavourites }) {
   )
 
   return (
-    <StyledWrapper key={thisTrack._id}>
-      <VideoContainer>
-        <YoutubeEmbed embedId={thisTrack.video_id} />
-      </VideoContainer>
-      <span
-        onClick={() => onAddToFavourites(thisTrack, user)}
-        className='favIcons'
-      >
-        <i className='favLabel'>{favLabel}</i>
-        {thisTrack.fav_of_user.includes(user._id) ? (
-          <span className='circle'></span>
-        ) : (
-          <i></i>
-        )}
-      </span>
+    <>
+      <Header pageTitle={'Track'} />
+      <StyledWrapper key={thisTrack._id}>
+        <VideoContainer>
+          <YoutubeEmbed embedId={thisTrack.video_id} />
+        </VideoContainer>
+        <span
+          onClick={() => onAddToFavourites(thisTrack, user)}
+          className='favIcons'
+        >
+          <i className='favLabel'>{favLabel}</i>
+          {thisTrack.fav_of_user.includes(user._id) ? (
+            <span className='circle'></span>
+          ) : (
+            <i></i>
+          )}
+        </span>
 
-      <TrackInfoContainer>
-        <h2>{thisTrack.track_name}</h2>
-        <p>from year {thisTrack.year}</p>
-        <ArtistLink to={`/artist/${thisTrack.artist}`}>
-          <p>by {thisTrack.artist}</p>
-        </ArtistLink>
-        <p>Sampled by {thisTrack.sampled_in.length}</p>
-        <p>Contains Samples of {thisTrack.sampled.length}</p>
-      </TrackInfoContainer>
-      <div>
-        <h3 className='collections-headline'>Sampled in:</h3>
-        {sampledIn.map((track) => (
-          <CardTrack
-            key={track._id}
-            track_name={track.track_name}
-            artist={track.artist}
-            cover_image={track.cover_image}
-            year={track.year}
-            tracks={tracks}
-          />
-        ))}
-      </div>
-      <div>
-        <h3 className='collections-headline'>Contains Samples of:</h3>
-        {containsSamples.map((track) => (
-          <CardTrack
-            key={track._id}
-            track_name={track.track_name}
-            artist={track.artist}
-            cover_image={track.cover_image}
-            year={track.year}
-          />
-        ))}
-      </div>
-    </StyledWrapper>
+        <TrackInfoContainer>
+          <h2>{thisTrack.track_name}</h2>
+          <p>from year {thisTrack.year}</p>
+          <ArtistLink to={`/artist/${thisTrack.artist}`}>
+            <p>by {thisTrack.artist}</p>
+          </ArtistLink>
+          <p>Sampled by {thisTrack.sampled_in.length}</p>
+          <p>Contains Samples of {thisTrack.sampled.length}</p>
+        </TrackInfoContainer>
+        <div>
+          <h3 className='collections-headline'>Sampled in:</h3>
+          {sampledIn.map((track) => (
+            <CardTrack
+              key={track._id}
+              track_name={track.track_name}
+              artist={track.artist}
+              cover_image={track.cover_image}
+              year={track.year}
+              tracks={tracks}
+            />
+          ))}
+        </div>
+        <div>
+          <h3 className='collections-headline'>Contains Samples of:</h3>
+          {containsSamples.map((track) => (
+            <CardTrack
+              key={track._id}
+              track_name={track.track_name}
+              artist={track.artist}
+              cover_image={track.cover_image}
+              year={track.year}
+            />
+          ))}
+        </div>
+      </StyledWrapper>
+      <Footer />
+    </>
   )
 }
 
@@ -101,7 +107,7 @@ const VideoContainer = styled.section`
 const StyledWrapper = styled.div`
   background-color: var(--primarycolor);
   margin-bottom: 13rem;
-  margin-top: 2rem;
+  margin-top: 3.2rem;
 
   .collections-headline {
     font-size: 0.9rem;

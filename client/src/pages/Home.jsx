@@ -1,9 +1,38 @@
 import styled from 'styled-components'
+import used_melody_main from '../assets/used_melody_main.svg'
+import used_logo from '../assets/used_logo.svg'
 
-export default function Home() {
+export default function Home({}) {
   return (
     <Hello>
-      <h1>Hello, this is a mobile device exprierience 🙂</h1>
+      <img src={used_logo} alt='used logo' className='used-logo' />
+      <div className='svgrow'>
+        <img
+          src={used_melody_main}
+          alt='used melody character'
+          className='slide'
+        />
+        <img
+          src={used_melody_main}
+          alt='used melody character'
+          className='slide'
+        />
+        <img
+          src={used_melody_main}
+          alt='used melody character'
+          className='slide'
+        />
+        <img
+          src={used_melody_main}
+          alt='used melody character'
+          className='slide'
+        />
+      </div>
+      <h1>A Tribute to The Winstons and the lost music samples</h1>
+      <Btn>
+        <button>Discover as Jane</button>
+        <button>Discover as John</button>
+      </Btn>
     </Hello>
   )
 }
@@ -11,10 +40,55 @@ export default function Home() {
 const Hello = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  background-color: var(--secondarycolor);
   align-items: center;
+  height: 100vh;
+  justify-content: space-evenly;
   h1 {
-    margin-top: 5rem;
-    margin-left: 1rem;
+    color: var(--darkgrey);
+    text-align: center;
+    font-size: 1rem;
+    width: 60vw;
+  }
+  .svgrow {
+    width: 100vw;
+    height: auto;
+    overflow-x: hidden;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+  .svgrow.slide {
+    display: inline-block;
+  }
+  img {
+    height: 30vh;
+    margin: 0.4rem;
+  }
+
+  .used-logo {
+    width: 33vw;
+    height: auto;
+    margin: 0;
+  }
+`
+
+const Btn = styled.section`
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    color: var(--lightgrey);
+    background-color: var(--darkgrey);
+    border-radius: 50px;
+    height: 2rem;
+    font-size: 0.9rem;
+    margin: 0.7rem;
+    padding: 0.4rem 1rem;
+    width: 12rem;
+    border: 1px solid var(--darkgrey);
+    cursor: pointer;
   }
 `

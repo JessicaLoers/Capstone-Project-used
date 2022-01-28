@@ -1,7 +1,9 @@
-import CardTrack from './CardTrack'
-import CardArtist from './CardArtist'
+import CardTrack from '../components/CardTrack'
+import CardArtist from '../components/CardArtist'
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 export default function SearchBar({
   artists,
@@ -45,59 +47,63 @@ export default function SearchBar({
   )
 
   return (
-    <WrapperStyled>
-      <SearchBarWrapperStyled>
-        <ToggleBtnPair>
-          <BtnTrack
-            type='button'
-            onClick={() => setIsBtnActive(!isBtnActive)}
-            className={isBtnActive ? 'inactive' : 'active'}
-          >
-            Tracks
-          </BtnTrack>
+    <>
+      <Header pageTitle={'Search'} />
+      <WrapperStyled>
+        <SearchBarWrapperStyled>
+          <ToggleBtnPair>
+            <BtnTrack
+              type='button'
+              onClick={() => setIsBtnActive(!isBtnActive)}
+              className={isBtnActive ? 'inactive' : 'active'}
+            >
+              Tracks
+            </BtnTrack>
 
-          <BtnArtist
-            type='button'
-            onClick={() => setIsBtnActive(!isBtnActive)}
-            className={!isBtnActive ? 'inactive' : 'active'}
-          >
-            Artist
-          </BtnArtist>
-        </ToggleBtnPair>
-        <SearchInput>
-          <input
-            className='searchinput'
-            type='search'
-            name='search'
-            id='search'
-            placeholder='search ...'
-            value={searchWord}
-            onChange={handleChange}
-          />
-        </SearchInput>
-      </SearchBarWrapperStyled>
-      <Results>
-        {isBtnActive
-          ? searchedArtist?.map((artist) => (
-              <div key={artist._id}>
-                <CardArtist
-                  artist_name={artist.artist_name}
-                  artist_image={artist.artist_image}
-                />
-              </div>
-            ))
-          : searchedTrack?.map((track) => (
-              <div key={track._id}>
-                <CardTrack
-                  track_name={track.track_name}
-                  year={track.year}
-                  cover_image={track.cover_image}
-                  artist={track.artist}
-                />
-              </div>
-            ))}
-      </Results>
-    </WrapperStyled>
+            <BtnArtist
+              type='button'
+              onClick={() => setIsBtnActive(!isBtnActive)}
+              className={!isBtnActive ? 'inactive' : 'active'}
+            >
+              Artist
+            </BtnArtist>
+          </ToggleBtnPair>
+          <SearchInput>
+            <input
+              className='searchinput'
+              type='search'
+              name='search'
+              id='search'
+              placeholder='search ...'
+              value={searchWord}
+              onChange={handleChange}
+            />
+          </SearchInput>
+        </SearchBarWrapperStyled>
+        <Results>
+          {isBtnActive
+            ? searchedArtist?.map((artist) => (
+                <div key={artist._id}>
+                  <CardArtist
+                    artist_name={artist.artist_name}
+                    artist_image={artist.artist_image}
+                  />
+                </div>
+              ))
+            : searchedTrack?.map((track) => (
+                <div key={track._id}>
+                  <CardTrack
+                    track_name={track.track_name}
+                    year={track.year}
+                    cover_image={track.cover_image}
+                    artist={track.artist}
+                  />
+                </div>
+              ))}
+        </Results>
+      </WrapperStyled>
+      <Footer />
+    </>
   )
 }
 
@@ -108,16 +114,16 @@ const BtnTrack = styled.button`
   border-radius: 50px 0 0 50px;
 `
 const Results = styled.div`
-  margin-top: 3rem;
+  margin-top: 2rem;
 `
 const SearchBarWrapperStyled = styled.div`
   background-color: var(--secondarycolor);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   left: 0;
   padding-bottom: 1rem;
-  padding-top: 4rem;
+  padding-top: 5rem;
   position: sticky;
   right: 0;
   top: 0;

@@ -121,6 +121,7 @@ export default function Footer() {
 const Nav = styled.ul`
   padding: 1rem;
   background: var(--secondarycolor);
+  box-shadow: -2px -2px 3px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -130,7 +131,6 @@ const Nav = styled.ul`
   height: 4.4rem;
   right: 0;
   left: 0;
-
   .addbtn {
     margin-bottom: 3rem;
   }

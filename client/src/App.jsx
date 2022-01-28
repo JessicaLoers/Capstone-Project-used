@@ -13,10 +13,8 @@ import {
 import { addTracksToDatabase } from './lib/addTracks'
 import { addArtistToDatabase } from './lib/addArtist'
 import { addSamplesToTracks } from './lib/addSamples'
-import Header from './components/Header'
-import Footer from './components/Footer'
 import Home from './pages/Home'
-import SearchBar from './components/SearchBar'
+import SearchBar from './pages/Search'
 import Add from './pages/Add'
 import Profile from './pages/Profile'
 import Track from './pages/Track'
@@ -112,9 +110,6 @@ export default function App() {
 
   return (
     <div>
-      <div>
-        <Header />
-      </div>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route
@@ -183,7 +178,6 @@ export default function App() {
           }
         ></Route>
       </Routes>
-      <Footer />
     </div>
   )
 }
