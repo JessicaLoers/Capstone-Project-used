@@ -35,11 +35,11 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    color: var(--lightgrey);
     background-color: var(--primarycolor);
+    color: var(--lightgrey);
     font-family: 'Poppins', sans-serif;
-    line-height: 1.5;
     font-size: 1rem;
+    line-height: 1.5;
   }
 
   h3 {
@@ -69,30 +69,30 @@ h1,
   
 // --> card
 .card {
+  align-items: left;
+  border-radius: 0 5px 5px 0;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
   display: grid;
+  grid-column-gap: 0px;
   grid-template-columns: 2fr 3fr 0.5fr;
   grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  width: 80vw;
-  border-radius: 0 5px 5px 0;
-  margin-left: 0px;
   margin-bottom: 5px;
+  margin-left: 0px;
   padding: 5px 5px 5px 0;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
-  align-items: left;
+  width: 80vw;
   
 }
 
 .card_arrow{
   cursor: pointer;
   align-items: center;
-  justify-self: flex-end;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
+  justify-self: flex-end;
   span {
-    margin-right: 10px;
     height: 1rem;
+    margin-right: 10px;
     width: 1rem;
   }
 }
@@ -129,17 +129,17 @@ h1,
   }
 // --> YoutubeEmbed
 .video-responsive {
+    height: 0;
     overflow: hidden;
     padding-bottom: 56.25%;
     position: relative;
-    height: 0;
   }
   .video-responsive iframe {
-    left: 0;
-    top: 0;
     height: 100%;
-    width: 100%;
+    left: 0;
     position: absolute;
+    top: 0;
+    width: 100%;
   }
 
 

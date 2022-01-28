@@ -37,7 +37,7 @@ export default function Profile({ user, onLoginUser, tracks }) {
 
   return (
     <>
-      <Header pageTitle={'Your Profile'} />
+      <Header className='header' pageTitle={'Your Profile'} />
       <StyledWrapper>
         <UserInfoContainer>
           <UserImageContainer>
@@ -143,13 +143,13 @@ const MessageArtist = styled.div`
   }
 `
 const UserImageContainer = styled.div`
-  color: var(--drakgrey);
   align-items: flex-end;
-  justify-items: center;
+  color: var(--drakgrey);
   display: grid;
-  position: relative;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
+  justify-items: center;
+  position: relative;
   z-index: 120;
 
   .user-image--overlay {
@@ -168,21 +168,19 @@ const UserImageContainer = styled.div`
   }
 `
 const UserInfoContainer = styled.div`
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
-  color: var(--darkgrey);
   align-items: flex-end;
   background-color: var(--secondarycolor);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  color: var(--darkgrey);
   display: grid;
-  position: relative;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
   height: 32vh;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
   position: sticky;
   right: 0;
   top: 0;
   z-index: 30;
-  margin-bottom: 2rem;
   h2 {
     margin-bottom: 0.8rem;
   }
@@ -193,15 +191,15 @@ const UserInfoContainer = styled.div`
 const StyledWrapper = styled.div`
   margin-bottom: 15rem;
   .horizontal-scroll-wrapper {
-    width: 100vw;
     height: auto;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+    width: 100vw;
     .wrapper-items {
       display: inline-block;
-      vertical-align: middle;
       margin-left: 1rem;
+      vertical-align: middle;
     }
     .wrapper-items:first-child {
       margin-left: 0;
@@ -209,8 +207,8 @@ const StyledWrapper = styled.div`
   }
   .favourite-headline {
     font-size: 0.9rem;
-    margin-left: 1rem;
     margin-bottom: 0.6rem;
+    margin-left: 1rem;
     margin-top: 1.2rem;
   }
 `

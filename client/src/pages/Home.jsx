@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import used_melody_main from '../assets/used_melody_main.svg'
 import used_logo from '../assets/used_logo.svg'
 
@@ -27,11 +28,20 @@ export default function Home({}) {
           alt='used melody character'
           className='slide'
         />
+        <img
+          src={used_melody_main}
+          alt='used melody character'
+          className='slide'
+        />
       </div>
-      <h1>A Tribute to The Winstons and the lost music samples</h1>
+      <h1>A tribute to The Winstons and the lost music samples</h1>
       <Btn>
-        <button>Discover as Jane</button>
-        <button>Discover as John</button>
+        <Link to='/profile/Jane'>
+          <button>DISCOVER AS JANE</button>
+        </Link>
+        <Link to='/profile/John'>
+          <button>DISCOVER AS JOHN</button>
+        </Link>
       </Btn>
     </Hello>
   )
@@ -54,13 +64,23 @@ const Hello = styled.div`
     width: 100vw;
     height: auto;
     overflow-x: hidden;
-    overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
   }
-  .svgrow.slide {
+  .slide {
     display: inline-block;
+    animation: move 5s 1s infinite alternate ease-in-out;
   }
+
+  @keyframes move {
+    from {
+      transform: translateX(-3rem);
+    }
+    to {
+      transform: translateX(-19.8rem);
+    }
+  }
+
   img {
     height: 30vh;
     margin: 0.4rem;
@@ -78,6 +98,7 @@ const Btn = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2rem;
 
   button {
     color: var(--lightgrey);

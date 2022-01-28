@@ -7,12 +7,12 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 export default function Add({
-  tracks,
   artists,
-  user,
-  onAddTrack,
   onAddArtist,
   onAddSamplePair,
+  onAddTrack,
+  tracks,
+  user,
 }) {
   const [isTrackBtnActive, setIsTrackBtnActive] = useState(false)
   const [isSampleBtnActive, setIsSampleBtnActive] = useState(false)
@@ -54,9 +54,9 @@ export default function Add({
           </BtnShowFormAddTrack>
           {isTrackBtnActive ? (
             <AddTrackForm
-              tracks={tracks}
               artists={artists}
               onAddTrack={onAddTrack}
+              tracks={tracks}
               user={user}
             />
           ) : (
@@ -74,9 +74,9 @@ export default function Add({
           </BtnShowFormAddArtist>
           {isArtistBtnActive ? (
             <AddArtistForm
-              tracks={tracks}
               artists={artists}
               onAddArtist={onAddArtist}
+              tracks={tracks}
               user={user}
             />
           ) : (
@@ -93,6 +93,12 @@ const Wrapper = styled.section`
   margin: 5rem 3rem 7rem 3rem;
   button {
     margin-top: 1rem;
+    cursor: pointer;
+    height: 2rem;
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    align-self: center;
   }
 
   h1 {
@@ -108,16 +114,9 @@ const Wrapper = styled.section`
 const BtnShowFormAddTrack = styled.button`
   background-color: var(--cardtrack);
   border: 1px solid var(--cardtrack);
-  align-self: center;
-  border: none;
-  cursor: pointer;
-  color: var(--darkgrey);
-  height: 2rem;
-  font-size: 0.9rem;
-  padding: 0.4rem 1rem;
-  width: 12rem;
-  border-radius: 50px;
   border: 1px solid var(--cardtrack);
+  color: var(--darkgrey);
+  width: 12rem;
   :active {
     background-color: #00ce82ab;
   }
@@ -126,16 +125,8 @@ const BtnShowFormAddTrack = styled.button`
 const BtnShowFormSamples = styled.button`
   background-color: var(--secondarycolor);
   border: 1px solid var(--secondarycolor);
-  align-self: center;
-  border: none;
-  cursor: pointer;
   color: var(--darkgrey);
-  height: 2rem;
-  font-size: 0.9rem;
-  padding: 0.4rem 1rem;
   width: 12rem;
-  border-radius: 50px;
-
   :active {
     background-color: #d3a8b6f8;
   }
@@ -144,17 +135,9 @@ const BtnShowFormSamples = styled.button`
 const BtnShowFormAddArtist = styled.button`
   background-color: var(--cardartist);
   border: 1px solid var(--cardartist);
-  align-self: center;
-  border: none;
-  cursor: pointer;
   color: var(--darkgrey);
-  height: 2rem;
-  font-size: 0.9rem;
-  padding: 0.4rem 1rem;
   width: 12rem;
-  border-radius: 50px;
-
   :active {
-    background-color: #d3a8b6f8;
+    background-color: #5b82eeb2;
   }
 `

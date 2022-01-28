@@ -1,6 +1,5 @@
-import styled from 'styled-components'
 import { useEffect, useState } from 'react'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { saveToLocal, loadFromLocal } from './lib/localStorage'
 import {
   addToFavouriteTrack,
@@ -133,9 +132,9 @@ export default function App() {
           path='/profile/:name'
           element={
             <Profile
+              onLoginUser={fetchUserAndLogin}
               tracks={tracks}
               user={user}
-              onLoginUser={fetchUserAndLogin}
             />
           }
         ></Route>
@@ -144,11 +143,11 @@ export default function App() {
           element={
             <Add
               artists={artists}
-              tracks={tracks}
-              user={user}
-              onAddTrack={handleAddTrack}
               onAddArtist={handleAddArtist}
               onAddSamplePair={handleAddSamplePair}
+              onAddTrack={handleAddTrack}
+              tracks={tracks}
+              user={user}
             />
           }
         ></Route>
@@ -159,9 +158,9 @@ export default function App() {
           element={
             <Artist
               artists={artists}
+              onAddToFavourites={handleAddToFavouriteArtist}
               tracks={tracks}
               user={user}
-              onAddToFavourites={handleAddToFavouriteArtist}
             />
           }
         ></Route>
@@ -171,9 +170,9 @@ export default function App() {
           path='/track/:track_name'
           element={
             <Track
+              onAddToFavourites={handleAddToFavouriteTrack}
               tracks={tracks}
               user={user}
-              onAddToFavourites={handleAddToFavouriteTrack}
             />
           }
         ></Route>
