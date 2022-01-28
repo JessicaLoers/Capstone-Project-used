@@ -8,6 +8,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 import userImageOverlay from '../assets/icons/userImageOverlay.svg'
+import used_melody_main from '../assets/used_melody_main.svg'
 
 export default function Profile({ user, onLoginUser, tracks }) {
   const { name } = useParams()
@@ -122,6 +123,14 @@ export default function Profile({ user, onLoginUser, tracks }) {
             </MessageTracks>
           )}
         </div>
+        <HiddenTrack>
+          <h4>Hi!</h4>
+          <img
+            src={used_melody_main}
+            alt='melody hidden track'
+            className='melody-hidden'
+          />
+        </HiddenTrack>
       </StyledWrapper>
       <Footer />
     </>
@@ -189,7 +198,7 @@ const UserInfoContainer = styled.div`
   }
 `
 const StyledWrapper = styled.div`
-  margin-bottom: 15rem;
+  margin-bottom: 5rem;
   .horizontal-scroll-wrapper {
     height: auto;
     overflow-x: scroll;
@@ -210,5 +219,19 @@ const StyledWrapper = styled.div`
     margin-bottom: 0.6rem;
     margin-left: 1rem;
     margin-top: 1.2rem;
+  }
+`
+const HiddenTrack = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  h4 {
+    font-size: 1.3rem;
+  }
+  .melody-hidden {
+    align-self: center;
+    margin-top: 8rem;
+    width: 30vw;
   }
 `

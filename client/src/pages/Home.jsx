@@ -33,13 +33,22 @@ export default function Home({}) {
           alt='used melody character'
           className='slide'
         />
+        <img
+          src={used_melody_main}
+          alt='used melody character'
+          className='slide'
+        />
       </div>
-      <h1>A tribute to The Winstons and the lost music samples</h1>
+      <h1>A tribute to The Winstons and the lost music samples.</h1>
+
+      <h2 className='mobileOnlyNotice'>
+        Nice to see you! Please use a mobile device.
+      </h2>
       <Btn>
-        <Link to='/profile/Jane'>
+        <Link to='/profile/Jane' className='discoverBtn'>
           <button>DISCOVER AS JANE</button>
         </Link>
-        <Link to='/profile/John'>
+        <Link to='/profile/John' className='discoverBtn'>
           <button>DISCOVER AS JOHN</button>
         </Link>
       </Btn>
@@ -61,6 +70,8 @@ const Hello = styled.div`
     width: 60vw;
   }
   .svgrow {
+    display: flex;
+    justify-content: center;
     width: 100vw;
     height: auto;
     overflow-x: hidden;
@@ -74,18 +85,16 @@ const Hello = styled.div`
 
   @keyframes move {
     from {
-      transform: translateX(-3rem);
+      transform: translateX(-10rem);
     }
     to {
-      transform: translateX(-19.8rem);
+      transform: translateX(10rem);
     }
   }
-
   img {
     height: 30vh;
     margin: 0.4rem;
   }
-
   .used-logo {
     width: 33vw;
     height: auto;

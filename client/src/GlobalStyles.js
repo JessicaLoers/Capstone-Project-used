@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 export default createGlobalStyle`
 
 :root {
-
+  
   --primarycolor: #333333;
   --secondarycolor: #F7C4D4;
   
@@ -82,7 +82,6 @@ h1,
   width: 80vw;
   
 }
-
 .card_arrow{
   cursor: pointer;
   align-items: center;
@@ -102,7 +101,6 @@ h1,
   flex-direction: column;
   justify-content: center;
 }
-
 // --> favIcon : Artist.jsx, Track.jsx
   .favIcons {
     bottom: 6;
@@ -142,5 +140,18 @@ h1,
     width: 100%;
   }
 
+  .mobileOnlyNotice {
+    display: none;
+  }
+
+  @media only screen and (min-width: 420px) {
+  .discoverBtn {
+    display: none;
+  }
+  .mobileOnlyNotice {
+    color: var(--darkgrey);
+    display: flex;
+  }
+}
 
 `
