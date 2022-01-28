@@ -49,6 +49,8 @@ export default function AddSamplePair({
     }
   }
 
+  console.log(pair?.first)
+
   return (
     <div>
       {hasFormErrors && (
@@ -157,36 +159,33 @@ export default function AddSamplePair({
 }
 
 const AddSampleForm = styled.form`
-  margin: 1rem 0 1rem 0;
-
   display: flex;
   flex-direction: column;
+  margin: 1rem 0 1rem 0;
   label {
     display: block;
+    font-size: 0.8rem;
     padding: 0.4em 1rem;
     text-align: left;
-    font-size: 0.8rem;
   }
   input,
   select,
   option {
     background-color: var(--lightgrey);
-    border: 0;
     border-radius: 3px;
-    font-size: 0.8rem;
-    padding-left: 1rem;
+    border: 0;
     box-sizing: border-box;
-    height: 1.8rem;
     color: #848484;
+    font-size: 0.8rem;
+    height: 1.8rem;
+    padding-left: 1rem;
     :focus {
       outline: none;
     }
   }
-
   button:active {
-    background-color: #00ce82ab;
+    background-color: #d3a8b6f8;
   }
-
   p {
     align-self: center;
     margin: 1rem 0 0 0;
@@ -197,15 +196,10 @@ const BtnPair = styled.div`
   display: flex;
   margin-top: 1rem;
   button {
-    color: var(--darkgrey);
-    border: none;
-    cursor: pointer;
-    color: var(--darkgrey);
-    height: 2rem;
-    font-size: 0.9rem;
-    padding: 5px;
-    width: 6rem;
     border: 1px solid var(--secondarycolor);
+    color: var(--darkgrey);
+    color: var(--darkgrey);
+    width: 6rem;
   }
   .clearBtn {
     border-radius: 0 50px 50px 0;

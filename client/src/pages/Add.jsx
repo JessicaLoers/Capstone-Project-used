@@ -17,10 +17,8 @@ export default function Add({
   const [isTrackBtnActive, setIsTrackBtnActive] = useState(false)
   const [isSampleBtnActive, setIsSampleBtnActive] = useState(false)
   const [isArtistBtnActive, setIsArtistBtnActive] = useState(false)
-
   return (
     <>
-      {' '}
       <Wrapper>
         <Header pageTitle={'Add'} />
         <h1>What you'd like to do, dear {user.first_name}?</h1>
@@ -32,7 +30,6 @@ export default function Add({
           >
             {isSampleBtnActive ? <span>close</span> : <span>Add Sample</span>}
           </BtnShowFormSamples>
-
           {isSampleBtnActive ? (
             <AddSamplePair
               tracks={tracks}
@@ -63,7 +60,6 @@ export default function Add({
             ''
           )}
         </section>
-
         <section className='section-wrapper'>
           <BtnShowFormAddArtist
             type='button'
@@ -110,7 +106,6 @@ const Wrapper = styled.section`
     margin-top: 1rem;
   }
 `
-
 const BtnShowFormAddTrack = styled.button`
   background-color: var(--cardtrack);
   border: 1px solid var(--cardtrack);
@@ -121,7 +116,6 @@ const BtnShowFormAddTrack = styled.button`
     background-color: #00ce82ab;
   }
 `
-
 const BtnShowFormSamples = styled.button`
   background-color: var(--secondarycolor);
   border: 1px solid var(--secondarycolor);
@@ -131,7 +125,6 @@ const BtnShowFormSamples = styled.button`
     background-color: #d3a8b6f8;
   }
 `
-
 const BtnShowFormAddArtist = styled.button`
   background-color: var(--cardartist);
   border: 1px solid var(--cardartist);

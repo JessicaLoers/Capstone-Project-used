@@ -1,10 +1,8 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-
 import { isArtistValid } from '../lib/form-validation'
 import TextInput from './FormInputs/TextInput'
 import InputTextAreaInput from './FormInputs/TextAreaInput'
-
 import dead_melody from '../assets/icons/dead_melody.svg'
 import used_melody from '../assets/icons/used_melody.svg'
 
@@ -117,9 +115,9 @@ export default function AddForm({ onAddArtist, user }) {
 }
 
 const ErrorMessage = styled.div`
-  display: flex;
   align-items: flex-end;
   color: var(--lightgrey);
+  display: flex;
   display: flex;
   gap: 0.8rem;
   margin: 0 0 1rem;
@@ -133,30 +131,29 @@ const AddArtistForm = styled.form`
   flex-direction: column;
   label {
     display: block;
+    font-size: 0.8rem;
     padding: 0.4em 1rem;
     text-align: left;
-    font-size: 0.8rem;
   }
   input,
   select,
   option {
-    font-family: 'Poppins', sans-serif;
     background-color: var(--lightgrey);
-    border: 0;
     border-radius: 3px;
-    padding-left: 1rem;
+    border: 0;
     box-sizing: border-box;
-    height: 1.8rem;
     color: #848484;
+    font-family: 'Poppins', sans-serif;
     font-size: 0.7rem;
+    height: 1.8rem;
     margin-bottom: 7px;
+    padding-left: 1rem;
     :focus {
       outline: none;
     }
   }
-
   button:active {
-    background-color: #00ce82ab;
+    background-color: #5b82eeb2;
   }
 `
 const BtnPair = styled.div`
@@ -164,19 +161,14 @@ const BtnPair = styled.div`
   display: flex;
   margin-top: 1rem;
   button {
-    color: var(--darkgrey);
-    border: none;
-    cursor: pointer;
-    color: var(--darkgrey);
-    height: 2rem;
-    font-size: 0.9rem;
-    padding: 5px;
-    width: 6rem;
     border: 1px solid var(--cardartist);
+    color: var(--darkgrey);
+    color: var(--darkgrey);
+    width: 6rem;
   }
   .clearBtn {
-    border-radius: 0 50px 50px 0;
     background-color: transparent;
+    border-radius: 0 50px 50px 0;
     color: var(--cardartist);
   }
   .addBtn {

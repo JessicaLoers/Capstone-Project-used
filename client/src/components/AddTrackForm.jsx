@@ -1,10 +1,8 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-
 import { isTrackValid } from '../lib/form-validation'
 import TextInput from './FormInputs/TextInput'
 import NumberInput from './FormInputs/NumberInput'
-
 import dead_melody from '../assets/icons/dead_melody.svg'
 import used_melody from '../assets/icons/used_melody.svg'
 
@@ -14,8 +12,8 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
     cover_image: '',
     entry_of_user: [user._id],
     fav_of_user: [],
-    sampled: [],
     sampled_in: [],
+    sampled: [],
     track_name: '',
     video_id: '',
     year: '',
@@ -189,7 +187,6 @@ const AddTrackForm = styled.form`
       outline: none;
     }
   }
-
   button:active {
     background-color: #00ce82ab;
   }
@@ -199,19 +196,14 @@ const BtnPair = styled.div`
   display: flex;
   margin-top: 1rem;
   button {
-    color: var(--darkgrey);
-    border: none;
-    cursor: pointer;
-    color: var(--darkgrey);
-    height: 2rem;
-    font-size: 0.9rem;
-    padding: 5px;
-    width: 6rem;
     border: 1px solid var(--cardtrack);
+    color: var(--darkgrey);
+    color: var(--darkgrey);
+    width: 6rem;
   }
   .clearBtn {
-    border-radius: 0 50px 50px 0;
     background-color: transparent;
+    border-radius: 0 50px 50px 0;
     color: var(--cardtrack);
   }
   .addBtn {
