@@ -139,11 +139,9 @@ h1,
     top: 0;
     width: 100%;
   }
-
   .mobileOnlyNotice {
     display: none;
   }
-
   @media only screen and (min-width: 420px) {
   .discoverBtn {
     display: none;
