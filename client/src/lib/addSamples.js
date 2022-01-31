@@ -1,7 +1,7 @@
 async function addSamplesToTracks(pair) {
   const trackSamples = {
-    sampledInId: pair.first,
-    sampledId: pair.second,
+    sampledInId: pair.second,
+    sampledId: pair.first,
   }
   const result = await fetch('/api/track/add-sample', {
     headers: {
