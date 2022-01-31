@@ -24,6 +24,7 @@ export default function Add({
         <h1>What you'd like to do, dear {user.first_name}?</h1>
         <section className='section-wrapper'>
           <BtnShowFormSamples
+            data-testid='open-add-sample-btn'
             type='button'
             onClick={() => setIsSampleBtnActive(!isSampleBtnActive)}
             className={isSampleBtnActive ? 'inactive' : 'active'}
@@ -43,6 +44,7 @@ export default function Add({
         </section>
         <section className='section-wrapper'>
           <BtnShowFormAddTrack
+            data-testid='open-add-track-btn'
             type='button'
             onClick={() => setIsTrackBtnActive(!isTrackBtnActive)}
             className={isTrackBtnActive ? 'inactive' : 'active'}
@@ -62,6 +64,7 @@ export default function Add({
         </section>
         <section className='section-wrapper'>
           <BtnShowFormAddArtist
+            data-testid='open-add-artist-btn'
             type='button'
             onClick={() => setIsArtistBtnActive(!isArtistBtnActive)}
             className={isArtistBtnActive ? 'inactive' : 'active'}

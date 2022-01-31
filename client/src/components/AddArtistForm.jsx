@@ -45,24 +45,24 @@ export default function AddForm({ onAddArtist, user }) {
   return (
     <>
       {hasFormErrors && (
-        <ErrorMessage>
+        <Message data-testid='error-message'>
           <img src={dead_melody} alt='' className='melody' />
 
           <p>
             <strong>Oh no, {user.first_name}! </strong>
             Check if all fields are correctly filled.
           </p>
-        </ErrorMessage>
+        </Message>
       )}
       {hasFormSend && (
-        <ErrorMessage>
+        <Message data-testid='send-message'>
           <img src={used_melody} alt='' className='melody' />
 
           <p>
             <strong>Yes, {user.first_name}! </strong>
             Your artist is added.
           </p>
-        </ErrorMessage>
+        </Message>
       )}
 
       <AddArtistForm onSubmit={handleSubmit}>
@@ -90,11 +90,11 @@ export default function AddForm({ onAddArtist, user }) {
           placeholder='https://... .png or .jpg'
           value={artist.artist_image}
         >
-          Cover Image
+          Artist Image
         </TextInput>
 
         <BtnPair>
-          <button type='submit' className='addBtn'>
+          <button data-testid='add-artist-btn' type='submit' className='addBtn'>
             Save
           </button>
 
@@ -103,7 +103,6 @@ export default function AddForm({ onAddArtist, user }) {
             type='reset'
             onClick={() => {
               setArtist(initialArtist)
-              //setHasFormErrors(false)
             }}
           >
             Clear
@@ -114,7 +113,7 @@ export default function AddForm({ onAddArtist, user }) {
   )
 }
 
-const ErrorMessage = styled.div`
+const Message = styled.div`
   align-items: flex-end;
   color: var(--lightgrey);
   display: flex;
