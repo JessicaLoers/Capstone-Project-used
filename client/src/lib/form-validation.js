@@ -24,11 +24,15 @@ const isTrackValid = (track) =>
 
 //## Add Sample
 const isTrackSingleValue = (pair) => pair?.first !== pair?.second
+const hasTwoTracksSelected = (pair) => pair?.first !== '' && pair?.second !== ''
 const hasValue = (pair) => pair !== ''
 const isArtistSingleValue = (selection) =>
   selection.firstArtist !== selection.secondArtist
 
 const isSampleValid = (pair, selection) =>
-  isTrackSingleValue(pair) && isArtistSingleValue(selection) && hasValue(pair)
+  isTrackSingleValue(pair) &&
+  isArtistSingleValue(selection) &&
+  hasValue(pair) &&
+  hasTwoTracksSelected(pair)
 
 export { isArtistValid, isTrackValid, isSampleValid }
