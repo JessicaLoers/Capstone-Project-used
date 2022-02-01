@@ -5,7 +5,7 @@ __Description and thoughts:__
 
 Since the late 1980s, sampling as a musical practice has been an important part of pop music and has become usual, so that we, as listeners, easily lose sight of what, or rather __who, we are listening to__. 
 
-__used__ is a community sample library app that is fun to use. Discover music samples and deepen your knowledge about music by using __used__ to explore connections between tracks and artists from different decades and genres. If you know a sample that isn't yet listed, you can add it to the database using the sample pair form and share your discovery and knowledge with other __used__ users. You can also create tracks and artists. Your favorites and entries are collected on your personal profile page. __used__ inspires you to dive deep into music.
+__used__ is a community sample library app that is fun to use. Discover music samples and deepen your knowledge about music by using __used__ to explore connections between tracks and artists from different decades and genres. If you know a sample that isn't yet listed, you can add it to the database using the sample pair form and share your discovery and knowledge with other __used__ users. Additionally you can reate tracks and artists. Your favorites and entries are collected on your personal profile page. __used__ inspires you to dive deep into music.
 
 __In memory of The Winstons and Gregory C. Coleman:__
 
