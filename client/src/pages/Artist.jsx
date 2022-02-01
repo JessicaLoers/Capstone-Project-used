@@ -32,17 +32,19 @@ export default function Artist({ artists, tracks, onAddToFavourites, user }) {
           <h1>{thisArtist?.artist_name}</h1>
           <ArtistImage src={thisArtist?.artist_image} />
         </ImageContainer>
-        <span
+        <div
           onClick={() => onAddToFavourites(thisArtist, user)}
           className='favIcons'
         >
-          <i className='favLabel'>{favLabel}</i>
+          <i data-testid='favourite-link' className='favLabel'>
+            {favLabel}
+          </i>
           {thisArtist?.fav_of_user.includes(user._id) ? (
             <span className='circle'></span>
           ) : (
             <i></i>
           )}
-        </span>
+        </div>
 
         <Info>{thisArtist?.infos}</Info>
 

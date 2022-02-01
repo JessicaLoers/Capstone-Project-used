@@ -21,13 +21,13 @@ function CardTrack({ artist_name, artist_image }) {
   )
 
   return (
-    <SingleArtist className='card'>
+    <SingleArtist data-testid='artist-card' className='card'>
       <ArtistImage src={artist_image} />
       <div className='card_details'>
         <h3>{artist_name}</h3>
       </div>
       <Link to={`/artist/${artist_name}`} className='card_arrow'>
-        <span>{arrow}</span>
+        <span data-testid='artist-link'>{arrow}</span>
       </Link>
     </SingleArtist>
   )

@@ -1,26 +1,13 @@
 import CardTrack from '../components/CardTrack'
 import CardArtist from '../components/CardArtist'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-export default function SearchBar({
-  artists,
-  tracks,
-  onTrackRender,
-  onArtistRender,
-}) {
+export default function SearchBar({ artists, tracks }) {
   const [searchWord, setSearchWord] = useState('')
   const [isBtnActive, setIsBtnActive] = useState(false)
-
-  // useEffect(async () => {
-  //   await onArtistRender
-  //   setIsBtnActive
-  // }, [artists])
-  // useEffect(async () => {
-  //   await onTrackRender
-  // }, [tracks])
 
   const handleChange = (event) => {
     let inputValue = event.target.value
@@ -61,6 +48,7 @@ export default function SearchBar({
             </BtnTrack>
 
             <BtnArtist
+              data-testid='search-artist-btn'
               type='button'
               onClick={() => setIsBtnActive(!isBtnActive)}
               className={!isBtnActive ? 'inactive' : 'active'}

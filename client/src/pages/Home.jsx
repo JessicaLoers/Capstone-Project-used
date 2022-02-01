@@ -46,10 +46,10 @@ export default function Home({}) {
       </h2>
       <Btn>
         <Link to='/profile/Jane' className='discoverBtn'>
-          <button>DISCOVER AS JANE</button>
+          <button data-testid='jane-btn'>JOIN AS JANE</button>
         </Link>
         <Link to='/profile/John' className='discoverBtn'>
-          <button>DISCOVER AS JOHN</button>
+          <button>JOIN AS JOHN</button>
         </Link>
       </Btn>
     </Hello>
