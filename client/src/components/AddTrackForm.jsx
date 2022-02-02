@@ -38,10 +38,8 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
       [event.target.name]: inputValue,
     })
   }
-
   const handleSubmit = (event) => {
     event.preventDefault()
-
     if (isTrackValid(track)) {
       onAddTrack(track)
       setHasFormErrors(false)
@@ -55,24 +53,24 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
   return (
     <OverallWrapper>
       {hasFormErrors && (
-        <ErrorMessage>
+        <Message data-testid='error-message'>
           <img src={dead_melody} alt='' className='melody' />
 
           <p>
             <strong>Oh no, {user.first_name}! </strong>
             Check if all fields are correctly filled.
           </p>
-        </ErrorMessage>
+        </Message>
       )}
       {hasFormSend && (
-        <ErrorMessage>
+        <Message data-testid='send-message'>
           <img src={used_melody} alt='' className='melody' />
 
           <p>
             <strong>Yes, {user.first_name}! </strong>
             Your track is added.
           </p>
-        </ErrorMessage>
+        </Message>
       )}
 
       <AddTrackForm onSubmit={handleSubmit}>
@@ -130,7 +128,7 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
         </TextInput>
 
         <BtnPair>
-          <button type='submit' className='addBtn'>
+          <button data-testid='add-track-btn' type='submit' className='addBtn'>
             Save
           </button>
 
@@ -150,7 +148,7 @@ export default function AddForm({ tracks, artists, onAddTrack, user }) {
   )
 }
 
-const ErrorMessage = styled.div`
+const Message = styled.div`
   display: flex;
   align-items: flex-end;
   background: var(--warning);

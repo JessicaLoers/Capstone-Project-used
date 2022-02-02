@@ -29,22 +29,22 @@ export default function Track({ tracks, user, onAddToFavourites }) {
     return 1
   })
 
-  const sampledIn = sortedTrackNames.filter((item) =>
-    item.sampled.includes(thisTrack.track_name)
+  const sampledIn = sortedTrackNames?.filter((item) =>
+    item.sampled.includes(thisTrack?.track_name)
   )
-  const containsSamples = sortedTrackNames.filter((item) =>
-    item.sampled_in.includes(thisTrack.track_name)
+  const containsSamples = sortedTrackNames?.filter((item) =>
+    item.sampled_in.includes(thisTrack?.track_name)
   )
 
   return (
     <>
       <Header pageTitle={'Track'} />
-      <StyledWrapper key={thisTrack._id}>
+      <StyledWrapper key={thisTrack?._id}>
         <VideoContainer>
-          <YoutubeEmbed embedId={thisTrack.video_id} />
+          <YoutubeEmbed embedId={thisTrack?.video_id} />
         </VideoContainer>
         <span
-          onClick={() => onAddToFavourites(thisTrack, user)}
+          onClick={() => onAddToFavourites(thisTrack?.user)}
           className='favIcons'
         >
           <i className='favLabel'>{favLabel}</i>
@@ -56,13 +56,13 @@ export default function Track({ tracks, user, onAddToFavourites }) {
         </span>
 
         <TrackInfoContainer>
-          <h2>{thisTrack.track_name}</h2>
-          <p>from year {thisTrack.year}</p>
-          <ArtistLink to={`/artist/${thisTrack.artist}`}>
-            <p>by {thisTrack.artist}</p>
+          <h2>{thisTrack?.track_name}</h2>
+          <p>from year {thisTrack?.year}</p>
+          <ArtistLink to={`/artist/${thisTrack?.artist}`}>
+            <p>by {thisTrack?.artist}</p>
           </ArtistLink>
-          <p>Sampled by {thisTrack.sampled_in.length}</p>
-          <p>Contains Samples of {thisTrack.sampled.length}</p>
+          <p>Sampled by {thisTrack?.sampled_in.length}</p>
+          <p>Contains Samples of {thisTrack?.sampled.length}</p>
         </TrackInfoContainer>
         <div>
           <h3 className='collections-headline'>Sampled in:</h3>

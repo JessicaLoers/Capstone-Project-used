@@ -22,7 +22,7 @@ export default function Footer() {
         </li>
 
         <li>
-          <NavLink to='/search'>
+          <NavLink data-testid='search-nav-btn' to='/search'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               height='24px'
@@ -37,7 +37,7 @@ export default function Footer() {
         </li>
 
         <li>
-          <NavLink to='/profile'>
+          <NavLink data-testid='profile-nav-btn' to='/profile'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               height='24px'

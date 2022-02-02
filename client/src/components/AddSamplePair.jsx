@@ -54,24 +54,24 @@ export default function AddSamplePair({
   return (
     <div>
       {hasFormErrors && (
-        <ErrorMessage>
+        <Message data-testid='error-message'>
           <img src={dead_melody} alt='' className='melody' />
 
           <p>
             <strong>Oh no, {user.first_name}! </strong>
             Select two different tracks.
           </p>
-        </ErrorMessage>
+        </Message>
       )}
       {hasFormSend && (
-        <ErrorMessage>
+        <Message data-testid='send-message'>
           <img src={used_melody} alt='' className='melody' />
 
           <p>
             <strong>Yes, {user.first_name}! </strong>
             Your Sample is added.
           </p>
-        </ErrorMessage>
+        </Message>
       )}
       <AddSampleForm>
         <p>This Track</p>
@@ -136,6 +136,7 @@ export default function AddSamplePair({
         </select>
         <BtnPair>
           <button
+            data-testid='add-sample-btn'
             onClick={() => handleSubmit(pair)}
             type='button'
             className='addBtn'
@@ -211,7 +212,7 @@ const BtnPair = styled.div`
     border-radius: 50px 0 0 50px;
   }
 `
-const ErrorMessage = styled.div`
+const Message = styled.div`
   display: flex;
   align-items: flex-end;
   background: var(--warning);
