@@ -44,11 +44,11 @@ export default function Track({ tracks, user, onAddToFavourites }) {
           <YoutubeEmbed embedId={thisTrack?.video_id} />
         </VideoContainer>
         <span
-          onClick={() => onAddToFavourites(thisTrack?.user)}
+          onClick={() => onAddToFavourites(thisTrack, user)}
           className='favIcons'
         >
           <i className='favLabel'>{favLabel}</i>
-          {thisTrack.fav_of_user.includes(user._id) ? (
+          {thisTrack?.fav_of_user.includes(user._id) ? (
             <span className='circle'></span>
           ) : (
             <i></i>

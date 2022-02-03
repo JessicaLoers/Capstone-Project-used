@@ -89,7 +89,7 @@ export default function Add({
 }
 
 const Wrapper = styled.section`
-  margin: 5rem 3rem 7rem 3rem;
+  margin: 5rem 3rem 9rem 3rem;
   button {
     margin-top: 1rem;
     cursor: pointer;

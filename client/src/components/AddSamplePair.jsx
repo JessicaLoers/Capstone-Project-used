@@ -104,7 +104,7 @@ export default function AddSamplePair({
             </option>
           ))}
         </select>
-        <p>contains samples of this Track</p>
+        <p>sampled this Track</p>
 
         <label htmlFor='secondArtist'>Artist</label>
         <select

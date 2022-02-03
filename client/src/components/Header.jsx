@@ -14,6 +14,7 @@ const StyledHeader = styled.header`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
+  height: 3.2rem;
   justify-items: center;
   align-items: baseline;
   position: fixed;
@@ -23,7 +24,7 @@ const StyledHeader = styled.header`
   left: 0;
   z-index: 100;
   .logo {
-    margin-top: 1.6rem;
+    margin-top: 1rem;
     margin-left: 1.8rem;
     max-width: 13vw;
     justify-self: start;

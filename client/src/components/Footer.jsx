@@ -119,7 +119,7 @@ export default function Footer() {
 }
 
 const Nav = styled.ul`
-  padding: 1rem;
+  padding: 1rem 1rem 0.5rem 1rem;
   background: var(--secondarycolor);
   box-shadow: -2px -2px 3px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -128,7 +128,7 @@ const Nav = styled.ul`
   justify-content: space-around;
   position: fixed;
   bottom: 0;
-  height: 4.4rem;
+  height: 3.8rem;
   right: 0;
   left: 0;
   .addbtn {

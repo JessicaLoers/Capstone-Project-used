@@ -80,7 +80,7 @@ const Hello = styled.div`
   }
   .slide {
     display: inline-block;
-    animation: move 5s 1s infinite alternate ease-in-out;
+    animation: move 20s 1s infinite alternate ease-in-out;
   }
 
   @keyframes move {
