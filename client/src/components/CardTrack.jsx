@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-function CardTrack({ track_name, artist, year, cover_image, color = '' }) {
+function CardTrack({ track_name, artist, year, cover_image }) {
   const arrow = (
     <svg
       xmlns='http://www.w3.org/2000/svg'

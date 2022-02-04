@@ -5,6 +5,7 @@ import AddArtistForm from '../components/AddArtistForm'
 import AddSamplePair from '../components/AddSamplePair'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Button from '../components/Button'
 
 export default function Add({
   artists,
@@ -17,20 +18,39 @@ export default function Add({
   const [isTrackBtnActive, setIsTrackBtnActive] = useState(false)
   const [isSampleBtnActive, setIsSampleBtnActive] = useState(false)
   const [isArtistBtnActive, setIsArtistBtnActive] = useState(false)
+
+  const handleSampleButton = () => {
+    setIsSampleBtnActive(!isSampleBtnActive)
+  }
+
+  const handleTrackButton = () => {
+    setIsTrackBtnActive(!isTrackBtnActive)
+  }
+
+  const handleArtistButton = () => {
+    setIsArtistBtnActive(!isArtistBtnActive)
+  }
+
+  const checkBtnState = (checkState) => {
+    checkState ? 'inactive' : 'active'
+  }
+
   return (
     <>
       <Wrapper>
         <Header pageTitle={'Add'} />
         <h1>What you'd like to do, dear {user.first_name}?</h1>
         <section className='section-wrapper'>
-          <BtnShowFormSamples
-            data-testid='open-add-sample-btn'
-            type='button'
-            onClick={() => setIsSampleBtnActive(!isSampleBtnActive)}
-            className={isSampleBtnActive ? 'inactive' : 'active'}
-          >
-            {isSampleBtnActive ? <span>close</span> : <span>Add Sample</span>}
-          </BtnShowFormSamples>
+          <div data-testid='open-add-sample-btn'>
+            <Button
+              onClick={handleSampleButton}
+              className={checkBtnState(isSampleBtnActive)}
+              backgroundColor='#F7C4D4'
+              color='#333333'
+            >
+              {isSampleBtnActive ? <span>Close</span> : <span>Add Sample</span>}
+            </Button>
+          </div>
           {isSampleBtnActive ? (
             <AddSamplePair
               tracks={tracks}
@@ -46,8 +66,8 @@ export default function Add({
           <BtnShowFormAddTrack
             data-testid='open-add-track-btn'
             type='button'
-            onClick={() => setIsTrackBtnActive(!isTrackBtnActive)}
-            className={isTrackBtnActive ? 'inactive' : 'active'}
+            onClick={handleTrackButton}
+            className={checkBtnState(isTrackBtnActive)}
           >
             {isTrackBtnActive ? <span>close</span> : <span>Add Track</span>}
           </BtnShowFormAddTrack>
@@ -66,8 +86,8 @@ export default function Add({
           <BtnShowFormAddArtist
             data-testid='open-add-artist-btn'
             type='button'
-            onClick={() => setIsArtistBtnActive(!isArtistBtnActive)}
-            className={isArtistBtnActive ? 'inactive' : 'active'}
+            onClick={handleArtistButton}
+            className={checkBtnState(isArtistBtnActive)}
           >
             {isArtistBtnActive ? <span>close</span> : <span>Add Artist</span>}
           </BtnShowFormAddArtist>

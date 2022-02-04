@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-function CardTrack({ artist_name, artist_image }) {
+function CardArtist({ artist_name, artist_image }) {
   const arrow = (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -32,7 +33,11 @@ function CardTrack({ artist_name, artist_image }) {
     </SingleArtist>
   )
 }
-export default CardTrack
+export default CardArtist
+CardArtist.propTypes = {
+  artist_name: PropTypes.string,
+  artist_image: PropTypes.string,
+}
 
 const SingleArtist = styled.div`
   background-color: var(--cardartist);
