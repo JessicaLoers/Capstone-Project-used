@@ -198,6 +198,12 @@ const BtnPair = styled.div`
     color: var(--darkgrey);
     color: var(--darkgrey);
     width: 6rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    height: 2rem;
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
   }
   .clearBtn {
     background-color: transparent;

@@ -21,10 +21,10 @@ export default function Button({
 }
 
 Button.protoTypes = {
-  label: PropTypes.string,
-  backgroundColor: PropTypes.oneOf([]),
+  backgroundColor: PropTypes.string,
   onClick: PropTypes.func,
-  dataTestId: PropTypes.string,
+  color: PropTypes.string,
+  children: PropTypes.string,
 }
 
 const Btn = styled.button`
@@ -33,4 +33,11 @@ const Btn = styled.button`
   color: ${(props) => (props.color ? props.color : '#333333')};
   width: 12rem;
   border: none;
+  margin-top: 1rem;
+  cursor: pointer;
+  height: 2rem;
+  font-size: 0.9rem;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  align-self: center;
 `

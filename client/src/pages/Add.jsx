@@ -41,12 +41,11 @@ export default function Add({
         <Header pageTitle={'Add'} />
         <h1>What you'd like to do, dear {user.first_name}?</h1>
         <section className='section-wrapper'>
-          <div data-testid='open-add-sample-btn'>
+          <div className='toggle-button' data-testid='open-add-sample-btn'>
             <Button
               onClick={handleSampleButton}
               className={checkBtnState(isSampleBtnActive)}
               backgroundColor='#F7C4D4'
-              color='#333333'
             >
               {isSampleBtnActive ? <span>Close</span> : <span>Add Sample</span>}
             </Button>
@@ -63,14 +62,15 @@ export default function Add({
           )}
         </section>
         <section className='section-wrapper'>
-          <BtnShowFormAddTrack
-            data-testid='open-add-track-btn'
-            type='button'
-            onClick={handleTrackButton}
-            className={checkBtnState(isTrackBtnActive)}
-          >
-            {isTrackBtnActive ? <span>close</span> : <span>Add Track</span>}
-          </BtnShowFormAddTrack>
+          <div className='toggle-button' data-testid='open-add-track-btn'>
+            <Button
+              onClick={handleTrackButton}
+              className={checkBtnState(isTrackBtnActive)}
+              backgroundColor='#00CE82'
+            >
+              {isTrackBtnActive ? <span>close</span> : <span>Add Track</span>}
+            </Button>
+          </div>
           {isTrackBtnActive ? (
             <AddTrackForm
               artists={artists}
@@ -82,15 +82,17 @@ export default function Add({
             ''
           )}
         </section>
+
         <section className='section-wrapper'>
-          <BtnShowFormAddArtist
-            data-testid='open-add-artist-btn'
-            type='button'
-            onClick={handleArtistButton}
-            className={checkBtnState(isArtistBtnActive)}
-          >
-            {isArtistBtnActive ? <span>close</span> : <span>Add Artist</span>}
-          </BtnShowFormAddArtist>
+          <div className='toggle-button' data-testid='open-add-artist-btn'>
+            <Button
+              onClick={handleArtistButton}
+              className={checkBtnState(isArtistBtnActive)}
+              backgroundColor='#5B81EE'
+            >
+              {isArtistBtnActive ? <span>close</span> : <span>Add Artist</span>}
+            </Button>
+          </div>
           {isArtistBtnActive ? (
             <AddArtistForm
               artists={artists}
@@ -110,13 +112,8 @@ export default function Add({
 
 const Wrapper = styled.section`
   margin: 5rem 3rem 9rem 3rem;
-  button {
-    margin-top: 1rem;
-    cursor: pointer;
-    height: 2rem;
-    font-size: 0.9rem;
-    padding: 0.4rem 1rem;
-    border-radius: 50px;
+
+  .toggle-button {
     align-self: center;
   }
 
