@@ -7,6 +7,7 @@ describe('add/delete favourite Artist to user profile', () => {
     cy.visit('/')
     cy.get('[data-testid="jane-btn"]').click()
     cy.url().should('include', '/profile/Jane')
+    cy.wait(3000)
   })
 
   it('click search in nav, got to search, search for "The Winstons"', () => {
@@ -16,7 +17,7 @@ describe('add/delete favourite Artist to user profile', () => {
     cy.get('[data-testid="artist-link"]').click()
   })
   it('select artist as favourite by clicking the arrow, go to user profile to check results', () => {
-    cy.get('[data-testid="favourite-link"]').click('right')
+    cy.get('[data-testid="favourite-link"]').click({ force: true })
     cy.get('[data-testid="profile-nav-btn"]').click()
   })
 })

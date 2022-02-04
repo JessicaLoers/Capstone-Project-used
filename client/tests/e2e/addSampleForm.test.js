@@ -16,6 +16,7 @@ describe('AddTrack', () => {
     cy.get(SELECT_FIRST_ARTIST)
       .select('The Winstons')
       .should('have.value', 'The Winstons')
+      .wait(2000)
     cy.get(SELECT_FRIST_TRACK)
       .select('Amen Brother')
       .should('have.value', '61f7dd82bb49755f4aebe0a5')
