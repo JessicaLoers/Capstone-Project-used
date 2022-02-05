@@ -6,8 +6,8 @@ import CardTrack from '../components/CardTrack'
 import CardArtist from '../components/CardArtist'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Avatar from '../components/Avatar'
 
-import userImageOverlay from '../assets/icons/userImageOverlay.svg'
 import used_melody_main from '../assets/used_melody_main.svg'
 
 export default function Profile({ user, onLoginUser, tracks }) {
@@ -30,7 +30,6 @@ export default function Profile({ user, onLoginUser, tracks }) {
     if (a.artist_name < b.artist_name) return -1
     return 1
   })
-
   const sortedTracksByUserId = filteredTracksByUserId?.sort((a, b) => {
     if (a.track_name < b.track_name) return -1
     return 1
@@ -41,18 +40,7 @@ export default function Profile({ user, onLoginUser, tracks }) {
       <Header className='header' pageTitle={'Your Profile'} />
       <StyledWrapper>
         <UserInfoContainer>
-          <UserImageContainer>
-            <img
-              className='user-image--overlay'
-              src={userImageOverlay}
-              alt='used bunny'
-            />
-            <img
-              className='user-image'
-              src={user.user_image}
-              alt='user image'
-            />
-          </UserImageContainer>
+          <Avatar image={user.user_image} />
           <div>
             <h2>Hey {user.first_name}!</h2>
             <ul>
@@ -151,31 +139,7 @@ const MessageArtist = styled.div`
     margin-left: 1rem;
   }
 `
-const UserImageContainer = styled.div`
-  align-items: flex-end;
-  color: var(--drakgrey);
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  justify-items: center;
-  position: relative;
-  z-index: 120;
 
-  .user-image--overlay {
-    display: grid;
-    height: 22vh;
-    position: absolute;
-    z-index: 90;
-  }
-  .user-image {
-    filter: grayscale(var(--value, 100%));
-    --value: 100%;
-    width: auto;
-    height: 22vw;
-    border-radius: 100%;
-    margin-bottom: 3px;
-  }
-`
 const UserInfoContainer = styled.div`
   align-items: flex-end;
   background-color: var(--secondarycolor);
