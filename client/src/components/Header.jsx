@@ -1,13 +1,13 @@
-import styled from 'styled-components'
-import used_logo from '../assets/used_logo.svg'
+import styled from 'styled-components';
+import used_logo from '../assets/used_logo.svg';
 
 export default function Header({ pageTitle }) {
   return (
     <StyledHeader>
-      <img className='logo' src={used_logo} alt='used log' />
+      <img className="logo" src={used_logo} alt="used log" />
       <h1>{pageTitle}</h1>
     </StyledHeader>
-  )
+  );
 }
 const StyledHeader = styled.header`
   background: var(--secondarycolor);
@@ -33,4 +33,4 @@ const StyledHeader = styled.header`
     font-size: 0.7rem;
     color: var(--darkgrey);
   }
-`
+`;

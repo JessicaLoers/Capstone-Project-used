@@ -1,29 +1,29 @@
-import styled from 'styled-components'
-import { useParams } from 'react-router-dom'
-import CardTrack from '../components/CardTrack'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import CardTrack from '../components/CardTrack';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function Artist({ artists, tracks, onAddToFavourites, user }) {
   const favLabel = (
     <svg
-      xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 50 38'
-      fill='#f7c4d4'
-      height='39px'
-      width='60px'
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 50 38"
+      fill="#f7c4d4"
+      height="39px"
+      width="60px"
     >
-      <path d='M19,0a19,19,0,0,0,0,38H59V0Zm5.26,30.2-1.88,1.69L20.5,30.18c-6.68-6.05-11.09-10-11.09-14.94a7.06,7.06,0,0,1,7.13-7.13,7.8,7.8,0,0,1,5.84,2.7,7.77,7.77,0,0,1,5.83-2.7,7.06,7.06,0,0,1,7.13,7.13C35.34,20.14,30.93,24.13,24.26,30.2Z' />
+      <path d="M19,0a19,19,0,0,0,0,38H59V0Zm5.26,30.2-1.88,1.69L20.5,30.18c-6.68-6.05-11.09-10-11.09-14.94a7.06,7.06,0,0,1,7.13-7.13,7.8,7.8,0,0,1,5.84,2.7,7.77,7.77,0,0,1,5.83-2.7,7.06,7.06,0,0,1,7.13,7.13C35.34,20.14,30.93,24.13,24.26,30.2Z" />
     </svg>
-  )
-  const { artist_name } = useParams()
+  );
+  const { artist_name } = useParams();
 
   const thisArtist = artists.find(
     (artist) => artist.artist_name === artist_name
-  )
+  );
   const thisArtistTrack = tracks.filter((item) =>
     item.artist.includes(thisArtist?.artist_name)
-  )
+  );
   return (
     <>
       <CardWrapper>
@@ -34,13 +34,13 @@ export default function Artist({ artists, tracks, onAddToFavourites, user }) {
         </ImageContainer>
         <div
           onClick={() => onAddToFavourites(thisArtist, user)}
-          className='favIcons'
+          className="favIcons"
         >
-          <i data-testid='favourite-link' className='favLabel'>
+          <i data-testid="favourite-link" className="favLabel">
             {favLabel}
           </i>
           {thisArtist?.fav_of_user.includes(user._id) ? (
-            <span className='circle'></span>
+            <span className="circle"></span>
           ) : (
             <i></i>
           )}
@@ -59,7 +59,7 @@ export default function Artist({ artists, tracks, onAddToFavourites, user }) {
       </CardWrapper>
       <Footer />
     </>
-  )
+  );
 }
 const ImageContainer = styled.section`
   position: relative;
@@ -75,7 +75,7 @@ const ImageContainer = styled.section`
     position: absolute;
     z-index: 90;
   }
-`
+`;
 const ArtistImage = styled.img`
   filter: grayscale(var(--value, 100%));
   --value: 100%;
@@ -83,14 +83,14 @@ const ArtistImage = styled.img`
   justify-self: center;
   object-fit: cover;
   width: 100vw;
-`
+`;
 const CardWrapper = styled.div`
   background-color: var(--primarycolor);
   margin-bottom: 15rem;
   margin-top: 3.2rem;
-`
+`;
 const Info = styled.section`
   font-size: 0.8rem;
   margin: 1rem;
   width: 80vw;
-`
+`;

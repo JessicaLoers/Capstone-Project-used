@@ -1,43 +1,43 @@
-import styled from 'styled-components'
-import { useParams } from 'react-router-dom'
-import { useEffect } from 'react'
+import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
-import CardTrack from '../components/CardTrack'
-import CardArtist from '../components/CardArtist'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import Avatar from '../components/Avatar'
+import CardTrack from '../components/CardTrack';
+import CardArtist from '../components/CardArtist';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Avatar from '../components/Avatar';
 
-import used_melody_main from '../assets/used_melody_main.svg'
+import used_melody_main from '../assets/used_melody_main.svg';
 
 export default function Profile({ user, onLoginUser, tracks }) {
-  const { name } = useParams()
+  const { name } = useParams();
 
   useEffect(() => {
-    name && onLoginUser(name)
-  }, [])
+    name && onLoginUser(name);
+  }, []);
 
-  const userFavouriteTracks = user.favourite_tracks
-  const userFavouriteArtists = user.favourite_artists
+  const userFavouriteTracks = user.favourite_tracks;
+  const userFavouriteArtists = user.favourite_artists;
   const filteredTracksByUserId = tracks.filter(
     (track) => track.entry_of_user == user._id
-  )
+  );
   const sortedFavouriteTracks = userFavouriteTracks?.sort((a, b) => {
-    if (a.track_name < b.track_name) return -1
-    return 1
-  })
+    if (a.track_name < b.track_name) return -1;
+    return 1;
+  });
   const sortedFavouriteArtists = userFavouriteArtists?.sort((a, b) => {
-    if (a.artist_name < b.artist_name) return -1
-    return 1
-  })
+    if (a.artist_name < b.artist_name) return -1;
+    return 1;
+  });
   const sortedTracksByUserId = filteredTracksByUserId?.sort((a, b) => {
-    if (a.track_name < b.track_name) return -1
-    return 1
-  })
+    if (a.track_name < b.track_name) return -1;
+    return 1;
+  });
 
   return (
     <>
-      <Header className='header' pageTitle={'Your Profile'} />
+      <Header className="header" pageTitle={'Your Profile'} />
       <StyledWrapper>
         <UserInfoContainer>
           <Avatar image={user.user_image} />
@@ -51,13 +51,13 @@ export default function Profile({ user, onLoginUser, tracks }) {
           </div>
         </UserInfoContainer>
 
-        <h3 className='favourite-headline'>
+        <h3 className="favourite-headline">
           Your Favourite Tracks from A to Z
         </h3>
-        <div className='horizontal-scroll-wrapper'>
+        <div className="horizontal-scroll-wrapper">
           {sortedFavouriteTracks?.length > 0 ? (
             sortedFavouriteTracks?.map((track) => (
-              <div className='wrapper-items' key={track._id}>
+              <div className="wrapper-items" key={track._id}>
                 <CardTrack
                   track_name={track.track_name}
                   artist={track.artist}
@@ -67,19 +67,19 @@ export default function Profile({ user, onLoginUser, tracks }) {
               </div>
             ))
           ) : (
-            <MessageTracks className='card'>
+            <MessageTracks className="card">
               <p>It's time to add Favourite Tracks</p>
             </MessageTracks>
           )}
         </div>
 
-        <h3 className='favourite-headline'>
+        <h3 className="favourite-headline">
           Your Favourite Artists from A to Z
         </h3>
-        <div className='horizontal-scroll-wrapper'>
+        <div className="horizontal-scroll-wrapper">
           {sortedFavouriteArtists?.length > 0 ? (
             sortedFavouriteArtists?.map((artist) => (
-              <div className='wrapper-items' key={artist._id}>
+              <div className="wrapper-items" key={artist._id}>
                 <CardArtist
                   artist_name={artist.artist_name}
                   artist_image={artist.artist_image}
@@ -87,16 +87,16 @@ export default function Profile({ user, onLoginUser, tracks }) {
               </div>
             ))
           ) : (
-            <MessageArtist className='card'>
+            <MessageArtist className="card">
               <p>Go to Search and find your Favourite!</p>
             </MessageArtist>
           )}
         </div>
-        <h3 className='favourite-headline'>Your Added Tracks from A to Z</h3>
-        <div className='horizontal-scroll-wrapper'>
+        <h3 className="favourite-headline">Your Added Tracks from A to Z</h3>
+        <div className="horizontal-scroll-wrapper">
           {sortedTracksByUserId?.length > 0 ? (
             sortedTracksByUserId?.map((track) => (
-              <div className='wrapper-items' key={track._id}>
+              <div className="wrapper-items" key={track._id}>
                 <CardTrack
                   track_name={track.track_name}
                   artist={track.artist}
@@ -106,7 +106,7 @@ export default function Profile({ user, onLoginUser, tracks }) {
               </div>
             ))
           ) : (
-            <MessageTracks className='card'>
+            <MessageTracks className="card">
               <p>It's time to add Favourite Tracks</p>
             </MessageTracks>
           )}
@@ -115,14 +115,14 @@ export default function Profile({ user, onLoginUser, tracks }) {
           <h4>Hi!</h4>
           <img
             src={used_melody_main}
-            alt='melody hidden track'
-            className='melody-hidden'
+            alt="melody hidden track"
+            className="melody-hidden"
           />
         </HiddenTrack>
       </StyledWrapper>
       <Footer />
     </>
-  )
+  );
 }
 
 const MessageTracks = styled.div`
@@ -131,14 +131,14 @@ const MessageTracks = styled.div`
   p {
     margin-left: 1rem;
   }
-`
+`;
 const MessageArtist = styled.div`
   background-color: var(--cardartist);
   border: solid 1px var(--cardartist);
   p {
     margin-left: 1rem;
   }
-`
+`;
 
 const UserInfoContainer = styled.div`
   align-items: flex-end;
@@ -160,7 +160,7 @@ const UserInfoContainer = styled.div`
   li {
     font-size: 0.8rem;
   }
-`
+`;
 const StyledWrapper = styled.div`
   margin-bottom: 5rem;
   .horizontal-scroll-wrapper {
@@ -184,7 +184,7 @@ const StyledWrapper = styled.div`
     margin-left: 1rem;
     margin-top: 1.2rem;
   }
-`
+`;
 const HiddenTrack = styled.div`
   display: flex;
   flex-direction: row;
@@ -198,4 +198,4 @@ const HiddenTrack = styled.div`
     margin-top: 8rem;
     width: 30vw;
   }
-`
+`;

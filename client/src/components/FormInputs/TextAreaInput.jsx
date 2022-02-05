@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export default function InputTextAreaInput({
   name,
@@ -17,12 +17,12 @@ export default function InputTextAreaInput({
           onChange={onTextInputChange}
           placeholder={placeholder}
           value={value}
-          rows='3'
-          cols='48'
+          rows="3"
+          cols="48"
         />
       </StyledComp>
     </>
-  )
+  );
 }
 
 const StyledComp = styled.div`
@@ -49,4 +49,4 @@ const StyledComp = styled.div`
       outline: none;
     }
   }
-`
+`;

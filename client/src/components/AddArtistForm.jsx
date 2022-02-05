@@ -1,10 +1,10 @@
-import styled from 'styled-components'
-import { useState } from 'react'
-import { isArtistValid } from '../lib/form-validation'
-import TextInput from './FormInputs/TextInput'
-import InputTextAreaInput from './FormInputs/TextAreaInput'
-import dead_melody from '../assets/icons/dead_melody.svg'
-import used_melody from '../assets/icons/used_melody.svg'
+import styled from 'styled-components';
+import { useState } from 'react';
+import { isArtistValid } from '../lib/form-validation';
+import TextInput from './FormInputs/TextInput';
+import InputTextAreaInput from './FormInputs/TextAreaInput';
+import dead_melody from '../assets/icons/dead_melody.svg';
+import used_melody from '../assets/icons/used_melody.svg';
 
 export default function AddForm({ onAddArtist, user }) {
   const initialArtist = {
@@ -14,39 +14,39 @@ export default function AddForm({ onAddArtist, user }) {
     fav_of_user: [],
     infos: '',
     tracks: [],
-  }
+  };
 
-  const [artist, setArtist] = useState(initialArtist)
-  const [hasFormErrors, setHasFormErrors] = useState(false)
-  const [hasFormSend, setHasFormSend] = useState(false)
+  const [artist, setArtist] = useState(initialArtist);
+  const [hasFormErrors, setHasFormErrors] = useState(false);
+  const [hasFormSend, setHasFormSend] = useState(false);
 
   const handleChange = (event) => {
-    let inputValue = event.target.value
+    let inputValue = event.target.value;
 
     setArtist({
       ...artist,
       [event.target.name]: inputValue,
-    })
-  }
+    });
+  };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     if (isArtistValid(artist)) {
-      onAddArtist(artist)
-      setHasFormErrors(false)
-      setHasFormSend(true)
+      onAddArtist(artist);
+      setHasFormErrors(false);
+      setHasFormSend(true);
     } else {
-      setHasFormErrors(true)
-      setHasFormSend(false)
+      setHasFormErrors(true);
+      setHasFormSend(false);
     }
-  }
+  };
 
   return (
     <>
       {hasFormErrors && (
-        <Message data-testid='error-message'>
-          <img src={dead_melody} alt='' className='melody' />
+        <Message data-testid="error-message">
+          <img src={dead_melody} alt="" className="melody" />
 
           <p>
             <strong>Oh no, {user.first_name}! </strong>
@@ -55,8 +55,8 @@ export default function AddForm({ onAddArtist, user }) {
         </Message>
       )}
       {hasFormSend && (
-        <Message data-testid='send-message'>
-          <img src={used_melody} alt='' className='melody' />
+        <Message data-testid="send-message">
+          <img src={used_melody} alt="" className="melody" />
 
           <p>
             <strong>Yes, {user.first_name}! </strong>
@@ -68,8 +68,8 @@ export default function AddForm({ onAddArtist, user }) {
       <AddArtistForm onSubmit={handleSubmit}>
         <TextInput
           onTextInputChange={handleChange}
-          name='artist_name'
-          placeholder='type in artistname ...'
+          name="artist_name"
+          placeholder="type in artistname ..."
           value={artist.artist_name}
         >
           Artist
@@ -77,8 +77,8 @@ export default function AddForm({ onAddArtist, user }) {
 
         <InputTextAreaInput
           onTextInputChange={handleChange}
-          name='infos'
-          placeholder='type in ..'
+          name="infos"
+          placeholder="type in .."
           value={artist.infos}
         >
           Some kind words
@@ -86,23 +86,23 @@ export default function AddForm({ onAddArtist, user }) {
 
         <TextInput
           onTextInputChange={handleChange}
-          name='artist_image'
-          placeholder='https://... .png or .jpg'
+          name="artist_image"
+          placeholder="https://... .png or .jpg"
           value={artist.artist_image}
         >
           Artist Image
         </TextInput>
 
         <BtnPair>
-          <button data-testid='add-artist-btn' type='submit' className='addBtn'>
+          <button data-testid="add-artist-btn" type="submit" className="addBtn">
             Save
           </button>
 
           <button
-            className='clearBtn'
-            type='reset'
+            className="clearBtn"
+            type="reset"
             onClick={() => {
-              setArtist(initialArtist)
+              setArtist(initialArtist);
             }}
           >
             Clear
@@ -110,7 +110,7 @@ export default function AddForm({ onAddArtist, user }) {
         </BtnPair>
       </AddArtistForm>
     </>
-  )
+  );
 }
 
 const Message = styled.div`
@@ -124,7 +124,7 @@ const Message = styled.div`
   .melody {
     width: 4rem;
   }
-`
+`;
 const AddArtistForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -154,7 +154,7 @@ const AddArtistForm = styled.form`
   button:active {
     background-color: #5b82eeb2;
   }
-`
+`;
 const BtnPair = styled.div`
   align-self: center;
   display: flex;
@@ -180,4 +180,4 @@ const BtnPair = styled.div`
     background-color: var(--cardartist);
     border-radius: 50px 0 0 50px;
   }
-`
+`;

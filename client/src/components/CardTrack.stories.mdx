@@ -1,21 +1,21 @@
-import CardTrack from './CardTrack'
-import { Meta, Story } from '@storybook/addon-docs'
-import { MemoryRouter } from 'react-router-dom'
+import CardTrack from './CardTrack';
+import { Meta, Story } from '@storybook/addon-docs';
+import { MemoryRouter } from 'react-router-dom';
 
-<Meta title='Components/CardTrack' component={CardTrack} />
+<Meta title="Components/CardTrack" component={CardTrack} />
 
 export const Template = (args) => (
   <MemoryRouter>
     <CardTrack {...args} />
   </MemoryRouter>
-)
+);
 
 # CardTrack component
 
 The CardTrack component represents a card with information about the track and a link to the track page
 
 <Story
-  name='Main Track Card'
+  name="Main Track Card"
   args={{
     track_name: 'Amen, Brother',
     cover_image:
@@ -28,7 +28,7 @@ The CardTrack component represents a card with information about the track and a
 </Story>
 
 <Story
-  name='Track Card without Artist Link'
+  name="Track Card without Artist Link"
   args={{
     track_name: 'Amen, Brother',
     cover_image:

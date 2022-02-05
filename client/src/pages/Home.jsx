@@ -1,59 +1,59 @@
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import used_melody_main from '../assets/used_melody_main.svg'
-import used_logo from '../assets/used_logo.svg'
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import used_melody_main from '../assets/used_melody_main.svg';
+import used_logo from '../assets/used_logo.svg';
 
 export default function Home({}) {
   return (
     <Hello>
-      <img src={used_logo} alt='used logo' className='used-logo' />
-      <div className='svgrow'>
+      <img src={used_logo} alt="used logo" className="used-logo" />
+      <div className="svgrow">
         <img
           src={used_melody_main}
-          alt='used melody character'
-          className='slide'
+          alt="used melody character"
+          className="slide"
         />
         <img
           src={used_melody_main}
-          alt='used melody character'
-          className='slide'
+          alt="used melody character"
+          className="slide"
         />
         <img
           src={used_melody_main}
-          alt='used melody character'
-          className='slide'
+          alt="used melody character"
+          className="slide"
         />
         <img
           src={used_melody_main}
-          alt='used melody character'
-          className='slide'
+          alt="used melody character"
+          className="slide"
         />
         <img
           src={used_melody_main}
-          alt='used melody character'
-          className='slide'
+          alt="used melody character"
+          className="slide"
         />
         <img
           src={used_melody_main}
-          alt='used melody character'
-          className='slide'
+          alt="used melody character"
+          className="slide"
         />
       </div>
       <h1>A tribute to The Winstons and the lost music samples.</h1>
 
-      <h2 className='mobileOnlyNotice'>
+      <h2 className="mobileOnlyNotice">
         Nice to see you! Please use a mobile device.
       </h2>
       <Btn>
-        <Link to='/profile/Jane' className='discoverBtn'>
-          <button data-testid='jane-btn'>JOIN AS JANE</button>
+        <Link to="/profile/Jane" className="discoverBtn">
+          <button data-testid="jane-btn">JOIN AS JANE</button>
         </Link>
-        <Link to='/profile/John' className='discoverBtn'>
+        <Link to="/profile/John" className="discoverBtn">
           <button>JOIN AS JOHN</button>
         </Link>
       </Btn>
     </Hello>
-  )
+  );
 }
 
 const Hello = styled.div`
@@ -100,7 +100,7 @@ const Hello = styled.div`
     height: auto;
     margin: 0;
   }
-`
+`;
 
 const Btn = styled.section`
   align-self: center;
@@ -121,4 +121,4 @@ const Btn = styled.section`
     border: 1px solid var(--darkgrey);
     cursor: pointer;
   }
-`
+`;

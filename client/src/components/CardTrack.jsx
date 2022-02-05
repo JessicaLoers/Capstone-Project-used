@@ -1,30 +1,30 @@
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function CardTrack({ track_name, artist, year, cover_image }) {
   const arrow = (
     <svg
-      xmlns='http://www.w3.org/2000/svg'
-      enableBackground='new 0 0 24 24'
-      height='24'
-      viewBox='0 0 24 24'
-      width='24'
-      fill='#f8f8f8'
+      xmlns="http://www.w3.org/2000/svg"
+      enableBackground="new 0 0 24 24"
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+      fill="#f8f8f8"
     >
       <g>
-        <path d='M0,0h24v24H0V0z' fill='none' />
+        <path d="M0,0h24v24H0V0z" fill="none" />
       </g>
       <g>
-        <polygon points='6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12' />
+        <polygon points="6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12" />
       </g>
     </svg>
-  )
+  );
 
   return (
-    <SingleTrack className='card'>
+    <SingleTrack className="card">
       <CoverImage src={cover_image} />
-      <div className='card_details'>
+      <div className="card_details">
         <h3>{track_name}</h3>
 
         <ArtistLink to={`/artist/${artist}`}>
@@ -33,20 +33,20 @@ function CardTrack({ track_name, artist, year, cover_image }) {
 
         <p>{year}</p>
       </div>
-      <Link to={`/track/${track_name}`} className='card_arrow'>
+      <Link to={`/track/${track_name}`} className="card_arrow">
         <span>{arrow}</span>
       </Link>
     </SingleTrack>
-  )
+  );
 }
-export default CardTrack
+export default CardTrack;
 
 CardTrack.propTypes = {
   track_name: PropTypes.string,
   cover_image: PropTypes.string,
   artist: PropTypes.string,
   year: PropTypes.number,
-}
+};
 
 const SingleTrack = styled.div`
   background-color: var(--cardtrack);
@@ -54,12 +54,12 @@ const SingleTrack = styled.div`
   p {
     font-size: 0.8rem;
   }
-`
+`;
 const ArtistLink = styled(Link)`
   color: var(--lightgrey);
   font-weight: 500;
   cursor: pointer;
-`
+`;
 
 const CoverImage = styled.img`
   border-radius: 2px;
@@ -71,4 +71,4 @@ const CoverImage = styled.img`
   margin-left: 5px;
   object-fit: cover;
   width: 20vw;
-`
+`;

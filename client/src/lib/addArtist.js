@@ -5,8 +5,8 @@ async function addArtistToDatabase(artist) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(artist),
-  })
-  return await result.json()
+  });
+  return await result.json();
 }
 
-export { addArtistToDatabase }
+export { addArtistToDatabase };

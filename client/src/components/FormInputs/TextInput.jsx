@@ -1,11 +1,11 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 function TextInput({ name, value, onTextInputChange, placeholder, children }) {
   return (
     <>
       <label htmlFor={name}>{children}</label>
       <input
-        type='text'
+        type="text"
         id={name}
         name={name}
         onChange={onTextInputChange}
@@ -13,7 +13,7 @@ function TextInput({ name, value, onTextInputChange, placeholder, children }) {
         value={value}
       />
     </>
-  )
+  );
 }
 
-export default TextInput
+export default TextInput;

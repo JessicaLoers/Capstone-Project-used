@@ -1,21 +1,21 @@
-import Button from './Button'
-import { Meta, Story } from '@storybook/addon-docs'
-import { MemoryRouter } from 'react-router-dom'
+import Button from './Button';
+import { Meta, Story } from '@storybook/addon-docs';
+import { MemoryRouter } from 'react-router-dom';
 
-<Meta title='Components/Button' component={Button} />
+<Meta title="Components/Button" component={Button} />
 
 export const Template = (args) => (
   <MemoryRouter>
     <Button {...args} />
   </MemoryRouter>
-)
+);
 
 # Button component
 
 The Button represents the Add Sample Button, Add Track Button and Add Artist Button
 
 <Story
-  name='Add Sample Button'
+  name="Add Sample Button"
   args={{
     backgroundColor: '#F7C4D4',
     children: 'Add Sample',
@@ -26,7 +26,7 @@ The Button represents the Add Sample Button, Add Track Button and Add Artist But
 </Story>
 
 <Story
-  name='Add Track Button'
+  name="Add Track Button"
   args={{
     backgroundColor: '#00CE82',
     children: 'Add Track',
@@ -37,7 +37,7 @@ The Button represents the Add Sample Button, Add Track Button and Add Artist But
 </Story>
 
 <Story
-  name='Add Artist Button'
+  name="Add Artist Button"
   args={{
     backgroundColor: '#5B81EE',
     children: 'Add Artist',
@@ -48,7 +48,7 @@ The Button represents the Add Sample Button, Add Track Button and Add Artist But
 </Story>
 
 <Story
-  name='Long Button Text'
+  name="Long Button Text"
   args={{
     backgroundColor: '#F7C4D4',
     children: 'Yeah, space is the place',

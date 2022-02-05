@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 export default function Button({
   backgroundColor,
   className,
@@ -13,11 +13,11 @@ export default function Button({
       onClick={onClick}
       className={className}
       color={color}
-      type='button'
+      type="button"
     >
       {children}
     </Btn>
-  )
+  );
 }
 
 Button.protoTypes = {
@@ -25,7 +25,7 @@ Button.protoTypes = {
   onClick: PropTypes.func,
   color: PropTypes.string,
   children: PropTypes.string,
-}
+};
 
 const Btn = styled.button`
   background-color: ${(props) =>
@@ -40,4 +40,4 @@ const Btn = styled.button`
   padding: 0.4rem 1rem;
   border-radius: 50px;
   align-self: center;
-`
+`;

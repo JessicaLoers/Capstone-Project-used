@@ -5,8 +5,8 @@ async function addTracksToDatabase(track) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(track),
-  })
-  return await result.json()
+  });
+  return await result.json();
 }
 
-export { addTracksToDatabase }
+export { addTracksToDatabase };
