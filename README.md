@@ -22,3 +22,6 @@ How to install and run:
 In order to persist data in MongoDB, please take a look in the .env.example and create an .env file locally holding your database credentials
 
 **Notice:** Still work in progess. :wink:
+
+PREVIEW:
+![used-enterscreen:](../client/src/assets/github/used_enter-screen.png)
