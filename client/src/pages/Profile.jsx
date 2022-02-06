@@ -68,7 +68,7 @@ export default function Profile({ user, onLoginUser, tracks }) {
             ))
           ) : (
             <MessageTracks className="card">
-              <p>It's time to add Favourite Tracks</p>
+              <p>It&rsquo;s time to add Favourite Tracks</p>
             </MessageTracks>
           )}
         </div>
@@ -107,7 +107,7 @@ export default function Profile({ user, onLoginUser, tracks }) {
             ))
           ) : (
             <MessageTracks className="card">
-              <p>It's time to add Favourite Tracks</p>
+              <p>It&rsquo;s time to add Favourite Tracks</p>
             </MessageTracks>
           )}
         </div>

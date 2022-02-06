@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import used_melody_main from '../assets/used_melody_main.svg';
 import used_logo from '../assets/used_logo.svg';
 
-export default function Home({}) {
+export default function Home() {
   return (
     <Hello>
       <img src={used_logo} alt="used logo" className="used-logo" />

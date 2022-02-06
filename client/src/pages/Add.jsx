@@ -39,7 +39,7 @@ export default function Add({
     <>
       <Wrapper>
         <Header pageTitle={'Add'} />
-        <h1>What you'd like to do, dear {user.first_name}?</h1>
+        <h1>What you&rsquo;d like to do, dear {user.first_name}?</h1>
         <section className="section-wrapper">
           <div className="toggle-button" data-testid="open-add-sample-btn">
             <Button
@@ -124,33 +124,5 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     margin-top: 1rem;
-  }
-`;
-const BtnShowFormAddTrack = styled.button`
-  background-color: var(--cardtrack);
-  border: 1px solid var(--cardtrack);
-  border: 1px solid var(--cardtrack);
-  color: var(--darkgrey);
-  width: 12rem;
-  :active {
-    background-color: #00ce82ab;
-  }
-`;
-const BtnShowFormSamples = styled.button`
-  background-color: var(--secondarycolor);
-  border: 1px solid var(--secondarycolor);
-  color: var(--darkgrey);
-  width: 12rem;
-  :active {
-    background-color: #d3a8b6f8;
-  }
-`;
-const BtnShowFormAddArtist = styled.button`
-  background-color: var(--cardartist);
-  border: 1px solid var(--cardartist);
-  color: var(--darkgrey);
-  width: 12rem;
-  :active {
-    background-color: #5b82eeb2;
   }
 `;
