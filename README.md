@@ -12,9 +12,13 @@ Since the late 1980s, sampling as a musical practice has been an important part 
 
 In 1969, soul and gospel band The Winstons released their song _Amen Brother_ on the B-side of a single. Almost 20 years later, the famous _Amen Break_ drum loop was created based on a six-second drum break sample, which can still be heard today in almost every drum'n'bass and jungle production as well as in numerous hip-hop breakbeats. The band's drummer Gregory C. Colemans died homeless in 2006.
 
-How to install:
+How to install and run:
 
 - npm install
-- npm run build
+- npm run dev to start both client and server in the dev environment
+- npm run build to build the client React app
+- npm start to run the server which serves the client and the API as if it's deployed
+
+In order to persist data in MongoDB, please take a look in the .env.example and create an .env file locally holding your database credentials
 
 **Notice:** Still work in progess. :wink:
