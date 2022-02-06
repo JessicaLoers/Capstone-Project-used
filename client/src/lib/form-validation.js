@@ -36,4 +36,4 @@ const isSampleValid = (pair, selection) =>
   hasValue(pair) &&
   hasTwoTracksSelected(pair);
 
-export { isArtistValid, isTrackValid, isSampleValid };
+export { isArtistValid, isTrackValid, isSampleValid, hasValidArtistValue };
