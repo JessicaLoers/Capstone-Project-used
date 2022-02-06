@@ -1,6 +1,7 @@
 **neue fische Web Development Bootcamp - Capstone Project 2022**
 
-# used – A tribute to The Winstons and the lost music samples
+
+# <a href="https://used-app.herokuapp.com" target="_blank">used</a> A tribute to The Winstons and the lost music samples
 
 **Description and thoughts:**
 
@@ -14,13 +15,13 @@ In 1969, soul and gospel band The Winstons released their song _Amen Brother_ on
 
 How to install and run:
 
-- npm install
-- npm run dev to start both client and server in the dev environment
-- npm run build to build the client React app
-- npm start to run the server which serves the client and the API as if it's deployed
+- `npm install`
+- `npm run dev to start both client and server in the dev environment`
+- `npm run build to build the client React app`
+- `npm start to run the server which serves the client and the API as if it's deployed`
 
-In order to persist data in MongoDB, please take a look in the .env.example and create an .env file locally holding your database credentials
+In order to persist data in MongoDB, please take a look in the .env.example and create an `.env` file locally holding your database credentials
 
-**Notice:** Still work in progess. :wink:
+**Notice:** Still work in progess.
 
 ![used-enterscreen:](client/src/assets/github/used_preview.png)
