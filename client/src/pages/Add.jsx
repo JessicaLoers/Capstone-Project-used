@@ -19,33 +19,18 @@ export default function Add({
   const [isSampleBtnActive, setIsSampleBtnActive] = useState(false);
   const [isArtistBtnActive, setIsArtistBtnActive] = useState(false);
 
-  const handleSampleButton = () => {
-    setIsSampleBtnActive(!isSampleBtnActive);
-  };
-
-  const handleTrackButton = () => {
-    setIsTrackBtnActive(!isTrackBtnActive);
-  };
-
-  const handleArtistButton = () => {
-    setIsArtistBtnActive(!isArtistBtnActive);
-  };
-
-  const checkBtnState = (checkState) => {
-    checkState ? 'inactive' : 'active';
-  };
-
   return (
     <>
       <Wrapper>
         <Header pageTitle={'Add'} />
         <h1>What you&rsquo;d like to do, dear {user.first_name}?</h1>
-        <section className="section-wrapper">
-          <div className="toggle-button" data-testid="open-add-sample-btn">
+        <section>
+          <div data-testid="open-add-sample-btn">
             <Button
-              onClick={handleSampleButton}
-              className={checkBtnState(isSampleBtnActive)}
-              backgroundColor="#F7C4D4"
+              onClick={() => {
+                setIsSampleBtnActive(!isSampleBtnActive);
+              }}
+              variant="sample"
             >
               {isSampleBtnActive ? <span>Close</span> : <span>Add Sample</span>}
             </Button>
@@ -61,12 +46,13 @@ export default function Add({
             ''
           )}
         </section>
-        <section className="section-wrapper">
-          <div className="toggle-button" data-testid="open-add-track-btn">
+        <section>
+          <div data-testid="open-add-track-btn">
             <Button
-              onClick={handleTrackButton}
-              className={checkBtnState(isTrackBtnActive)}
-              backgroundColor="#00CE82"
+              onClick={() => {
+                setIsTrackBtnActive(!isTrackBtnActive);
+              }}
+              variant="track"
             >
               {isTrackBtnActive ? <span>close</span> : <span>Add Track</span>}
             </Button>
@@ -83,12 +69,13 @@ export default function Add({
           )}
         </section>
 
-        <section className="section-wrapper">
-          <div className="toggle-button" data-testid="open-add-artist-btn">
+        <section>
+          <div data-testid="open-add-artist-btn">
             <Button
-              onClick={handleArtistButton}
-              className={checkBtnState(isArtistBtnActive)}
-              backgroundColor="#5B81EE"
+              onClick={() => {
+                setIsArtistBtnActive(!isArtistBtnActive);
+              }}
+              variant="artist"
             >
               {isArtistBtnActive ? <span>close</span> : <span>Add Artist</span>}
             </Button>
@@ -112,15 +99,13 @@ export default function Add({
 
 const Wrapper = styled.section`
   margin: 5rem 3rem 9rem 3rem;
-
-  .toggle-button {
+  div {
     align-self: center;
   }
-
   h1 {
     text-align: center;
   }
-  .section-wrapper {
+  section {
     display: flex;
     flex-direction: column;
     margin-top: 1rem;

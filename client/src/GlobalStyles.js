@@ -67,8 +67,6 @@ h1,
     margin: 0;
   }
   
-
-}
 // --> favIcon : Artist.jsx, Track.jsx
   .favIcons {
     bottom: 6;

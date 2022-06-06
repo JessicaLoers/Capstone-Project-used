@@ -22,7 +22,6 @@ export default function AddForm({ onAddArtist, user }) {
 
   const handleChange = (event) => {
     let inputValue = event.target.value;
-
     setArtist({
       ...artist,
       [event.target.name]: inputValue,
@@ -31,7 +30,6 @@ export default function AddForm({ onAddArtist, user }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     if (isArtistValid(artist)) {
       onAddArtist(artist);
       setHasFormErrors(false);
@@ -49,7 +47,7 @@ export default function AddForm({ onAddArtist, user }) {
           <img src={dead_melody} alt="" className="melody" />
 
           <p>
-            <strong>Oh no, {user.first_name}! </strong>
+            <strong>Oh no, {user.first_name}!</strong>
             Check if all fields are correctly filled.
           </p>
         </Message>

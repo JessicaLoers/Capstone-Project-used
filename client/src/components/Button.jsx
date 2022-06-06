@@ -1,22 +1,10 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-export default function Button({
-  backgroundColor,
-  className,
-  onClick,
-  color,
-  children,
-}) {
+import { StyledButton } from './UI/Button.Styled';
+export default function Button({ variant, onClick, children }) {
   return (
-    <Btn
-      backgroundColor={backgroundColor}
-      onClick={onClick}
-      className={className}
-      color={color}
-      type="button"
-    >
+    <StyledButton variant={variant} onClick={onClick} type="button">
       {children}
-    </Btn>
+    </StyledButton>
   );
 }
 
@@ -26,18 +14,3 @@ Button.protoTypes = {
   color: PropTypes.string,
   children: PropTypes.string,
 };
-
-const Btn = styled.button`
-  background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor : 'none'};
-  color: ${(props) => (props.color ? props.color : '#333333')};
-  width: 12rem;
-  border: none;
-  margin-top: 1rem;
-  cursor: pointer;
-  height: 2rem;
-  font-size: 0.9rem;
-  padding: 0.4rem 1rem;
-  border-radius: 50px;
-  align-self: center;
-`;
