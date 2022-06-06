@@ -67,39 +67,7 @@ h1,
     margin: 0;
   }
   
-// --> card
-.card {
-  align-items: left;
-  border-radius: 0 5px 5px 0;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
-  display: grid;
-  grid-column-gap: 0px;
-  grid-template-columns: 2fr 3fr 0.5fr;
-  grid-template-rows: 1fr;
-  margin-bottom: 5px;
-  margin-left: 0px;
-  padding: 5px 5px 5px 0;
-  width: 80vw;
-  
-}
-.card_arrow{
-  cursor: pointer;
-  align-items: center;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  justify-self: flex-end;
-  span {
-    height: 1rem;
-    margin-right: 10px;
-    width: 1rem;
-  }
-}
 
-.card_details {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 // --> favIcon : Artist.jsx, Track.jsx
   .favIcons {
