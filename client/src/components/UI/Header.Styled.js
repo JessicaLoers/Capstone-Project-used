@@ -4,7 +4,6 @@ const StyledHeader = styled.header`
   background: var(--secondarycolor);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
   height: 3.2rem;
   justify-items: center;
   align-items: baseline;
