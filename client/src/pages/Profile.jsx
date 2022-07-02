@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
-import CardTrack from '../components/CardTrack';
-import CardArtist from '../components/CardArtist';
+import Card from '../components/Card/Card';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Avatar from '../components/Avatar';
@@ -35,6 +34,8 @@ export default function Profile({ user, onLoginUser, tracks }) {
     return 1;
   });
 
+  console.log(sortedFavouriteArtists);
+
   return (
     <>
       <Header className="header" pageTitle={'Your Profile'} />
@@ -58,11 +59,12 @@ export default function Profile({ user, onLoginUser, tracks }) {
           {sortedFavouriteTracks?.length > 0 ? (
             sortedFavouriteTracks?.map((track) => (
               <div className="wrapper-items" key={track._id}>
-                <CardTrack
-                  track_name={track.track_name}
-                  artist={track.artist}
-                  cover_image={track.cover_image}
+                <Card
+                  track={track.track_name}
                   year={track.year}
+                  image={track.cover_image}
+                  name={track.artist}
+                  variant="track"
                 />
               </div>
             ))
@@ -80,9 +82,10 @@ export default function Profile({ user, onLoginUser, tracks }) {
           {sortedFavouriteArtists?.length > 0 ? (
             sortedFavouriteArtists?.map((artist) => (
               <div className="wrapper-items" key={artist._id}>
-                <CardArtist
-                  artist_name={artist.artist_name}
-                  artist_image={artist.artist_image}
+                <Card
+                  name={artist.artist_name}
+                  image={artist.artist_image}
+                  variant="artist"
                 />
               </div>
             ))
@@ -97,11 +100,12 @@ export default function Profile({ user, onLoginUser, tracks }) {
           {sortedTracksByUserId?.length > 0 ? (
             sortedTracksByUserId?.map((track) => (
               <div className="wrapper-items" key={track._id}>
-                <CardTrack
-                  track_name={track.track_name}
-                  artist={track.artist}
-                  cover_image={track.cover_image}
+                <Card
+                  track={track.track_name}
                   year={track.year}
+                  image={track.cover_image}
+                  name={track.artist}
+                  variant="track"
                 />
               </div>
             ))

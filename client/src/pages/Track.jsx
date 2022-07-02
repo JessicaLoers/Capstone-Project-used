@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import CardTrack from '../components/CardTrack';
+import Card from '../components/Card/Card';
 import Header from '../components/Header';
 import YoutubeEmbed from '../components/YoutubeEmbed';
 import Footer from '../components/Footer';
@@ -67,7 +67,7 @@ export default function Track({ tracks, user, onAddToFavourites }) {
         <div>
           <h3 className="collections-headline">Sampled in:</h3>
           {sampledIn.map((track) => (
-            <CardTrack
+            <Card
               key={track._id}
               track_name={track.track_name}
               artist={track.artist}
@@ -80,12 +80,13 @@ export default function Track({ tracks, user, onAddToFavourites }) {
         <div>
           <h3 className="collections-headline">Contains Samples of:</h3>
           {containsSamples.map((track) => (
-            <CardTrack
+            <Card
               key={track._id}
-              track_name={track.track_name}
-              artist={track.artist}
-              cover_image={track.cover_image}
+              track={track.track_name}
               year={track.year}
+              image={track.cover_image}
+              name={track.artist}
+              variant="track"
             />
           ))}
         </div>

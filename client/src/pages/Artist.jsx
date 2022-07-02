@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import CardTrack from '../components/CardTrack';
+import Card from '../components/Card/Card';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import favlabel from '../assets/favLabel.svg';
@@ -31,11 +31,13 @@ export default function Artist({ artists, tracks, onAddToFavourites, user }) {
         </StyledFavouriteIcon>
         <Info>{thisArtist?.infos}</Info>
         {thisArtistTrack?.map((track) => (
-          <CardTrack
+          <Card
             key={track._id}
-            track_name={track.track_name}
-            cover_image={track.cover_image}
+            track={track.track_name}
             year={track.year}
+            image={track.cover_image}
+            name={track.artist}
+            variant="track"
           />
         ))}
       </CardWrapper>

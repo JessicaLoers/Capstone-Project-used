@@ -1,9 +1,10 @@
-import CardTrack from '../components/CardTrack';
-import CardArtist from '../components/CardArtist';
+//import CardTrack from '../components/CardTrack';
+import Card from '../components/Card/Card';
 import { useState } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { searchFunction } from '../lib/searchFunction';
 
 export default function SearchBar({ artists, tracks }) {
   const [searchWord, setSearchWord] = useState('');
@@ -13,25 +14,12 @@ export default function SearchBar({ artists, tracks }) {
     let inputValue = event.target.value;
     setSearchWord(inputValue);
   };
-  const sortedArtistNames = artists.sort((a, b) => {
-    if (a.artist_name < b.artist_name) return -1;
-    return 1;
-  });
-  const sortedTrackNames = tracks.sort((a, b) => {
-    if (a.track_name < b.track_name) return -1;
-    return 1;
-  });
-
-  const searchedArtist = sortedArtistNames.filter((artist) =>
-    searchWord !== '' && artist.artist_name
-      ? artist.artist_name.toLowerCase().includes(searchWord.toLowerCase())
-      : true
+  const searchedArtist = searchFunction(
+    artists,
+    'artist_name',
+    `${searchWord}`
   );
-  const searchedTrack = sortedTrackNames.filter((track) =>
-    searchWord !== '' && track.track_name
-      ? track.track_name.toLowerCase().includes(searchWord.toLowerCase())
-      : true
-  );
+  const searchedTrack = searchFunction(tracks, 'track_name', `${searchWord}`);
 
   return (
     <>
@@ -46,7 +34,6 @@ export default function SearchBar({ artists, tracks }) {
             >
               Tracks
             </BtnTrack>
-
             <BtnArtist
               data-testid="search-artist-btn"
               type="button"
@@ -68,23 +55,26 @@ export default function SearchBar({ artists, tracks }) {
             />
           </SearchInput>
         </SearchBarWrapperStyled>
+
         <Results>
           {isBtnActive
             ? searchedArtist?.map((artist) => (
                 <div key={artist._id}>
-                  <CardArtist
-                    artist_name={artist.artist_name}
-                    artist_image={artist.artist_image}
+                  <Card
+                    name={artist.artist_name}
+                    image={artist.artist_image}
+                    variant="artist"
                   />
                 </div>
               ))
             : searchedTrack?.map((track) => (
                 <div key={track._id}>
-                  <CardTrack
-                    track_name={track.track_name}
+                  <Card
+                    track={track.track_name}
                     year={track.year}
-                    cover_image={track.cover_image}
-                    artist={track.artist}
+                    image={track.cover_image}
+                    name={track.artist}
+                    variant="track"
                   />
                 </div>
               ))}
@@ -106,7 +96,7 @@ const Results = styled.div`
 `;
 const SearchBarWrapperStyled = styled.div`
   background-color: var(--secondarycolor);
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  _box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   left: 0;

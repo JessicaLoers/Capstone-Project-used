@@ -1,4 +1,4 @@
-import CardTrack from './CardTrack';
+import CardTrack from '../CardTrack';
 import { MemoryRouter } from 'react-router-dom';
 
 export const Template = (args) => (

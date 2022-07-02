@@ -24,8 +24,6 @@ export default function App() {
   const [artists, setArtists] = useState(loadFromLocal('_ARTISTS') ?? []);
   const [user, setUser] = useState(loadFromLocal('_USER') ?? {});
 
-  console.log(artists);
-
   async function fetchTracks() {
     try {
       const response = await fetch('/api/track');
